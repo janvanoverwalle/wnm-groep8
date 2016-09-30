@@ -14,24 +14,36 @@ class UserController extends Controller
 {
     /**
      * @Route("/habits/{user_id}", requirements={"user_id": "\d+"}, defaults={"user_id"=0}))
+	 * @Method("GET")
      */
     public function showHabitsAction($user_id)
     {
 		$twig = 'AppBundle:UserController:show_habits.html.twig';
-		$success = false;
+		$user = new User();
+		$habits = new Habit();
 		
 		if ($user_id == 0) {
 			return $this->render($twig, array(
-				"success" => $success
+				"success" => False
 			));
 		}
 		
 		
 		
         return $this->render($twig, array(
-            "success" => $success
+            "success" => True,
+			"user" => $user,
+			"habits" => $habits
         ));
     }
+	
+	/**
+     * @Route("/habits/{user_id}", requirements={"user_id": "\d+"}, defaults={"user_id"=0}))
+	 * @Method("POST")
+     */
+    public function showHabitsAction($user_id) {
+		
+	}
 
     /**
      * @Route("/overview/{user_id}", requirements={"user_id": "\d+"})

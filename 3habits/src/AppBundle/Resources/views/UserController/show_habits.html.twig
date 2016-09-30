@@ -1,7 +1,30 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}AppBundle:UserController:showHabits{% endblock %}
+{% block title %}Your Daily Habits{% endblock %}
 
 {% block body %}
-<h1>Welcome to the UserController:showHabits page</h1>
+	{% if success == true %}
+		<h2>Welcome {{user.name|e}} </h2>
+		
+		{% if habits %}
+			<table>
+				{% for h in habits %}
+					<tr>
+						<td>{{h.description|e}}</td>
+						<td>
+							<form action="" method="post">
+								<input type="hidden" name="habit_id" value={{h.id}}>
+								<input type="submit" value="Done">
+							</form>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+		{% endif %}
+		
+	{% else %}
+		<h2>Sorry, that user could not be found :s</h2>
+		<p>Go back to the  < href="/">login page</a></p>
+	{% endif %}	
+
 {% endblock %}
