@@ -1,0 +1,15 @@
+# app/config/parameters.yml
+
+parameters:
+    database_host:     http://149.210.145.131
+    database_port:     ~
+    database_name:     3habits
+    database_user:     pxlstudent
+    database_password: d92VLSdByYerXRsq
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    secret:          4d4200271f5cb41fa72e9df560f20f687fa76d3b
