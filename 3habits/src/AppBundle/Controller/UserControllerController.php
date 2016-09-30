@@ -20,11 +20,13 @@ class UserControllerController extends Controller
     }
 
     /**
-     * @Route("/overview")
+     * @Route("/overview/{user_id}", requirements={"user_id": "\d+"})
      */
-    public function overviewHabitsAction()
+    public function userOverviewAction($user_id)
     {
-        return $this->render('AppBundle:UserController:overview_habits.html.twig', array(
+		
+		
+        return $this->render('AppBundle:UserController:user_overview.html.twig', array(
             // ...
         ));
     }
