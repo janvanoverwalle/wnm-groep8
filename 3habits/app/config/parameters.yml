@@ -1,7 +1,7 @@
 # app/config/parameters.yml
 
 parameters:
-    database_host:     http://149.210.145.131
+    database_host:     149.210.145.131
     database_port:     ~
     database_name:     3habits
     database_user:     pxlstudent
