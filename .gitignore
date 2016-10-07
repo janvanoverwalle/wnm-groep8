@@ -46,3 +46,7 @@
 
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~
+
+#PHPstorm
+3habits/.idea/*
+3habits/.idea/workspace.xml
