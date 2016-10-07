@@ -31,7 +31,7 @@ class Calorie
     private $user_id;
 
     /**
-     * @ORM\Column(name="calories", type="integer", nullable=false)
+     * @ORM\Column(name="calories", type="float", nullable=false)
      */
     private $calories;
 
