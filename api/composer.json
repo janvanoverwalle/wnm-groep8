@@ -1,6 +1,7 @@
 {
 	"require":{
 		"monolog/monolog" : "1.21.*",
-		"klein/klein" : "^2.0.1"
+		"klein/klein" : "^2.0.1",
+        "altorouter/altorouter": "1.1.0"
 	}
 }
