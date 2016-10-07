@@ -1,24 +1,48 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
 class UserRepository extends EntityRepository
-{
-    public function findAllOrderedByName()
-    {
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT u FROM AppBundle:User u ORDER BY u.name ASC'
-            )
-            ->getResult();
-    }
-	
+{	
 	public function findById($id) {
 		if (!is_numeric($id)) {
 			return null;
 		}
+		
+		return $this->getEntityManager()
+			->createQuery(
+				'SELECT u FROM AppBundle:User u WHERE u.id = :id'
+			)
+			->setParameter('id', $id)
+			->getResult();
+	}
+	
+	public function findAllHabitsById($id) {
+		if (!is_numeric($id)) {
+			return null;
+		}
+		
+		$userHabits = $this->getEntityManager()
+			->createQuery(
+				'SELECT uh FROM AppBundle:UserHabits uh WHERE uh.user = :id'
+			)
+			->setParameter('id', $id)
+			->getResult();
+			
+		if ($userHabits == null) {
+			return null;
+		}
+		
+		$habits = array();
+		if (is_array($userHabits)) {
+			foreach ($userHabits as $uh) {
+				$habits[] = $uh->getHabit();
+			}
+		}
+		
+		return $habits;
 	}
 }
 
