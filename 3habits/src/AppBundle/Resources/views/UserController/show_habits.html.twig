@@ -4,7 +4,7 @@
 
 {% block body %}
 	{% if success == true %}
-		<h2>Welcome {{user.name|e}} </h2>
+		<h2>Welcome {{user.name}} </h2>
 		
 		{% if habits %}
 			<table>
@@ -24,7 +24,7 @@
 		
 	{% else %}
 		<h2>Sorry, that user could not be found :s</h2>
-		<p>Go back to the  < href="/">login page</a></p>
+		<p>Go back to the  <a href="/">login page</a></p>
 	{% endif %}	
 
 {% endblock %}
