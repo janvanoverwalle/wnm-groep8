@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="calories")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CalorieRepository")
  */
 class Calorie
 {

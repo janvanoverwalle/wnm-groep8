@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="habit_reached")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\HabitReachedRepository")
  */
 class HabitReached
 {

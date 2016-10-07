@@ -14,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="user_habits", indexes={@ORM\Index(name="user_id", columns={"user_id"}), @ORM\Index(name="habit_id", columns={"habit_id"})})
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserHabitsRepository")
  */
 class UserHabits
 {

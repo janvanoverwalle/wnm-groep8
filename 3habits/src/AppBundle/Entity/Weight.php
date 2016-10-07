@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="weights")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\WeightRepository")
  */
 class Weight
 {
