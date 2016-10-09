@@ -20,7 +20,7 @@ class Database
         exit('Init function is not allowed');
     }
 
-    public static function connect()
+    public static function get()
     {
         if (null == self::$connection) {
             try {
