@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f537c36f-851a-404a-a419-4aa75f827370" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/api.php" afterPath="$PROJECT_DIR$/api/api.php" />
     </list>
     <ignored path="wnm-groep8.iws" />
@@ -34,12 +35,14 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="70" />
+            <state relative-caret-position="330">
+              <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
               <folding>
-                <marker date="1476012405671" expanded="true" signature="356:404" ph="SELECT u.nam... user_habits" />
-                <marker date="1476012405671" expanded="true" signature="356:472" ph="SELECT u.nam... user_habits" />
-                <marker date="1476012405671" expanded="true" signature="356:602" ph="SELECT u.nam... user_habits" />
+                <element signature="e#327#1166#1#PHP" expanded="false" />
+                <marker date="1476013496992" expanded="true" signature="410:458" ph="SELECT u.nam... user_habits" />
+                <marker date="1476013496992" expanded="true" signature="410:526" ph="SELECT u.nam... user_habits" />
+                <marker date="1476013496992" expanded="true" signature="410:656" ph="SELECT u.nam... user_habits" />
+                <marker date="1476013496992" expanded="true" signature="1327:1345" ph="SELECT * FRO... user" />
               </folding>
             </state>
           </provider>
@@ -76,6 +79,7 @@
         <option value="$PROJECT_DIR$/api/Users.php" />
         <option value="$PROJECT_DIR$/api/users.php" />
         <option value="$PROJECT_DIR$/api/Database.php" />
+        <option value="$PROJECT_DIR$/api/User.php" />
         <option value="$PROJECT_DIR$/api/api.php" />
       </list>
     </option>
@@ -214,15 +218,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1476003388438</updated>
-      <workItem from="1476003393710" duration="6365000" />
+      <workItem from="1476003393710" duration="7471000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6365000" />
+    <option name="totallyTimeSpent" value="7471000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1366" height="744" extended-state="7" />
+    <frame x="0" y="24" width="1366" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -292,14 +296,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/api/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="70" />
+        <state relative-caret-position="330">
+          <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
           <folding>
-            <marker date="1476012405671" expanded="true" signature="356:404" ph="SELECT u.nam... user_habits" />
-            <marker date="1476012405671" expanded="true" signature="356:472" ph="SELECT u.nam... user_habits" />
-            <marker date="1476012405671" expanded="true" signature="356:602" ph="SELECT u.nam... user_habits" />
+            <element signature="e#327#1166#1#PHP" expanded="false" />
+            <marker date="1476013496992" expanded="true" signature="410:458" ph="SELECT u.nam... user_habits" />
+            <marker date="1476013496992" expanded="true" signature="410:526" ph="SELECT u.nam... user_habits" />
+            <marker date="1476013496992" expanded="true" signature="410:656" ph="SELECT u.nam... user_habits" />
+            <marker date="1476013496992" expanded="true" signature="1327:1345" ph="SELECT * FRO... user" />
           </folding>
         </state>
       </provider>

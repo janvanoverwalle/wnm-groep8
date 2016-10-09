@@ -10,6 +10,10 @@ require __DIR__ . '/vendor/altorouter/altorouter/AltoRouter.php';
 require __DIR__ . '/Database.php';
 include __DIR__ . '/config.php';
 
+/**
+ * @route = users/id
+ * @return user + habits
+ */
 $router->map('GET', '/users/[i:id]', function ($id) {
     // SELECT user + 3habits
     $sth = Database::get()->prepare("SELECT u.name, h.description FROM user_habits uh 
@@ -30,10 +34,25 @@ $router->map('GET', '/users/[i:id]', function ($id) {
     }
 
     // prepare json object ('name' = string, 'habits' = array(string))
-    $json_array = array("name"=>$name, "habits"=>$habits);
+    $json_array = array("name" => $name, "habits" => $habits);
 
     // encode in json + return
     echo json_encode($json_array);
+});
+
+/**
+ * @route = users
+ * @return all users
+ */
+$router->map('GET', '/users', function () {
+    // SELECT user + 3habits
+    $sth = Database::get()->prepare("SELECT * FROM user");
+    $sth->execute();
+    $users = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+    // json object ('id' = int, 'name' = string)
+    // encode in json + return
+    echo json_encode($users);
 });
 
 $match = $router->match();
