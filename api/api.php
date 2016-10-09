@@ -55,6 +55,21 @@ $router->map('GET', '/users', function () {
     echo json_encode($users);
 });
 
+/**
+ * @route = habits
+ * @return all habits
+ */
+$router->map('GET', '/habits', function () {
+    // SELECT user + 3habits
+    $sth = Database::get()->prepare("SELECT * FROM habit");
+    $sth->execute();
+    $habits = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+    // json object ('id' = int, 'description' = string)
+    // encode in json + return
+    echo json_encode($habits);
+});
+
 $match = $router->match();
 
 if ($match && is_callable($match['target'])) {
