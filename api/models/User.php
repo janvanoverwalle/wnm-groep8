@@ -13,6 +13,25 @@ class User
     private $name;
 
     /**
+     * User constructor.
+     * @param $id
+     * @param $name
+     */
+    public function __construct($id = NULL, $name = NULL)
+    {
+        $this->id = $id;
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     * @description access for JSON
+     */
+    public function expose() {
+        return get_object_vars($this);
+    }
+
+    /**
      * @return mixed
      */
     public function getId()

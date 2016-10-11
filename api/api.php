@@ -11,6 +11,8 @@ header('Content-Type: application/json');
 require __DIR__ . '/vendor/altorouter/altorouter/AltoRouter.php';
 require __DIR__ . '/config/Database.php';
 include __DIR__ . '/config/router.php';
+include __DIR__ . '/models/User.php';
+include __DIR__ . '/models/Habit.php';
 
 /**
  * @route = users/id
@@ -18,7 +20,7 @@ include __DIR__ . '/config/router.php';
  */
 $router->map('GET', '/users/[i:id]', function ($id) {
     // SELECT user + 3habits
-    $sth = Database::get()->prepare("SELECT u.name, h.description FROM user_habits uh 
+    $sth = Database::get()->prepare("SELECT u.name, h.id, h.description FROM user_habits uh 
                                     JOIN user u ON u.id=uh.user_id 
                                     JOIN habit h ON uh.habit_id=h.id 
                                     WHERE uh.user_id = :id ");
@@ -28,15 +30,17 @@ $router->map('GET', '/users/[i:id]', function ($id) {
 
     // variable declaration
     $name = $user_habits[0]['name'];
+    $user = new User($id, $name);
     $habits = array();
 
     // get all 3 habits
-    foreach ($user_habits as $d) {
-        $habits[] .= $d['description'];
+    foreach ($user_habits as $habit) {
+        $h = new Habit($habit['id'],$habit['description']);
+        $habits[] = $h->expose();
     }
 
-    // prepare json object ('name' = string, 'habits' = array(string))
-    $json_array = array("name" => $name, "habits" => $habits);
+    // prepare json object ('user' = User, 'habits' = array(Habit))
+    $json_array = array("user" => $user->expose(), "habits" => $habits);
 
     // encode in json + return
     echo json_encode(array($json_array));
@@ -52,9 +56,18 @@ $router->map('GET', '/users', function () {
     $sth->execute();
     $users = $sth->fetchAll(PDO::FETCH_ASSOC);
 
-    // json object ('id' = int, 'name' = string)
+    // variable declaration
+    $userList = array();
+
+    // json object (User)
+    foreach ($users as $user)
+    {
+        $u = new User($user['id'], $user['name']);
+        $userList[] = $u->expose();
+    }
+
     // encode in json + return
-    echo json_encode($users);
+    echo json_encode($userList);
 });
 
 /**
@@ -67,9 +80,18 @@ $router->map('GET', '/habits', function () {
     $sth->execute();
     $habits = $sth->fetchAll(PDO::FETCH_ASSOC);
 
-    // json object ('id' = int, 'description' = string)
+    // variable declaration
+    $habitList = array();
+
+    // json object (User)
+    foreach ($habits as $habit)
+    {
+        $h = new User($habit['id'], $habit['description']);
+        $habitList[] = $h->expose();
+    }
+
     // encode in json + return
-    echo json_encode($habits);
+    echo json_encode($habitList);
 });
 
 $match = $router->match();

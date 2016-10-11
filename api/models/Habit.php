@@ -12,6 +12,25 @@ class Habit
     private $description;
 
     /**
+     * Habit constructor.
+     * @param $id
+     * @param $description
+     */
+    public function __construct($id = NULL, $description = NULL)
+    {
+        $this->id = $id;
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     * @description access for JSON
+     */
+    public function expose() {
+        return get_object_vars($this);
+    }
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -42,6 +61,7 @@ class Habit
     {
         $this->description = $description;
     }
+
 
 
 }
