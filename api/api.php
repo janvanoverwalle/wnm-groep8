@@ -6,9 +6,11 @@
  * Time: 16:05
  */
 
+header('Content-Type: application/json');
+
 require __DIR__ . '/vendor/altorouter/altorouter/AltoRouter.php';
-require __DIR__ . '/Database.php';
-include __DIR__ . '/config.php';
+require __DIR__ . '/config/Database.php';
+include __DIR__ . '/config/router.php';
 
 /**
  * @route = users/id
@@ -37,7 +39,7 @@ $router->map('GET', '/users/[i:id]', function ($id) {
     $json_array = array("name" => $name, "habits" => $habits);
 
     // encode in json + return
-    echo json_encode($json_array);
+    echo json_encode(array($json_array));
 });
 
 /**
