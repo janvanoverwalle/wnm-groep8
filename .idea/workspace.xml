@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f537c36f-851a-404a-a419-4aa75f827370" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/api.php" afterPath="$PROJECT_DIR$/api/api.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/models/Habit.php" afterPath="$PROJECT_DIR$/api/models/Habit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/models/User.php" afterPath="$PROJECT_DIR$/api/models/User.php" />
     </list>
     <ignored path="wnm-groep8.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,14 +35,19 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="89" column="15" selection-start-line="89" selection-start-column="15" selection-end-line="89" selection-end-column="15" />
+            <state relative-caret-position="383">
+              <caret line="91" column="32" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
               <folding>
-                <marker date="1476219022004" expanded="true" signature="544:598" ph="SELECT u.nam... user_habits" />
-                <marker date="1476219022004" expanded="true" signature="544:666" ph="SELECT u.nam... user_habits" />
-                <marker date="1476219022004" expanded="true" signature="544:796" ph="SELECT u.nam... user_habits" />
-                <marker date="1476219022004" expanded="true" signature="1573:1591" ph="SELECT * FRO... user" />
-                <marker date="1476219022004" expanded="true" signature="2103:2122" ph="SELECT * FRO... habit" />
+                <element signature="e#461#1413#1#PHP" expanded="false" />
+                <element signature="e#1494#1927#1#PHP" expanded="false" />
+                <element signature="e#3051#3502#1#PHP" expanded="false" />
+                <marker date="1476265799221" expanded="true" signature="544:598" ph="SELECT u.nam... user_habits" />
+                <marker date="1476265799221" expanded="true" signature="544:666" ph="SELECT u.nam... user_habits" />
+                <marker date="1476265799221" expanded="true" signature="544:796" ph="SELECT u.nam... user_habits" />
+                <marker date="1476265799221" expanded="true" signature="1565:1583" ph="SELECT * FRO... user" />
+                <marker date="1476265799221" expanded="true" signature="2108:2349" ph="SELECT * FRO... habit" />
+                <marker date="1476265799221" expanded="true" signature="2108:2352" ph="SELECT u.*, user_habits" />
+                <marker date="1476265799221" expanded="true" signature="3123:3142" ph="SELECT * FRO... habit" />
               </folding>
             </state>
           </provider>
@@ -52,7 +56,7 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/models/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
+            <state relative-caret-position="330">
               <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="35" />
               <folding>
                 <element signature="e#7#88#0#PHP" expanded="true" />
@@ -74,7 +78,7 @@
       <file leaf-file-name="Calories.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/models/Calories.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
+            <state relative-caret-position="930">
               <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding />
             </state>
@@ -84,7 +88,7 @@
       <file leaf-file-name="Weight.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/models/Weight.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
+            <state relative-caret-position="615">
               <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
               <folding />
             </state>
@@ -116,9 +120,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#48#77#0#PHP" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -180,7 +182,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -216,6 +217,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -290,18 +292,19 @@
       <updated>1476003388438</updated>
       <workItem from="1476003393710" duration="7751000" />
       <workItem from="1476211345478" duration="2931000" />
-      <workItem from="1476215836685" duration="3199000" />
+      <workItem from="1476215836685" duration="3248000" />
+      <workItem from="1476264345419" duration="1436000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13881000" />
+    <option name="totallyTimeSpent" value="15366000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1366" height="744" extended-state="6" />
+    <frame x="0" y="24" width="1366" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25757575" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26136363" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -332,20 +335,104 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/api/api.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1335">
+          <caret line="89" column="15" selection-start-line="89" selection-start-column="15" selection-end-line="89" selection-end-column="15" />
+          <folding>
+            <element signature="e#461#1413#1#PHP" expanded="false" />
+            <element signature="e#1494#1927#1#PHP" expanded="false" />
+            <element signature="e#3051#3502#1#PHP" expanded="false" />
+            <marker date="1476265799221" expanded="true" signature="544:598" ph="SELECT u.nam... user_habits" />
+            <marker date="1476265799221" expanded="true" signature="544:666" ph="SELECT u.nam... user_habits" />
+            <marker date="1476265799221" expanded="true" signature="544:796" ph="SELECT u.nam... user_habits" />
+            <marker date="1476265799221" expanded="true" signature="1565:1583" ph="SELECT * FRO... user" />
+            <marker date="1476265799221" expanded="true" signature="2108:2349" ph="SELECT * FRO... habit" />
+            <marker date="1476265799221" expanded="true" signature="2108:2352" ph="SELECT u.*, user_habits" />
+            <marker date="1476265799221" expanded="true" signature="3123:3142" ph="SELECT * FRO... habit" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="35" />
+          <folding>
+            <element signature="e#7#88#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/Habit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/Calories.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models/Weight.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/config/router.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/config/Database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
           <folding>
-            <marker date="1476219022004" expanded="true" signature="544:598" ph="SELECT u.nam... user_habits" />
-            <marker date="1476219022004" expanded="true" signature="544:666" ph="SELECT u.nam... user_habits" />
-            <marker date="1476219022004" expanded="true" signature="544:796" ph="SELECT u.nam... user_habits" />
-            <marker date="1476219022004" expanded="true" signature="1573:1591" ph="SELECT * FRO... user" />
-            <marker date="1476219022004" expanded="true" signature="2103:2122" ph="SELECT * FRO... habit" />
+            <element signature="e#461#1413#1#PHP" expanded="false" />
+            <element signature="e#1494#1927#1#PHP" expanded="false" />
+            <element signature="e#3051#3502#1#PHP" expanded="false" />
+            <marker date="1476265799221" expanded="true" signature="544:598" ph="SELECT u.nam... user_habits" />
+            <marker date="1476265799221" expanded="true" signature="544:666" ph="SELECT u.nam... user_habits" />
+            <marker date="1476265799221" expanded="true" signature="544:796" ph="SELECT u.nam... user_habits" />
+            <marker date="1476265799221" expanded="true" signature="1565:1583" ph="SELECT * FRO... user" />
+            <marker date="1476265799221" expanded="true" signature="2108:2349" ph="SELECT * FRO... habit" />
+            <marker date="1476265799221" expanded="true" signature="2108:2352" ph="SELECT u.*, user_habits" />
+            <marker date="1476265799221" expanded="true" signature="3123:3142" ph="SELECT * FRO... habit" />
           </folding>
         </state>
       </provider>
@@ -396,9 +483,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#48#77#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -407,11 +492,16 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1476219022004" expanded="true" signature="544:598" ph="SELECT u.nam... user_habits" />
-            <marker date="1476219022004" expanded="true" signature="544:666" ph="SELECT u.nam... user_habits" />
-            <marker date="1476219022004" expanded="true" signature="544:796" ph="SELECT u.nam... user_habits" />
-            <marker date="1476219022004" expanded="true" signature="1573:1591" ph="SELECT * FRO... user" />
-            <marker date="1476219022004" expanded="true" signature="2103:2122" ph="SELECT * FRO... habit" />
+            <element signature="e#461#1413#1#PHP" expanded="false" />
+            <element signature="e#1494#1927#1#PHP" expanded="false" />
+            <element signature="e#3051#3502#1#PHP" expanded="false" />
+            <marker date="1476265799221" expanded="true" signature="544:598" ph="SELECT u.nam... user_habits" />
+            <marker date="1476265799221" expanded="true" signature="544:666" ph="SELECT u.nam... user_habits" />
+            <marker date="1476265799221" expanded="true" signature="544:796" ph="SELECT u.nam... user_habits" />
+            <marker date="1476265799221" expanded="true" signature="1565:1583" ph="SELECT * FRO... user" />
+            <marker date="1476265799221" expanded="true" signature="2108:2349" ph="SELECT * FRO... habit" />
+            <marker date="1476265799221" expanded="true" signature="2108:2352" ph="SELECT u.*, user_habits" />
+            <marker date="1476265799221" expanded="true" signature="3123:3142" ph="SELECT * FRO... habit" />
           </folding>
         </state>
       </provider>
@@ -428,9 +518,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#48#77#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -448,9 +536,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#48#77#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -472,7 +558,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/models/Calories.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
+        <state relative-caret-position="930">
           <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding />
         </state>
@@ -480,7 +566,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/models/Weight.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
+        <state relative-caret-position="615">
           <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
           <folding />
         </state>
@@ -488,7 +574,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
+        <state relative-caret-position="330">
           <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="35" />
           <folding>
             <element signature="e#7#88#0#PHP" expanded="true" />
@@ -506,14 +592,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="89" column="15" selection-start-line="89" selection-start-column="15" selection-end-line="89" selection-end-column="15" />
+        <state relative-caret-position="383">
+          <caret line="91" column="32" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
           <folding>
-            <marker date="1476219022004" expanded="true" signature="544:598" ph="SELECT u.nam... user_habits" />
-            <marker date="1476219022004" expanded="true" signature="544:666" ph="SELECT u.nam... user_habits" />
-            <marker date="1476219022004" expanded="true" signature="544:796" ph="SELECT u.nam... user_habits" />
-            <marker date="1476219022004" expanded="true" signature="1573:1591" ph="SELECT * FRO... user" />
-            <marker date="1476219022004" expanded="true" signature="2103:2122" ph="SELECT * FRO... habit" />
+            <element signature="e#461#1413#1#PHP" expanded="false" />
+            <element signature="e#1494#1927#1#PHP" expanded="false" />
+            <element signature="e#3051#3502#1#PHP" expanded="false" />
+            <marker date="1476265799221" expanded="true" signature="544:598" ph="SELECT u.nam... user_habits" />
+            <marker date="1476265799221" expanded="true" signature="544:666" ph="SELECT u.nam... user_habits" />
+            <marker date="1476265799221" expanded="true" signature="544:796" ph="SELECT u.nam... user_habits" />
+            <marker date="1476265799221" expanded="true" signature="1565:1583" ph="SELECT * FRO... user" />
+            <marker date="1476265799221" expanded="true" signature="2108:2349" ph="SELECT * FRO... habit" />
+            <marker date="1476265799221" expanded="true" signature="2108:2352" ph="SELECT u.*, user_habits" />
+            <marker date="1476265799221" expanded="true" signature="3123:3142" ph="SELECT * FRO... habit" />
           </folding>
         </state>
       </provider>
