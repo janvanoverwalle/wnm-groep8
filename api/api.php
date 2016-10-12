@@ -15,6 +15,7 @@ include __DIR__ . '/models/User.php';
 include __DIR__ . '/models/Habit.php';
 
 /**
+ * @GET
  * @route = users/id
  * @return user + habits
  */
@@ -47,10 +48,42 @@ $router->map('GET', '/users/[i:id]', function ($id) {
 });
 
 /**
+ * @POST
+ * @route = users
+ * @return user
+ * @description Nieuwe gebruiker zonder 'id' op te geven
+ */
+$router->map('POST', '/users/', function () {
+    //Get json objects
+    $requestBody = file_get_contents('php://input');
+    $users = json_decode($requestBody);
+
+    // variable declaration
+    $name = $users[0]->user->name;
+
+    //Insert into
+    $sth = Database::get()->prepare("INSERT INTO user(name) VALUES (:name)");
+    $sth->bindParam(':name', $name);
+    $sth->execute();
+
+    if ($sth) {
+        $stmt = Database::get()->query("SELECT LAST_INSERT_ID()");
+        $lastId = $stmt->fetch(PDO::FETCH_NUM);
+        $lastId = $lastId[0];
+
+        $user = new User($lastId, $name);
+
+        // encode in json + return
+        echo json_encode(array($user->expose()));
+    }
+});
+
+/**
+ * @GET
  * @route = users
  * @return all users
  */
-$router->map('GET', '/users', function () {
+$router->map('GET', '/users/', function () {
     // SELECT users
     $sth = Database::get()->prepare("SELECT * FROM user");
     $sth->execute();
@@ -70,6 +103,7 @@ $router->map('GET', '/users', function () {
 });
 
 /**
+ * @GET
  * @route = habits/id
  * @return habits + users
  */
@@ -97,14 +131,15 @@ $router->map('GET', '/habits/[i:id]', function ($id) {
     $json_array = array("habit" => $habit->expose(), "users" => $habitUsersList);
 
     // encode in json + return
-    echo json_encode($json_array);
+    echo json_encode(array($json_array));
 });
 
 /**
+ * @GET
  * @route = habits
  * @return all habits
  */
-$router->map('GET', '/habits', function () {
+$router->map('GET', '/habits/', function () {
     // SELECT habits
     $sth = Database::get()->prepare("SELECT * FROM habit");
     $sth->execute();
@@ -130,6 +165,4 @@ if ($match && is_callable($match['target'])) {
 } else {
     // no route was matched
     header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
-    echo '404';
 }
-?>
