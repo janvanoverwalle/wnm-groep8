@@ -1,7 +1,7 @@
 # Config files
 /config.php
 /.htaccess
-/src/condif/router.php
+src/condif/router.php
 
 #PHPstorm
 /*/.idea/*
