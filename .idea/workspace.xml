@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f537c36f-851a-404a-a419-4aa75f827370" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="f537c36f-851a-404a-a419-4aa75f827370" name="Default" comment="" />
     <ignored path="wnm-groep8.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -35,71 +32,28 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="357">
               <caret line="26" column="59" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
               <folding>
                 <element signature="e#1580#2227#1#PHP" expanded="false" />
                 <element signature="e#2317#2750#1#PHP" expanded="false" />
                 <element signature="e#2856#3805#1#PHP" expanded="false" />
                 <element signature="e#3898#4349#1#PHP" expanded="false" />
-                <marker date="1476443821451" expanded="true" signature="567:621" ph="SELECT u.nam... user_habits" />
-                <marker date="1476443821451" expanded="true" signature="567:689" ph="SELECT u.nam... user_habits" />
-                <marker date="1476443821451" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
-                <marker date="1476443821451" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
-                <marker date="1476443821451" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
-                <marker date="1476443821451" expanded="true" signature="2939:3180" ph="SELECT * FRO... habit" />
-                <marker date="1476443821451" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
-                <marker date="1476443821451" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
+                <marker date="1476449422284" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
+                <marker date="1476449422284" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
+                <marker date="1476449422284" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
+                <marker date="1476449422284" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
+                <marker date="1476449422284" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/src/model/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Habit.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/src/model/Habit.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Calories.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/src/model/Calories.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Weight.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/src/model/Weight.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
+            <state relative-caret-position="504">
+              <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -108,18 +62,28 @@
       <file leaf-file-name="router.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/src/config/router.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+            <state relative-caret-position="102">
+              <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/index.php">
+      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/.htaccess">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="51">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Database.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/src/config/Database.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -145,8 +109,9 @@
         <option value="$PROJECT_DIR$/api/src/model/Calories.php" />
         <option value="$PROJECT_DIR$/api/api.php" />
         <option value="$PROJECT_DIR$/api/.gitignore" />
-        <option value="$PROJECT_DIR$/api/src/config/router.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/api/src/config/router.php" />
+        <option value="$PROJECT_DIR$/api/.htaccess" />
       </list>
     </option>
   </component>
@@ -158,8 +123,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="y" value="24" />
-    <option name="width" value="1366" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1370" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -187,6 +153,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -262,7 +229,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -823,17 +789,18 @@
       <workItem from="1476442940934" duration="1096000" />
       <workItem from="1476448188031" duration="53000" />
       <workItem from="1476448324776" duration="898000" />
+      <workItem from="1476449720130" duration="504000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26841000" />
+    <option name="totallyTimeSpent" value="27345000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1366" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1370" height="744" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28863636" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28803545" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -871,14 +838,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/src/model/Habit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/src/model/Calories.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="930">
@@ -895,14 +854,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/src/config/router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/config/router.php" />
     <entry file="file://$PROJECT_DIR$/api/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -920,14 +872,11 @@
             <element signature="e#2317#2750#1#PHP" expanded="false" />
             <element signature="e#2856#3805#1#PHP" expanded="false" />
             <element signature="e#3898#4349#1#PHP" expanded="false" />
-            <marker date="1476443821451" expanded="true" signature="567:621" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="567:689" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
-            <marker date="1476443821451" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
-            <marker date="1476443821451" expanded="true" signature="2939:3180" ph="SELECT * FRO... habit" />
-            <marker date="1476443821451" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
-            <marker date="1476443821451" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
+            <marker date="1476449422284" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
+            <marker date="1476449422284" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
+            <marker date="1476449422284" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
+            <marker date="1476449422284" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
+            <marker date="1476449422284" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
           </folding>
         </state>
       </provider>
@@ -964,14 +913,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/src/config/router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/config/router.php" />
     <entry file="file://$PROJECT_DIR$/api/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -989,14 +931,11 @@
             <element signature="e#2317#2750#1#PHP" expanded="false" />
             <element signature="e#2856#3805#1#PHP" expanded="false" />
             <element signature="e#3898#4349#1#PHP" expanded="false" />
-            <marker date="1476443821451" expanded="true" signature="567:621" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="567:689" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
-            <marker date="1476443821451" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
-            <marker date="1476443821451" expanded="true" signature="2939:3180" ph="SELECT * FRO... habit" />
-            <marker date="1476443821451" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
-            <marker date="1476443821451" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
+            <marker date="1476449422284" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
+            <marker date="1476449422284" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
+            <marker date="1476449422284" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
+            <marker date="1476449422284" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
+            <marker date="1476449422284" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
           </folding>
         </state>
       </provider>
@@ -1033,14 +972,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/src/config/router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/config/router.php" />
     <entry file="file://$PROJECT_DIR$/api/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1058,14 +990,11 @@
             <element signature="e#2317#2750#1#PHP" expanded="false" />
             <element signature="e#2856#3805#1#PHP" expanded="false" />
             <element signature="e#3898#4349#1#PHP" expanded="false" />
-            <marker date="1476443821451" expanded="true" signature="567:621" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="567:689" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
-            <marker date="1476443821451" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
-            <marker date="1476443821451" expanded="true" signature="2939:3180" ph="SELECT * FRO... habit" />
-            <marker date="1476443821451" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
-            <marker date="1476443821451" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
+            <marker date="1476449422284" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
+            <marker date="1476449422284" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
+            <marker date="1476449422284" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
+            <marker date="1476449422284" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
+            <marker date="1476449422284" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
           </folding>
         </state>
       </provider>
@@ -1102,14 +1031,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/src/config/router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/config/router.php" />
     <entry file="file://$PROJECT_DIR$/api/src/config/Database.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1135,14 +1057,11 @@
             <element signature="e#2317#2750#1#PHP" expanded="false" />
             <element signature="e#2856#3805#1#PHP" expanded="false" />
             <element signature="e#3898#4349#1#PHP" expanded="false" />
-            <marker date="1476443821451" expanded="true" signature="567:621" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="567:689" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
-            <marker date="1476443821451" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
-            <marker date="1476443821451" expanded="true" signature="2939:3180" ph="SELECT * FRO... habit" />
-            <marker date="1476443821451" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
-            <marker date="1476443821451" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
+            <marker date="1476449422284" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
+            <marker date="1476449422284" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
+            <marker date="1476449422284" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
+            <marker date="1476449422284" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
+            <marker date="1476449422284" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
           </folding>
         </state>
       </provider>
@@ -1171,14 +1090,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/src/config/router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/config/router.php" />
     <entry file="file://$PROJECT_DIR$/api/src/config/Database.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1204,14 +1116,11 @@
             <element signature="e#2317#2750#1#PHP" expanded="false" />
             <element signature="e#2856#3805#1#PHP" expanded="false" />
             <element signature="e#3898#4349#1#PHP" expanded="false" />
-            <marker date="1476443821451" expanded="true" signature="567:621" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="567:689" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
-            <marker date="1476443821451" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
-            <marker date="1476443821451" expanded="true" signature="2939:3180" ph="SELECT * FRO... habit" />
-            <marker date="1476443821451" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
-            <marker date="1476443821451" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
+            <marker date="1476449422284" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
+            <marker date="1476449422284" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
+            <marker date="1476449422284" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
+            <marker date="1476449422284" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
+            <marker date="1476449422284" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
           </folding>
         </state>
       </provider>
@@ -1241,17 +1150,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/users.php" />
     <entry file="file://$PROJECT_DIR$/api/User.php" />
-    <entry file="file://$PROJECT_DIR$/api/src/config/Database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/src/model/Weight.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
+        <state relative-caret-position="697">
           <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
           <folding />
         </state>
@@ -1259,7 +1160,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/src/model/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
+        <state relative-caret-position="374">
           <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="35" />
           <folding />
         </state>
@@ -1267,7 +1168,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/src/model/Habit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
+        <state relative-caret-position="442">
           <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
           <folding />
         </state>
@@ -1275,7 +1176,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/src/model/Calories.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
+        <state relative-caret-position="119">
           <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
           <folding />
         </state>
@@ -1290,47 +1191,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/api/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
+        <state relative-caret-position="357">
           <caret line="26" column="59" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
           <folding>
             <element signature="e#1580#2227#1#PHP" expanded="false" />
             <element signature="e#2317#2750#1#PHP" expanded="false" />
             <element signature="e#2856#3805#1#PHP" expanded="false" />
             <element signature="e#3898#4349#1#PHP" expanded="false" />
-            <marker date="1476443821451" expanded="true" signature="567:621" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="567:689" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
-            <marker date="1476443821451" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
-            <marker date="1476443821451" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
-            <marker date="1476443821451" expanded="true" signature="2939:3180" ph="SELECT * FRO... habit" />
-            <marker date="1476443821451" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
-            <marker date="1476443821451" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
+            <marker date="1476449422284" expanded="true" signature="567:819" ph="SELECT u.nam... user_habits" />
+            <marker date="1476449422284" expanded="true" signature="1830:1867" ph="INSERT INTO user... " />
+            <marker date="1476449422284" expanded="true" signature="2388:2406" ph="SELECT * FRO... user" />
+            <marker date="1476449422284" expanded="true" signature="2939:3183" ph="SELECT u.*, user_habits" />
+            <marker date="1476449422284" expanded="true" signature="3970:3989" ph="SELECT * FRO... habit" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/.gitignore">
+    <entry file="file://$PROJECT_DIR$/api/src/config/Database.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/src/config/router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+        <state relative-caret-position="192">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+        <state relative-caret-position="504">
+          <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/config/router.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
