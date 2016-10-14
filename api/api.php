@@ -9,10 +9,11 @@
 header('Content-Type: application/json');
 
 require __DIR__ . '/vendor/altorouter/altorouter/AltoRouter.php';
-require __DIR__ . '/config/Database.php';
-include __DIR__ . '/config/router.php';
-include __DIR__ . '/models/User.php';
-include __DIR__ . '/models/Habit.php';
+require __DIR__ . '/src/config/Database.php';
+include __DIR__ . '/src/config/router.php';
+include __DIR__ . '/src/model/User.php';
+include __DIR__ . '/src/model/Habit.php';
+
 
 /**
  * @GET
