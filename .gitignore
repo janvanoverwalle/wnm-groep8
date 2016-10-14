@@ -48,9 +48,7 @@
 */Entity/*~
 
 #PHPstorm
-/*/.idea/*
-
-.idea/*~
+.idea/
 api/.htaccess
 api/src/config/router.php
 api/.idea/
