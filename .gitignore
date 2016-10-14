@@ -51,5 +51,6 @@
 /*/.idea/*
 
 .idea/*~
-/api/src/config/router.php
+api/.htaccess
+api/src/config/router.php
 api/.idea/
