@@ -50,5 +50,6 @@
 #PHPstorm
 /*/.idea/*
 
+.idea/*~
 /api/src/config/router.php
 api/.idea/
