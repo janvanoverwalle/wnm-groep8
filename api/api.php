@@ -9,10 +9,10 @@
 header('Content-Type: application/json');
 
 require __DIR__ . '/vendor/altorouter/altorouter/AltoRouter.php';
-require __DIR__ . '/src/config/Database.php';
 include __DIR__ . '/src/config/router.php';
-include __DIR__ . '/src/model/User.php';
-include __DIR__ . '/src/model/Habit.php';
+
+include __DIR__ . '/src/controller/UserController.php';
+include __DIR__ . '/src/controller/HabitController.php';
 
 
 /**
@@ -21,6 +21,7 @@ include __DIR__ . '/src/model/Habit.php';
  * @return user + habits
  */
 $router->map('GET', '/users/[i:id]', function ($id) {
+	/*
     // SELECT user + 3habits
     $sth = Database::get()->prepare("SELECT u.name, h.id, h.description FROM user_habits uh 
                                     JOIN user u ON u.id=uh.user_id 
@@ -43,9 +44,13 @@ $router->map('GET', '/users/[i:id]', function ($id) {
 
     // prepare json object ('user' = User, 'habits' = array(Habit))
     $json_array = array("user" => $user->expose(), "habits" => $habits);
+	*/
 
+	$user = UserController::findUserById($id);
+	$habits = HabitController::findHabitsByUserId($id);
+	
     // encode in json + return
-    echo json_encode(array($json_array));
+    echo json_encode(array("user" => $user, "habits" => $habits));
 });
 
 /**
