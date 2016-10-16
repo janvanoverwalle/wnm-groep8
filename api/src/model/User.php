@@ -11,16 +11,18 @@ class User
 {
     private $id;
     private $name;
+	private $habits;
 
     /**
      * User constructor.
      * @param $id
      * @param $name
      */
-    public function __construct($id = NULL, $name = NULL)
+    public function __construct($id = NULL, $name = NULL, $habits = NULL)
     {
         $this->id = $id;
         $this->name = $name;
+		$this->habits = $habits;
     }
 
     /**
@@ -62,4 +64,20 @@ class User
     {
         $this->name = $name;
     }
+	
+	/**
+	 * @return mixed
+	 */
+	public function getHabits()
+	{
+		return $this->habits;
+	}
+	
+	/**
+	 * @param mixed $habits
+	 */
+	public function setHabits($habits)
+	{
+		$this->habits = $habits;
+	}
 }

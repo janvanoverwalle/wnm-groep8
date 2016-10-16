@@ -11,8 +11,10 @@ header('Content-Type: application/json');
 require __DIR__ . '/vendor/altorouter/altorouter/AltoRouter.php';
 include __DIR__ . '/src/config/router.php';
 
-include __DIR__ . '/src/controller/UserController.php';
-include __DIR__ . '/src/controller/HabitController.php';
+include_once __DIR__ . '/src/controller/UserController.php';
+include_once __DIR__ . '/src/controller/HabitController.php';
+
+include_once __DIR__ . '/src/view/JsonView.php';
 
 
 /**
@@ -47,10 +49,11 @@ $router->map('GET', '/users/[i:id]', function ($id) {
 	*/
 
 	$user = UserController::findUserById($id);
-	$habits = HabitController::findHabitsByUserId($id);
+	//$habits = HabitController::findHabitsByUserId($id);
+	//$habits_reached = HabitController::findHabitsReachedByUserId($id);
 	
-    // encode in json + return
-    echo json_encode(array("user" => $user, "habits" => $habits));
+    // pass to view
+    JsonView::show($user);
 });
 
 /**
@@ -67,21 +70,11 @@ $router->map('POST', '/users/', function () {
     // variable declaration
     $name = $users[0]->user->name;
 
-    //Insert into
-    $sth = Database::get()->prepare("INSERT INTO user(name) VALUES (:name)");
-    $sth->bindParam(':name', $name);
-    $sth->execute();
-
-    if ($sth) {
-        $stmt = Database::get()->query("SELECT LAST_INSERT_ID()");
-        $lastId = $stmt->fetch(PDO::FETCH_NUM);
-        $lastId = $lastId[0];
-
-        $user = new User($lastId, $name);
-
-        // encode in json + return
-        echo json_encode(array($user->expose()));
-    }
+    $user = UserController::insertUser($name);
+	
+	if ($user != null) {
+		JsonView::show($user);
+	}
 });
 
 /**
@@ -90,22 +83,9 @@ $router->map('POST', '/users/', function () {
  * @return all users
  */
 $router->map('GET', '/users/', function () {
-    // SELECT users
-    $sth = Database::get()->prepare("SELECT * FROM user");
-    $sth->execute();
-    $users = $sth->fetchAll(PDO::FETCH_ASSOC);
+    $users = UserController::findAllUsers();
 
-    // variable declaration
-    $userList = array();
-
-    // json object (User)
-    foreach ($users as $user) {
-        $u = new User($user['id'], $user['name']);
-        $userList[] = $u->expose();
-    }
-
-    // encode in json + return
-    echo json_encode($userList);
+    JsonView::show($users);
 });
 
 /**
@@ -146,22 +126,9 @@ $router->map('GET', '/habits/[i:id]', function ($id) {
  * @return all habits
  */
 $router->map('GET', '/habits/', function () {
-    // SELECT habits
-    $sth = Database::get()->prepare("SELECT * FROM habit");
-    $sth->execute();
-    $habits = $sth->fetchAll(PDO::FETCH_ASSOC);
+    $habits = HabitController::findAllHabits();
 
-    // variable declaration
-    $habitList = array();
-
-    // json object (User)
-    foreach ($habits as $habit) {
-        $h = new Habit($habit['id'], $habit['description']);
-        $habitList[] = $h->expose();
-    }
-
-    // encode in json + return
-    echo json_encode($habitList);
+    JsonView::show($habits);
 });
 
 $match = $router->match();
