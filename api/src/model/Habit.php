@@ -6,6 +6,9 @@
  * Date: 11/10/16
  * Time: 21:47
  */
+ 
+ namespace model;
+ 
 class Habit
 {
     private $id;

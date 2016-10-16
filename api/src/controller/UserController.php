@@ -1,63 +1,46 @@
 <?php
 
-require_once(dirname(__FILE__) . "/../config/Database.php");
-include_once(dirname(__FILE__) . "/../model/User.php");
-include_once(dirname(__FILE__) . "/HabitController.php");
+namespace controller;
+
+use model\UserRepository;
+use view\View;
 
 class UserController {
 	
-	public static function findUserById($id) {
-		// SELECT user
-		$sth = Database::get()->prepare("SELECT * FROM user WHERE id = :id");
-		$sth->bindParam(':id', $id);
-		$sth->execute();
-		$user_arr = $sth->fetch(PDO::FETCH_ASSOC);
-		
-		$user = new User($id, $user_arr['name']);
-		
-		$habits = HabitController::findHabitsByUserId($id);
-		
-		$user->setHabits($habits);
-		
-		return $user->expose();
-	}
+	private $userRepository;
+    private $view;
 	
-	public static function findAllUsers() {
-		// SELECT users
-		$sth = Database::get()->prepare("SELECT * FROM user");
-		$sth->execute();	
-		$user_arr = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-		$users = [];
-		
-		foreach ($user_arr as $user) {
-			$u = new User($user['id'], $user['name']);
-			$habits = HabitController::findHabitsByUserId($u->getId());
-			$u->setHabits($habits);
-			
-			$users[] = $u->expose();
+	public function __construct(UserRepository $userRepository, View $view) {
+        $this->userRepository = $userRepository;
+        $this->view = $view;
+    }
+	
+	public function handleFindUserById($id = null) {
+		if ($id == null) {
+			return;
 		}
 		
-		return $users;
+		$user = $this->userRepository->findUserById($id);
+		
+		if ($user != null) {
+			$this->view->show(array('user' => $user));
+		}
+    }
+	
+	public function handleFindAllUsers() {
+		$users = $this->userRepository->findAllUsers();
+		
+		if ($users != null) {
+			$this->view->show(array('users' => $users));
+		}
 	}
 	
-	public static function insertUser($name) {
-		//Insert into
-		$sth = Database::get()->prepare("INSERT INTO user(name) VALUES (:name)");
-		$sth->bindParam(':name', $name);
-		$sth->execute();
-
-		if ($sth) {
-			$stmt = Database::get()->query("SELECT LAST_INSERT_ID()");
-			$lastId = $stmt->fetch(PDO::FETCH_NUM);
-			$lastId = $lastId[0];
-
-			$user = new User($lastId, $name);
-
-			return $user->expose();
+	public function handleInsertUser($user = null) {
+		if ($user == null) {
+			return;
 		}
 		
-		return null;
+		//TODO: implement
 	}
 	
 }

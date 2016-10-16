@@ -6,54 +6,48 @@
  * Time: 16:05
  */
 
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 
+require 'autoload.php';
 require __DIR__ . '/vendor/altorouter/altorouter/AltoRouter.php';
 include __DIR__ . '/src/config/router.php';
 
-include_once __DIR__ . '/src/controller/UserController.php';
-include_once __DIR__ . '/src/controller/HabitController.php';
+use \model\PDOUserRepository;
+use \model\PDOHabitRepository;
+use \view\UserJsonView;
+use \view\HabitJsonView;
+use \controller\UserController;
+use \controller\HabitController;
 
-include_once __DIR__ . '/src/view/JsonView.php';
+$user = 'pxlstudent';
+$password = 'd92VLSdByYerXRsq';
+$host = '149.210.145.131';
+$database = '3habits';
+$pdo = null;
 
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$database", $user, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE,
+                       PDO::ERRMODE_EXCEPTION);
+} catch (Exception $e) {
+    echo 'cannot connect to database';
+}
+
+$userPDORepository = new PDOUserRepository($pdo);
+$userJsonView = new UserJsonView();
+$userController = new UserController($userPDORepository, $userJsonView);
+
+$habitPDORepository = new PDOHabitRepository($pdo);
+$habitJsonView = new HabitJsonView();
+$habitController = new HabitController($habitPDORepository, $habitJsonView);
 
 /**
  * @GET
  * @route = users/id
  * @return user + habits
  */
-$router->map('GET', '/users/[i:id]', function ($id) {
-	/*
-    // SELECT user + 3habits
-    $sth = Database::get()->prepare("SELECT u.name, h.id, h.description FROM user_habits uh 
-                                    JOIN user u ON u.id=uh.user_id 
-                                    JOIN habit h ON uh.habit_id=h.id 
-                                    WHERE uh.user_id = :id ");
-    $sth->bindParam(':id', $id);
-    $sth->execute();
-    $user_habits = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-    // variable declaration
-    $name = $user_habits[0]['name'];
-    $user = new User($id, $name);
-    $habits = array();
-
-    // get all 3 habits
-    foreach ($user_habits as $habit) {
-        $h = new Habit($habit['id'], $habit['description']);
-        $habits[] = $h->expose();
-    }
-
-    // prepare json object ('user' = User, 'habits' = array(Habit))
-    $json_array = array("user" => $user->expose(), "habits" => $habits);
-	*/
-
-	$user = UserController::findUserById($id);
-	//$habits = HabitController::findHabitsByUserId($id);
-	//$habits_reached = HabitController::findHabitsReachedByUserId($id);
-	
-    // pass to view
-    JsonView::show($user);
+$router->map('GET', '/users/[i:id]', function ($id) use (&$userController) {
+	$userController->handleFindUserById($id);
 });
 
 /**
@@ -62,19 +56,15 @@ $router->map('GET', '/users/[i:id]', function ($id) {
  * @return user
  * @description Nieuwe gebruiker zonder 'id' op te geven
  */
-$router->map('POST', '/users/', function () {
+$router->map('POST', '/users/', function () use (&$userController) {
     //Get json objects
     $requestBody = file_get_contents('php://input');
-    $users = json_decode($requestBody);
+    $data = json_decode($requestBody);
 
     // variable declaration
-    $name = $users[0]->user->name;
+    $user = $data[0]->user;
 
-    $user = UserController::insertUser($name);
-	
-	if ($user != null) {
-		JsonView::show($user);
-	}
+    $userController->handleInsertUser($user);
 });
 
 /**
@@ -82,10 +72,8 @@ $router->map('POST', '/users/', function () {
  * @route = users
  * @return all users
  */
-$router->map('GET', '/users/', function () {
-    $users = UserController::findAllUsers();
-
-    JsonView::show($users);
+$router->map('GET', '/users/', function () use (&$userController) {
+    $userController->handleFindAllUsers();
 });
 
 /**
@@ -125,10 +113,8 @@ $router->map('GET', '/habits/[i:id]', function ($id) {
  * @route = habits
  * @return all habits
  */
-$router->map('GET', '/habits/', function () {
-    $habits = HabitController::findAllHabits();
-
-    JsonView::show($habits);
+$router->map('GET', '/habits/', function () use (&$habitController)  {
+    $habitController->handleFindAllHabits();
 });
 
 $match = $router->match();

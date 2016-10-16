@@ -6,6 +6,9 @@
  * Date: 11/10/16
  * Time: 21:58
  */
+ 
+ namespace model;
+ 
 class Weight
 {
     private $id;

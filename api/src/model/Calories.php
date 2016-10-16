@@ -5,6 +5,9 @@
  * Date: 11/10/16
  * Time: 21:49
  */
+ 
+ namespace model;
+ 
 class Calories
 {
     private $id;
