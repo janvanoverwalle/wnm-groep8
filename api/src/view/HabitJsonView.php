@@ -7,7 +7,11 @@ class HabitJsonView implements View
 	public function show(array $data) {
 		header('Content-Type: application/json');
 
-        if (isset($data['habits'])) {
+        if (isset($data['habit'])) {
+            $habit = $data['habit'];
+            echo json_encode(['id' => $habit->getId(), 'description' => $habit->getDescription()]);
+        }
+		else if (isset($data['habits'])) {
 			$json = "[";
 			foreach ($data['habits'] as $habit) {
 				$json = $json . json_encode(['id' => $habit->getId(), 'description' => $habit->getDescription()]) . ",";

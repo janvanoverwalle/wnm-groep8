@@ -46,8 +46,16 @@ $habitController = new HabitController($habitPDORepository, $habitJsonView);
  * @route = users/id
  * @return user + habits
  */
-$router->map('GET', '/users/[i:id]', function ($id) use (&$userController) {
+$router->map('GET', '/users/[i:id]/?', function ($id) use (&$userController) {
 	$userController->handleFindUserById($id);
+});
+
+$router->map('GET', '/users/[i:id]/habits/?', function ($id) use (&$habitController) {
+	$habitController->handleFindHabitsByUserId($id);
+});
+
+$router->map('GET', '/users/[i:uid]/habits/[i:hid]/?', function ($uid, $hid) use (&$habitController) {
+	$habitController->handleFindHabitByIdAndUserId($hid, $uid);
 });
 
 /**
@@ -56,7 +64,7 @@ $router->map('GET', '/users/[i:id]', function ($id) use (&$userController) {
  * @return user
  * @description Nieuwe gebruiker zonder 'id' op te geven
  */
-$router->map('POST', '/users/', function () use (&$userController) {
+$router->map('POST', '/users/?', function () use (&$userController) {
     //Get json objects
     $requestBody = file_get_contents('php://input');
     $data = json_decode($requestBody);
@@ -72,7 +80,7 @@ $router->map('POST', '/users/', function () use (&$userController) {
  * @route = users
  * @return all users
  */
-$router->map('GET', '/users/', function () use (&$userController) {
+$router->map('GET', '/users/?', function () use (&$userController) {
     $userController->handleFindAllUsers();
 });
 
@@ -81,31 +89,8 @@ $router->map('GET', '/users/', function () use (&$userController) {
  * @route = habits/id
  * @return habits + users
  */
-$router->map('GET', '/habits/[i:id]', function ($id) {
-    // SELECT habits + users
-    $sth = Database::get()->prepare("SELECT u.*, h.description FROM user_habits uh 
-                                    JOIN user u ON u.id=uh.user_id 
-                                    JOIN habit h ON uh.habit_id=h.id 
-                                    WHERE uh.habit_id = :id");
-    $sth->bindParam(':id', $id);
-    $sth->execute();
-    $habit_users = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-    // variable declaration
-    $habitUsersList = array();
-    $habit = new Habit($id, $habit_users[0]['description']);
-
-    // json object (User)
-    foreach ($habit_users as $user) {
-        $u = new User($user['id'], $user['name']);
-        $habitUsersList[] = $u->expose();
-    }
-
-    // prepare json object ('habit' = Habit, 'users' = array(User))
-    $json_array = array("habit" => $habit->expose(), "users" => $habitUsersList);
-
-    // encode in json + return
-    echo json_encode(array($json_array));
+$router->map('GET', '/habits/[i:id]/?', function ($id) use (&$habitController) {
+    $habitController->handleFindHabitById($id);
 });
 
 /**
@@ -113,7 +98,7 @@ $router->map('GET', '/habits/[i:id]', function ($id) {
  * @route = habits
  * @return all habits
  */
-$router->map('GET', '/habits/', function () use (&$habitController)  {
+$router->map('GET', '/habits/?', function () use (&$habitController) {
     $habitController->handleFindAllHabits();
 });
 
@@ -124,4 +109,5 @@ if ($match && is_callable($match['target'])) {
 } else {
     // no route was matched
     header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+	echo "404 - Not Found";
 }

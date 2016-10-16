@@ -17,27 +17,17 @@ class PDOUserRepository implements UserRepository
 			$stmt = $this->connection->prepare("SELECT * FROM user WHERE id = :id");
 			$stmt->bindParam(':id', $id, \PDO::PARAM_INT);
 			$stmt->execute();
-			$results = $stmt->fetch(\PDO::FETCH_ASSOC);
+			$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			
 			if (count($results) <= 0) {
 				return null;
 			}
 			
-			return new User($results['id'], $results['name']);
+			return new User($results[0]['id'], $results[0]['name']);
 		}
 		catch (\Exception $e) {
 			return null;
 		}
-		
-		/*
-		$user = new User($id, $results['name']);
-		
-		$habits = HabitController::findHabitsByUserId($id);
-		
-		$user->setHabits($habits);
-		
-		return $user->expose();
-		*/
     }
 	
 	public function findAllUsers() {

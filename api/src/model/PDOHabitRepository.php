@@ -9,6 +9,25 @@ class PDOHabitRepository implements HabitRepository {
         $this->connection = $connection;
     }
 
+	public function findHabitById($id) {
+		try {
+			// SELECT habit
+			$stmt = $this->connection->prepare("SELECT * FROM habit WHERE id = :id");
+			$stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+			$stmt->execute();
+			$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+			
+			if (count($results) <= 0) {
+				return null;
+			}
+			
+			return new Habit($results[0]['id'], $results[0]['description']);
+		}
+		catch (\Exception $e) {
+			return null;
+		}
+    }
+	
     public function findAllHabits() {		
 		try {
 			// SELECT user
@@ -50,6 +69,26 @@ class PDOHabitRepository implements HabitRepository {
 			}
 			
 			return $habits;
+		}
+		catch (\Exception $e) {
+			return null;
+		}
+	}
+	
+	public function findHabitByIdAndUserId($hid, $uid) {
+		try {
+			// SELECT user habits
+			$stmt = $this->connection->prepare("SELECT h.* FROM user_habits uh JOIN habit h ON uh.habit_id = h.id WHERE user_id = :uid AND habit_id = :hid");
+			$stmt->bindParam(':hid', $hid);
+			$stmt->bindParam(':uid', $uid);
+			$stmt->execute();
+			$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+			
+			if (count($results) <= 0) {
+				return null;
+			}
+			
+			return new Habit($results[0]['id'], $results[0]['description']);
 		}
 		catch (\Exception $e) {
 			return null;
