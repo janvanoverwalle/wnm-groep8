@@ -6,24 +6,42 @@
  * Time: 15:31
  */
 
-require_once(dirname(__FILE__) . "/../config/Database.php");
-include(dirname(__FILE__) . "/../model/Weight.php");
+namespace controller;
 
-class WeightController {
+use model\WeightRepository;
+use view\View;
 
-    public static function findWeightByUserId($uid)
-    {
-        // SELECT Calories
-        $sth = Database::get()->prepare("SELECT * FROM weights WHERE user_id_id = :id");
-        $sth->bindParam(':id', $uid);
-        $sth->execute();
-        $calories = $sth->fetchAll(PDO::FETCH_ASSOC);
+class WeightController
+{
+    private $weightRepository;
+    private $view;
 
-        foreach ($calories as $calorie) {
-            $c = new Habit($calorie['id'], $calorie['weight'], $calorie['date']);
-            $caloriesList[] = $c->expose();
-        }
+    public function __construct(WeightRepository $weightRepository, View $view) {
+        $this->weightRepository = $weightRepository;
+        $this->view = $view;
+    }
 
-        return $caloriesList;
+    public function handleFindWeightById($id) {
+        $weights = $this->weightRepository->findWeightById($id);
+
+        $this->view->show(array('weight' => $weights));
+    }
+
+    public function handleFindAllWeights() {
+        $weights = $this->weightRepository->findAllWeights();
+
+        $this->view->show(array('weights' => $weights));
+    }
+
+    public function handleFindWeightsByUserId($uid) {
+        $weights = $this->weightRepository->findWeightsByUserId($uid);
+
+        $this->view->show(array('weights' => $weights));
+    }
+
+    public function handleFindWeightByIdAndUserId($wid, $uid) {
+        $weights = $this->weightRepository->findWeightByIdAndUserId($wid, $uid);
+
+        $this->view->show(array('weight' => $weights));
     }
 }

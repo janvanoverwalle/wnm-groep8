@@ -16,6 +16,20 @@ class Weight
     private $date;
 
     /**
+     * Weight constructor.
+     * @param $id
+     * @param $weight
+     * @param $date
+     */
+    public function __construct($id = NULL, $weight = NULL, $date = NULL)
+    {
+        $this->id = $id;
+        $this->weight = $weight;
+        $this->date = $date;
+    }
+
+
+    /**
      * @return mixed
      */
     public function getId()

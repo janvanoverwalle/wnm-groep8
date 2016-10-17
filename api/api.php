@@ -6,8 +6,6 @@
  * Time: 16:05
  */
 
-//header('Content-Type: application/json');
-
 require 'autoload.php';
 require __DIR__ . '/vendor/altorouter/altorouter/AltoRouter.php';
 include __DIR__ . '/src/config/router.php';
@@ -15,12 +13,15 @@ include __DIR__ . '/src/config/router.php';
 use \model\PDOUserRepository;
 use \model\PDOHabitRepository;
 use \model\PDOCaloriesRepository;
+use \model\PDOWeightRepository;
 use \view\UserJsonView;
 use \view\HabitJsonView;
 use \view\CaloriesJsonView;
+use \view\WeightJsonView;
 use \controller\UserController;
 use \controller\HabitController;
 use \controller\CaloriesController;
+use \controller\WeightController;
 
 $user = 'pxlstudent';
 $password = 'd92VLSdByYerXRsq';
@@ -47,6 +48,10 @@ $habitController = new HabitController($habitPDORepository, $habitJsonView);
 $caloriesPDORepository = new PDOCaloriesRepository($pdo);
 $caloriesJsonView = new CaloriesJsonView();
 $caloriesController = new CaloriesController($caloriesPDORepository, $caloriesJsonView);
+
+$weightPDORepository = new PDOWeightRepository($pdo);
+$weightJsonView = new WeightJsonView();
+$weightController = new WeightController($weightPDORepository, $weightJsonView);
 
 /**
  * @GET
@@ -91,6 +96,24 @@ $router->map('GET', '/users/[i:id]/calories/?', function ($id) use (&$caloriesCo
  */
 $router->map('GET', '/users/[i:uid]/calories/[i:cid]/?', function ($uid, $cid) use (&$caloriesController) {
     $caloriesController->handleFindCaloriesByIdAndUserId($cid, $uid);
+});
+
+/**
+ * @GET
+ * @route = users/id/weights
+ * @return users + his calories
+ */
+$router->map('GET', '/users/[i:id]/weights/?', function ($id) use (&$weightController) {
+    $weightController->handleFindWeightsByUserId($id);
+});
+
+/**
+ * @GET
+ * @route = users/id/weights/id
+ * @return user + weight
+ */
+$router->map('GET', '/users/[i:uid]/weights/[i:wid]/?', function ($uid, $wid) use (&$weightController) {
+    $weightController->handleFindWeightByIdAndUserId($wid, $uid);
 });
 
 /**
@@ -153,6 +176,24 @@ $router->map('GET', '/calories/[i:id]/?', function ($id) use (&$caloriesControll
  */
 $router->map('GET', '/calories/?', function () use (&$caloriesController) {
     $caloriesController->handleFindAllCalories();
+});
+
+/**
+ * @GET
+ * @route = weight/id
+ * @return weight
+ */
+$router->map('GET', '/weights/[i:id]/?', function ($id) use (&$weightController) {
+    $weightController->handleFindWeightById($id);
+});
+
+/**
+ * @GET
+ * @route = weight
+ * @return all weight
+ */
+$router->map('GET', '/weights/?', function () use (&$weightController) {
+    $weightController->handleFindAllWeights();
 });
 
 $match = $router->match();
