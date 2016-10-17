@@ -72,7 +72,7 @@ class PDOUserRepository implements UserRepository
 				$lastId = $stmt->fetch(\PDO::FETCH_NUM);
 				$lastId = $lastId[0];
 
-				return new User($lastId, $name);
+				return new User($lastId, $user->getName());
 			}
 			
 			return null;

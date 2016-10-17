@@ -19,6 +19,7 @@ class User
      * User constructor.
      * @param $id
      * @param $name
+     * @param null $habits
      */
     public function __construct($id = NULL, $name = NULL, $habits = NULL)
     {

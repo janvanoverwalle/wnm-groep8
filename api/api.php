@@ -32,7 +32,7 @@ $pdo = null;
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$database", $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE,
-                       PDO::ERRMODE_EXCEPTION);
+        PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     echo 'cannot connect to database';
 }
@@ -59,7 +59,7 @@ $weightController = new WeightController($weightPDORepository, $weightJsonView);
  * @return user + habits
  */
 $router->map('GET', '/users/[i:id]/?', function ($id) use (&$userController) {
-	$userController->handleFindUserById($id);
+    $userController->handleFindUserById($id);
 });
 
 /**
@@ -68,7 +68,7 @@ $router->map('GET', '/users/[i:id]/?', function ($id) use (&$userController) {
  * @return user + his habits
  */
 $router->map('GET', '/users/[i:id]/habits/?', function ($id) use (&$habitController) {
-	$habitController->handleFindHabitsByUserId($id);
+    $habitController->handleFindHabitsByUserId($id);
 });
 
 /**
@@ -77,7 +77,7 @@ $router->map('GET', '/users/[i:id]/habits/?', function ($id) use (&$habitControl
  * @return user + habit
  */
 $router->map('GET', '/users/[i:uid]/habits/[i:hid]/?', function ($uid, $hid) use (&$habitController) {
-	$habitController->handleFindHabitByIdAndUserId($hid, $uid);
+    $habitController->handleFindHabitByIdAndUserId($hid, $uid);
 });
 
 /**
@@ -203,5 +203,5 @@ if ($match && is_callable($match['target'])) {
 } else {
     // no route was matched
     header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
-	echo "404 - Not Found";
+    echo "404 - Not Found";
 }
