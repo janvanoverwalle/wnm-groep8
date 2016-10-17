@@ -25,5 +25,3 @@ class HabitJsonView implements View
 		//echo json_encode(array("data" => $json_data));
 	}
 }
-
-?>

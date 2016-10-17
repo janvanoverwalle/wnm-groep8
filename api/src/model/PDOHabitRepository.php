@@ -30,7 +30,7 @@ class PDOHabitRepository implements HabitRepository {
 	
     public function findAllHabits() {		
 		try {
-			// SELECT user
+			// SELECT all habits
 			$stmt = $this->connection->prepare("SELECT * FROM habit");
 			$stmt->execute();
 			$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);

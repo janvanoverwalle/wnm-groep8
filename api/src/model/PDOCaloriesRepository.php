@@ -1,0 +1,110 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: timothy
+ * Date: 17/10/16
+ * Time: 11:01
+ */
+
+namespace model;
+
+
+class PDOCaloriesRepository implements CaloriesRepository
+{
+    private $connection = null;
+
+    public function __construct(\PDO $connection) {
+        $this->connection = $connection;
+    }
+
+    public function findCaloriesById($id)
+    {
+        try {
+            // SELECT calories
+            $stmt = $this->connection->prepare("SELECT * FROM calories WHERE id = :id");
+            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+            $stmt->execute();
+            $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+            if (count($results) <= 0) {
+                return null;
+            }
+
+            return new Calories($results[0]['id'], $results[0]['calories'], $results[0]['date']);
+        }
+        catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    public function findAllCalories()
+    {
+        try {
+            // SELECT all calories
+            $stmt = $this->connection->prepare("SELECT * FROM calories");
+            $stmt->execute();
+            $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+            if (count($results) <= 0) {
+                return null;
+            }
+
+            $calories = [];
+            foreach ($results as $calorie) {
+                $calories[] = new Calories($calorie['id'], $calorie['calories'], $calorie['date']);
+            }
+
+            return $calories;
+        }
+        catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    public function findCaloriesByUserId($uid)
+    {
+        try {
+            // SELECT user calories
+            $stmt = $this->connection->prepare("SELECT * FROM calories WHERE user_id_id = :uid");
+            $stmt->bindParam(':uid', $uid);
+            $stmt->execute();
+            $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+            if (count($results) <= 0) {
+                return null;
+            }
+
+            $calories = [];
+            foreach ($results as $calorie) {
+                $calories[] = new Calories($calorie['id'], $calorie['calories'], $calorie['date']);
+            }
+
+            return $calories;
+        }
+        catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    public function findCaloriesByIdAndUserId($cid, $uid)
+    {
+        try {
+            // SELECT user calories
+            $stmt = $this->connection->prepare("SELECT * FROM calories WHERE user_id_id = :uid AND id = :cid");
+            $stmt->bindParam(':cid', $cid);
+            $stmt->bindParam(':uid', $uid);
+            $stmt->execute();
+            $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+            if (count($results) <= 0) {
+                return null;
+            }
+
+            return new Calories($results[0]['id'], $results[0]['calories'], $results[0]['date']);
+        }
+        catch (\Exception $e) {
+            return null;
+        }
+    }
+
+}

@@ -6,24 +6,42 @@
  * Time: 15:31
  */
 
-require_once(dirname(__FILE__) . "/../config/Database.php");
-include(dirname(__FILE__) . "/../model/Calories.php");
+namespace controller;
 
-class CaloriesController {
+use model\CaloriesRepository;
+use view\View;
 
-    public static function findCaloriesByUserId($uid)
-    {
-        // SELECT Calories
-        $sth = Database::get()->prepare("SELECT * FROM calories WHERE user_id_id = :id");
-        $sth->bindParam(':id', $uid);
-        $sth->execute();
-        $calories = $sth->fetchAll(PDO::FETCH_ASSOC);
+class CaloriesController
+{
+    private $caloriesRepository;
+    private $view;
 
-        foreach ($calories as $calorie) {
-            $c = new Habit($calorie['id'], $calorie['calories'], $calorie['date']);
-            $caloriesList[] = $c->expose();
-        }
+    public function __construct(CaloriesRepository $caloriesRepository, View $view) {
+        $this->caloriesRepository = $caloriesRepository;
+        $this->view = $view;
+    }
 
-        return $caloriesList;
+    public function handleFindCaloriesById($id) {
+        $calories = $this->caloriesRepository->findCaloriesById($id);
+
+        $this->view->show(array('calorie' => $calories));
+    }
+
+    public function handleFindAllCalories() {
+        $calories = $this->caloriesRepository->findAllCalories();
+
+        $this->view->show(array('calories' => $calories));
+    }
+
+    public function handleFindCaloriesByUserId($uid) {
+        $calories = $this->caloriesRepository->findCaloriesByUserId($uid);
+
+        $this->view->show(array('calories' => $calories));
+    }
+
+    public function handleFindCaloriesByIdAndUserId($cid, $uid) {
+        $calories = $this->caloriesRepository->findCaloriesByIdAndUserId($cid, $uid);
+
+        $this->view->show(array('calorie' => $calories));
     }
 }

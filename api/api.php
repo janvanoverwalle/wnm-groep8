@@ -14,10 +14,13 @@ include __DIR__ . '/src/config/router.php';
 
 use \model\PDOUserRepository;
 use \model\PDOHabitRepository;
+use \model\PDOCaloriesRepository;
 use \view\UserJsonView;
 use \view\HabitJsonView;
+use \view\CaloriesJsonView;
 use \controller\UserController;
 use \controller\HabitController;
+use \controller\CaloriesController;
 
 $user = 'pxlstudent';
 $password = 'd92VLSdByYerXRsq';
@@ -41,6 +44,10 @@ $habitPDORepository = new PDOHabitRepository($pdo);
 $habitJsonView = new HabitJsonView();
 $habitController = new HabitController($habitPDORepository, $habitJsonView);
 
+$caloriesPDORepository = new PDOCaloriesRepository($pdo);
+$caloriesJsonView = new CaloriesJsonView();
+$caloriesController = new CaloriesController($caloriesPDORepository, $caloriesJsonView);
+
 /**
  * @GET
  * @route = users/id
@@ -50,12 +57,40 @@ $router->map('GET', '/users/[i:id]/?', function ($id) use (&$userController) {
 	$userController->handleFindUserById($id);
 });
 
+/**
+ * @GET
+ * @route = users/id/habits
+ * @return user + his habits
+ */
 $router->map('GET', '/users/[i:id]/habits/?', function ($id) use (&$habitController) {
 	$habitController->handleFindHabitsByUserId($id);
 });
 
+/**
+ * @GET
+ * @route = users/id/habits/id
+ * @return user + habit
+ */
 $router->map('GET', '/users/[i:uid]/habits/[i:hid]/?', function ($uid, $hid) use (&$habitController) {
 	$habitController->handleFindHabitByIdAndUserId($hid, $uid);
+});
+
+/**
+ * @GET
+ * @route = users/id/calories
+ * @return users + his calories
+ */
+$router->map('GET', '/users/[i:id]/calories/?', function ($id) use (&$caloriesController) {
+    $caloriesController->handleFindCaloriesByUserId($id);
+});
+
+/**
+ * @GET
+ * @route = users/id/calories/id
+ * @return user + calorie
+ */
+$router->map('GET', '/users/[i:uid]/calories/[i:cid]/?', function ($uid, $cid) use (&$caloriesController) {
+    $caloriesController->handleFindCaloriesByIdAndUserId($cid, $uid);
 });
 
 /**
@@ -87,7 +122,7 @@ $router->map('GET', '/users/?', function () use (&$userController) {
 /**
  * @GET
  * @route = habits/id
- * @return habits + users
+ * @return habits
  */
 $router->map('GET', '/habits/[i:id]/?', function ($id) use (&$habitController) {
     $habitController->handleFindHabitById($id);
@@ -100,6 +135,24 @@ $router->map('GET', '/habits/[i:id]/?', function ($id) use (&$habitController) {
  */
 $router->map('GET', '/habits/?', function () use (&$habitController) {
     $habitController->handleFindAllHabits();
+});
+
+/**
+ * @GET
+ * @route = calories/id
+ * @return calories
+ */
+$router->map('GET', '/calories/[i:id]/?', function ($id) use (&$caloriesController) {
+    $caloriesController->handleFindCaloriesById($id);
+});
+
+/**
+ * @GET
+ * @route = calories
+ * @return all calories
+ */
+$router->map('GET', '/calories/?', function () use (&$caloriesController) {
+    $caloriesController->handleFindAllCalories();
 });
 
 $match = $router->match();

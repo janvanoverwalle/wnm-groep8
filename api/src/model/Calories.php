@@ -6,13 +6,27 @@
  * Time: 21:49
  */
  
- namespace model;
- 
+namespace model;
+
 class Calories
 {
     private $id;
     private $calories;
     private $date;
+
+    /**
+     * Calories constructor.
+     * @param $id
+     * @param $calories
+     * @param $date
+     */
+    public function __construct($id = NULL, $calories = NULL, $date = NULL)
+    {
+        $this->id = $id;
+        $this->calories = $calories;
+        $this->date = $date;
+    }
+
 
     /**
      * @return mixed
