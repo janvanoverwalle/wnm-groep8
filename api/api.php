@@ -170,6 +170,14 @@ $router->map('GET', '/weights/[i:id]/?', function ($id) use (&$weightController)
     $weightController->handleFindWeightById($id);
 });
 
+/**
+ * @GET
+ * @route = weight
+ * @return all weight
+ */
+$router->map('GET', '/weights/?', function () use (&$weightController) {
+    $weightController->handleFindAllWeights();
+});
 
 /**
  * @POST
@@ -190,12 +198,31 @@ $router->map('POST', '/users/?', function () use (&$userController) {
 });
 
 /**
- * @GET
- * @route = weight
- * @return all weight
+ * @DELETE
+ * @route = users/id
+ * @return user
+ * @description Verwijder gebruiker met 'id'
  */
-$router->map('GET', '/weights/?', function () use (&$weightController) {
-    $weightController->handleFindAllWeights();
+$router->map('DELETE', '/users/[i:id]/?', function ($id) use (&$userController) {
+    $userController->handleDeleteUserById($id);
+});
+
+/**
+ * @PUT
+ * @route = users
+ * @return user
+ * @description Update gebruiker zonder 'id' op te geven
+ */
+$router->map('PUT', '/users/?', function () use (&$userController) {
+    // Get json objects
+	// [{"user" : {"id" : "user_id", "name" : "user_name"}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $user = $data[0]->user;
+
+    $userController->handleUpdateUserById($user);
 });
 
 $match = $router->match();
@@ -204,6 +231,7 @@ if ($match && is_callable($match['target'])) {
     call_user_func_array($match['target'], $match['params']);
 } else {
     // no route was matched
-    header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
-    echo "404 - Not Found";
+	header('Content-Type: application/json');
+    //header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+    echo "{}";
 }

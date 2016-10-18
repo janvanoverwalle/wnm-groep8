@@ -23,6 +23,39 @@ class UserJsonView implements View
 			$json = substr($json, 0, -1) . "]";
 			echo $json;
         }
+		else if (isset($data['new_user'])) {
+			$user = $data['new_user'];
+			if ($user != null) {
+				header($_SERVER["SERVER_PROTOCOL"]." 200 OK");
+				echo json_encode(['id' => $user->getId(), 'name' => $user->getName()]);
+			}
+			else {
+				header($_SERVER["SERVER_PROTOCOL"]." 500 Internal Server Error");
+				echo "{}";
+			}
+		}
+		else if (isset($data['deleted_user'])) {
+			$user = $data['deleted_user'];
+			if ($user != null) {
+				header($_SERVER["SERVER_PROTOCOL"]." 200 OK");
+				echo json_encode(['id' => $user->getId(), 'name' => $user->getName()]);
+			}
+			else {
+				header($_SERVER["SERVER_PROTOCOL"]." 500 Internal Server Error");
+				echo "{}";
+			}
+		}
+		else if (isset($data['updated_user'])) {
+			$user = $data['updated_user'];
+			if ($user != null) {
+				header($_SERVER["SERVER_PROTOCOL"]." 200 OK");
+				echo json_encode(['id' => $user->getId(), 'name' => $user->getName()]);
+			}
+			else {
+				header($_SERVER["SERVER_PROTOCOL"]." 500 Internal Server Error");
+				echo "{}";
+			}
+		}
 		else {
             echo '{}';
         }

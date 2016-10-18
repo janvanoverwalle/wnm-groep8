@@ -36,11 +36,30 @@ class UserController {
 			return;
 		}
 		
-		//$user = $this->UserRepository->insertUser($user);
+		$user = $this->userRepository->insertUser($user);
 		
-		//TODO: implement
+		$this->view->show(array('new_user' => $user));
 	}
 	
+	public function handleDeleteUserById($id = null) {
+		if ($id == null) {
+			return;
+		}
+		
+		$user = $this->userRepository->deleteUserById($id);
+		
+		$this->view->show(array('deleted_user' => $user));
+	}
+	
+	public function handleUpdateUserById($user = null) {
+		if ($user == null) {
+			return;
+		}
+		
+		$user = $this->userRepository->updateUserById($user);
+		
+		$this->view->show(array('updated_user' => $user));
+	}
 }
 
 ?>
