@@ -117,23 +117,6 @@ $router->map('GET', '/users/[i:uid]/weights/[i:wid]/?', function ($uid, $wid) us
 });
 
 /**
- * @POST
- * @route = users
- * @return user
- * @description Nieuwe gebruiker zonder 'id' op te geven
- */
-$router->map('POST', '/users/?', function () use (&$userController) {
-    //Get json objects
-    $requestBody = file_get_contents('php://input');
-    $data = json_decode($requestBody);
-
-    // variable declaration
-    $user = $data[0]->user;
-
-    $userController->handleInsertUser($user);
-});
-
-/**
  * @GET
  * @route = users
  * @return all users
@@ -185,6 +168,25 @@ $router->map('GET', '/calories/?', function () use (&$caloriesController) {
  */
 $router->map('GET', '/weights/[i:id]/?', function ($id) use (&$weightController) {
     $weightController->handleFindWeightById($id);
+});
+
+
+/**
+ * @POST
+ * @route = users
+ * @return user
+ * @description Nieuwe gebruiker zonder 'id' op te geven
+ */
+$router->map('POST', '/users/?', function () use (&$userController) {
+    // Get json objects
+	// [{"user" : {"name" : "user_name"}"}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $user = $data[0]->user;
+
+    $userController->handleInsertUser($user->name);
 });
 
 /**
