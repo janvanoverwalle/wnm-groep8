@@ -36,7 +36,7 @@
         <entry file="file://$PROJECT_DIR$/api/api.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1734">
-              <caret line="206" column="1" selection-start-line="206" selection-start-column="1" selection-end-line="206" selection-end-column="1" />
+              <caret line="208" column="1" selection-start-line="208" selection-start-column="1" selection-end-line="208" selection-end-column="1" />
               <folding>
                 <element signature="e#6#99#0#PHP" expanded="false" />
               </folding>
@@ -68,18 +68,31 @@
         <entry file="file://$PROJECT_DIR$/api/src/controller/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="393">
-              <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+              <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestHabitController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TestHabitController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/tests/controller/TestHabitController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="969">
               <caret line="67" column="47" selection-start-line="67" selection-start-column="47" selection-end-line="67" selection-end-column="47" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestUserController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/tests/controller/TestUserController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="614">
+              <caret line="59" column="52" selection-start-line="59" selection-start-column="52" selection-end-line="59" selection-end-column="52" />
+              <folding>
+                <element signature="e#6#95#0#PHP" expanded="true" />
+                <element signature="e#307#323#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -828,12 +841,12 @@
       <workItem from="1476448324776" duration="898000" />
       <workItem from="1476451620334" duration="6496000" />
       <workItem from="1476694602606" duration="9624000" />
-      <workItem from="1476775020420" duration="849000" />
+      <workItem from="1476775020420" duration="1493000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43810000" />
+    <option name="totallyTimeSpent" value="44454000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1162,7 +1175,7 @@
     <entry file="file://$PROJECT_DIR$/api/api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1734">
-          <caret line="206" column="1" selection-start-line="206" selection-start-column="1" selection-end-line="206" selection-end-column="1" />
+          <caret line="208" column="1" selection-start-line="208" selection-start-column="1" selection-end-line="208" selection-end-column="1" />
           <folding>
             <element signature="e#6#99#0#PHP" expanded="false" />
           </folding>
@@ -1172,15 +1185,7 @@
     <entry file="file://$PROJECT_DIR$/api/src/controller/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="393">
-          <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/tests/controller/TestUserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-646">
-          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1190,6 +1195,17 @@
         <state relative-caret-position="969">
           <caret line="67" column="47" selection-start-line="67" selection-start-column="47" selection-end-line="67" selection-end-column="47" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/tests/controller/TestUserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="614">
+          <caret line="59" column="52" selection-start-line="59" selection-start-column="52" selection-end-line="59" selection-end-column="52" />
+          <folding>
+            <element signature="e#6#95#0#PHP" expanded="true" />
+            <element signature="e#307#323#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

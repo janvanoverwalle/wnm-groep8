@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 /**
  * Created by PhpStorm.
  * User: Alessio Marzo
@@ -19,38 +18,19 @@ use \model\PDOUserRepository;
 use \controller\UserController;
 use \view\View;
 use \view\UserJsonView;
-=======
 
-/**
- * Created by PhpStorm.
- * User: timothy
- * Date: 14/10/16
- * Time: 16:04
- */
-
-require '../../src/model/User.php';
-require '../../src/controller/UserController.php';
-
->>>>>>> e3eaf18a4d7b0eeb71f983f8561a92c9987d076f
 
 class TestUserController extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-<<<<<<< HEAD
         $this->mockUserRepository = $this->getMockBuilder('\model\UserRepository')->getMock();
         $this->mockView = $this->getMockBuilder('\view\View')->getMock();
         $this->user = new User(231, 'testusername', 'testhabit');
-=======
-        $this->mockUser = $this->getMockBuilder('')
-            ->getMock();
-        $this->user = new User(231, 'testperson');
->>>>>>> e3eaf18a4d7b0eeb71f983f8561a92c9987d076f
     }
 
     public function tearDown()
     {
-<<<<<<< HEAD
         $this->mockPersonRepository = null;
         $this->mockView = null;
         $this->user = null;
@@ -102,14 +82,7 @@ class TestUserController extends PHPUnit_Framework_TestCase
 
     }
 
-
-=======
-        $this->mockUser = null;
-        $this->user = null;
-    }
-
     public function testFindUserById() {
 
     }
->>>>>>> e3eaf18a4d7b0eeb71f983f8561a92c9987d076f
 }
