@@ -36,6 +36,8 @@ class UserController {
 			return;
 		}
 		
+		//$user = $this->UserRepository->insertUser($user);
+		
 		//TODO: implement
 	}
 	
