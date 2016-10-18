@@ -37,6 +37,7 @@
       <sourceFolder url="file://$MODULE_DIR$/3habits/vendor/symfony/symfony/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/3habits/vendor/sensiolabs/security-checker" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/api/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/api/tests" isTestSource="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -237,6 +237,24 @@ $router->map('POST', '/users/[i:id]/habits/?', function ($id) use (&$habitContro
     $habitController->handleInsertUserHabit($id, $habit->id);
 });
 
+/**
+ * @POST
+ * @route = calories
+ * @return calories
+ * @description Nieuwe calories zonder 'id' op te geven
+ */
+$router->map('POST', '/calories/?', function () use (&$caloriesController) {
+    // Get json objects
+    // [{"calories":{"calories":"...", "date":"2016-10-16", "user_id":"..."}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $calories = $data[0]->calories;
+
+    $caloriesController->handleInsertCalories($calories);
+});
+
 /********* DELETE *********/
 
 /**
@@ -269,6 +287,16 @@ $router->map('DELETE', '/users/[i:uid]/habits/[i:hid]/?', function ($id) use (&$
     $habitController->handleDeleteHabitByIdAndUserId($hid, $uid);
 });
 
+/**
+ * @DELETE
+ * @route = calories/id
+ * @return calories
+ * @description Verwijder calories met 'id'
+ */
+$router->map('DELETE', '/calories/[i:id]/?', function ($id) use (&$caloriesController) {
+    $caloriesController->handleDeleteCaloriesById($id);
+});
+
 /********* PUT *********/
 
 /**
@@ -283,6 +311,7 @@ $router->map('PUT', '/users/?', function () use (&$userController) {
     $requestBody = file_get_contents('php://input');
     $data = (array)json_decode($requestBody);
 
+    print_r($data);
     // variable declaration
     $user = $data[0]->user;
 
@@ -323,6 +352,24 @@ $router->map('PUT', '/users/[i:id]/habits/?', function ($id) use (&$habitControl
     $habit = $data[0]->habit;
 
     $habitController->handleUpdateHabitByIdAndUserId($id, $habit->oldId, $habit->newId);
+});
+
+/**
+ * @PUT
+ * @route = calories
+ * @return calories
+ * @description UPDATE calories zonder 'id' op te geven
+ */
+$router->map('PUT', '/calories/?', function () use (&$caloriesController) {
+    // Get json objects
+    // [{"calories":{"calories":"...", "date":"2016-10-16", "user_id":"..."}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $calorie = $data[0]->calories;
+
+    $caloriesController->handleUpdateCaloriesById($calorie);
 });
 
 $match = $router->match();
