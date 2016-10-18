@@ -38,7 +38,7 @@ class UserController {
 		
 		$user = $this->userRepository->insertUser($user);
 		
-		$this->view->show(array('new_user' => $user));
+		$this->view->show(array('user' => $user));
 	}
 	
 	public function handleDeleteUserById($id = null) {
@@ -48,7 +48,7 @@ class UserController {
 		
 		$user = $this->userRepository->deleteUserById($id);
 		
-		$this->view->show(array('deleted_user' => $user));
+		$this->view->show(array('user' => $user));
 	}
 	
 	public function handleUpdateUserById($user = null) {
@@ -58,7 +58,7 @@ class UserController {
 		
 		$user = $this->userRepository->updateUserById($user);
 		
-		$this->view->show(array('updated_user' => $user));
+		$this->view->show(array('user' => $user));
 	}
 }
 
