@@ -6,11 +6,11 @@
  * Time: 13:26
  */
 
-require '../../src/model/User.php';
-require '../../src/model/UserRepository.php';
-require '../../src/model/PDOUserRepository.php';
-require '../../src/view/View.php';
-require '../../src/view/UserJsonView.php';
+require_once 'src/model/User.php';
+require_once 'src/model/UserRepository.php';
+require_once 'src/model/PDOUserRepository.php';
+require_once 'src/view/View.php';
+require_once 'src/view/UserJsonView.php';
 
 use \model\User;
 use \model\UserRepository;
@@ -19,16 +19,18 @@ use \controller\UserController;
 use \view\View;
 use \view\UserJsonView;
 
+class PDOMock extends PDO {
+    public function __construct() {}
+}
+
 class TestPDOUserRepository extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->mockPDO = $this->getMockBuilder('PDO')
-            ->disableOriginalConstructor()
+        $this->mockPDO = $this->getMockBuilder('PDOMock')
             ->getMock();
 
         $this->mockPDOStatement = $this->getMockBuilder('PDOStatement')
-            ->disableOriginalConstructor()
             ->getMock();
 
         $this->user = new User(231, 'testuserName');
@@ -41,30 +43,7 @@ class TestPDOUserRepository extends PHPUnit_Framework_TestCase
         $this->user = null;
     }
 
-    public function testFindUserByIdFound()
-    {
-        $this->mockPDOStatement->expects($this->once())
-            ->method('bindParam')
-            ->with($this->equalTo(1), $this->equalTo($this->user->getId()), $this->equalTo(PDO::PARAM_INT));
 
-        $this->mockPDOStatement->expects($this->once())
-            ->method('execute');
-
-        $this->mockPDOStatement->expects($this->once())
-            ->method('fetchAll')
-            ->with($this->equalTo(PDO::FETCH_ASSOC))
-            ->will($this->returnValue([['id' => $this->user->getId(), 'name' => $this->user->getName()]]));
-
-        $this->mockPDO->expects($this->once())
-            ->method('prepare')
-            ->with($this->equalTo('SELECT * FROM user WHERE id=?'))
-            ->will($this->returnValue($this->mockPDOStatement));
-
-        $pdoRepo = new PDOUserRepository($this->mockPDO);
-        $u = $pdoRepo->findUserById($this->user->getId());
-
-        $this->assertEquals($u, $this->user);
-    }
 
     public function testFindUserByIdNotFound()
     {

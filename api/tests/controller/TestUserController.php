@@ -6,11 +6,12 @@
  * Time: 12:43
  */
 
-require '../../src/model/User.php';
-require '../../src/model/UserRepository.php';
-require '../../src/model/PDOUserRepository.php';
-require '../../src/view/View.php';
-require '../../src/view/UserJsonView.php';
+require_once 'src/model/User.php';
+require_once 'src/model/UserRepository.php';
+require_once 'src/model/PDOUserRepository.php';
+require_once 'src/view/View.php';
+require_once 'src/view/UserJsonView.php';
+require_once 'src/controller/UserController.php';
 
 use \model\User;
 use \model\UserRepository;
@@ -26,16 +27,19 @@ class TestUserController extends PHPUnit_Framework_TestCase
     {
         $this->mockUserRepository = $this->getMockBuilder('\model\UserRepository')->getMock();
         $this->mockView = $this->getMockBuilder('\view\View')->getMock();
-        $this->user = new User(231, 'testusername', 'testhabit');
+        $this->user = new User(231, 'testusername');
     }
 
     public function tearDown()
     {
-        $this->mockPersonRepository = null;
+        $this->mockUserRepository = null;
         $this->mockView = null;
         $this->user = null;
     }
 
+    /**
+     *
+     */
     public function testHandleFindUserByIdFound()
     {
         $this->mockUserRepository->expects($this->once())
@@ -48,13 +52,13 @@ class TestUserController extends PHPUnit_Framework_TestCase
             ->with($this->equalTo(['user' => $this->user]))
             ->will($this->returnCallback(function ($object) {
                 $u = $object['user'];
-                echo $u->getId().' '.$u->getName().' '.$u->getHabits();
+                echo $u->getId().' '.$u->getName();
             }));
 
-        $userController = new userController($this->mockUserRepository, $this->mockview);
+        $userController = new userController($this->mockUserRepository, $this->mockView);
         $userController->handleFindUserById($this->user->getId());
 
-        $this->expectOutputString($this->user->getId().' '.$this->user->getName().' '.$this->user->getHabits());
+        $this->expectOutputString($this->user->getId().' '.$this->user->getName());
     }
 
     public function testHandleFindUserByIdNotFound()

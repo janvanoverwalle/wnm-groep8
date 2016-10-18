@@ -19,7 +19,7 @@ class User
      * @param $id
      * @param $name
      */
-    public function __construct($id = NULL, $name = NULL, $habits = NULL)
+    public function __construct($id = NULL, $name = NULL)
     {
         $this->id = $id;
         $this->name = $name;

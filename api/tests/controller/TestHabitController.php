@@ -6,11 +6,14 @@
  * Time: 12:43
  */
 
-require '../../src/model/Habit.php';
-require '../../src/model/HabitRepository.php';
-require '../../src/model/PDOHabitRepository.php';
-require '../../src/view/View.php';
-require '../../src/view/HabitJsonView.php';
+
+require_once 'src/model/Habit.php';
+require_once 'src/model/HabitRepository.php';
+require_once 'src/model/PDOHabitRepository.php';
+require_once 'src/view/View.php';
+require_once 'src/view/HabitJsonView.php';
+require_once 'src/controller/HabitController.php';
+
 
 use \model\Habit;
 use \model\HabitRepository;
@@ -30,9 +33,9 @@ class TestHabitController extends PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        $this->mockPersonRepository = null;
+        $this->mockHabitRepository = null;
         $this->mockView = null;
-        $this->person = null;
+        $this->habit = null;
     }
 
     public function testHandleFindHabitByIdFound()
@@ -50,7 +53,7 @@ class TestHabitController extends PHPUnit_Framework_TestCase
                 echo $h->getId().' '.$h->getDescription();
             }));
 
-        $habitController = new HabitController($this->mockHabitRepository, $this->mockview);
+        $habitController = new HabitController($this->mockHabitRepository, $this->mockView);
         $habitController->handleFindHabitById($this->habit->getId());
 
         $this->expectOutputString($this->habit->getId().' '.$this->habit->getDescription());
