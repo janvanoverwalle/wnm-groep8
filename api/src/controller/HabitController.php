@@ -46,6 +46,36 @@ class HabitController {
 	public function handleFindHabitsReachedByUserId($uid) {
 		
 	}
+	
+	public function handleInsertHabit($habit = null) {
+		if ($habit == null) {
+			return;
+		}
+		
+		$habit = $this->habitRepository->insertHabit($habit);
+		
+		$this->view->show(array('habit' => $habit));
+	}
+	
+	public function handleDeleteHabitById($id = null) {
+		if ($id == null) {
+			return;
+		}
+		
+		$habit = $this->habitRepository->deleteHabitById($id);
+		
+		$this->view->show(array('habit' => $habit));
+	}
+	
+	public function handleUpdateHabitById($habit = null) {
+		if ($habit == null) {
+			return;
+		}
+		
+		$habit = $this->habitRepository->updateHabitById($habit);
+		
+		$this->view->show(array('habit' => $habit));
+	}
 }
 
 ?>

@@ -8,8 +8,15 @@ class HabitJsonView implements View
 		header('Content-Type: application/json');
 
         if (isset($data['habit'])) {
-            $habit = $data['habit'];
-            echo json_encode(['id' => $habit->getId(), 'description' => $habit->getDescription()]);
+			$habit = $data['habit'];
+            if ($habit != null) {
+				header($_SERVER["SERVER_PROTOCOL"]." 200 OK");
+				echo json_encode(['id' => $habit->getId(), 'description' => $habit->getDescription()]);
+			}
+			else {
+				header($_SERVER["SERVER_PROTOCOL"]." 500 Internal Server Error");
+				echo "{}";
+			}
         }
 		else if (isset($data['habits'])) {
 			$json = "[";

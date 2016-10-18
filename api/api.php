@@ -198,31 +198,49 @@ $router->map('POST', '/users/?', function () use (&$userController) {
 });
 
 /**
- * @DELETE
- * @route = users/id
- * @return user
- * @description Verwijder gebruiker met 'id'
+ * @POST
+ * @route = habits
+ * @return habit
+ * @description Nieuwe habit zonder 'id' op te geven
  */
-$router->map('DELETE', '/users/[i:id]/?', function ($id) use (&$userController) {
-    $userController->handleDeleteUserById($id);
-});
-
-/**
- * @PUT
- * @route = users
- * @return user
- * @description Update gebruiker zonder 'id' op te geven
- */
-$router->map('PUT', '/users/?', function () use (&$userController) {
+$router->map('POST', '/habits/?', function () use (&$habitController) {
     // Get json objects
-	// [{"user" : {"id" : "user_id", "name" : "user_name"}}]
+	// [{"habit" : {"description" : "habit_description"}}]
     $requestBody = file_get_contents('php://input');
     $data = (array)json_decode($requestBody);
 
     // variable declaration
-    $user = $data[0]->user;
+    $habit = $data[0]->habit;
 
-    $userController->handleUpdateUserById($user);
+    $habitController->handleInsertHabit($habit->description);
+});
+
+/**
+ * @DELETE
+ * @route = habits/id
+ * @return habit
+ * @description Verwijder habit met 'id'
+ */
+$router->map('DELETE', '/habits/[i:id]/?', function ($id) use (&$habitController) {
+    $habitController->handleDeleteHabitById($id);
+});
+
+/**
+ * @PUT
+ * @route = habits
+ * @return habit
+ * @description Update habit zonder 'id' op te geven
+ */
+$router->map('PUT', '/habits/?', function () use (&$habitController) {
+    // Get json objects
+	// [{"habit" : {"id" : "habit_id", "description" : "habit_description"}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $habit = $data[0]->habit;
+
+    $habitController->handleUpdateHabitById($habit);
 });
 
 $match = $router->match();

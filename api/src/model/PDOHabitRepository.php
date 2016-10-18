@@ -112,7 +112,73 @@ class PDOHabitRepository implements HabitRepository {
 		catch (\Exception $e) {
 			return null;
 		}
-	}	
+	}
+	
+	public function insertHabit($habit) {
+		if (is_string($habit)) {
+			$habit = new Habit(-1, $habit);
+		}
+		
+		try {
+			//INSERT new habit
+			$stmt = $this->connection->prepare("INSERT INTO habit(description) VALUES (:description)");
+			$stmt->bindParam(':description', $habit->getDescription());
+			$stmt->execute();
+
+			if ($stmt) {
+				$stmt = $this->connection->query("SELECT LAST_INSERT_ID()");
+				$lastId = $stmt->fetch(\PDO::FETCH_NUM);
+				$lastId = $lastId[0];
+
+				return new Habit($lastId, $habit->getDescription());
+			}
+			
+			return null;
+		}
+		catch (\Exception $e) {
+			return null;
+		}
+	}
+	
+	public function deleteHabitById($id) {
+		$habit = $this->findHabitById($id);
+		if ($habit == null) {
+			return null;
+		}
+		
+		try {
+			// DELETE habit
+			$stmt = $this->connection->prepare("DELETE FROM habit WHERE id = :id");
+			$stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+			$stmt->execute();
+			
+			return $habit;
+		}
+		catch (\Exception $e) {
+			return null;
+		}
+    }
+
+	public function updateHabitById($habit) {
+		$habit = new Habit($habit->id, $habit->description);
+		
+		try {
+			//UPDATE habit
+			$stmt = $this->connection->prepare("UPDATE habit SET description=:description WHERE id=:id");
+			$stmt->bindParam(':id', $habit->getId());
+			$stmt->bindParam(':description', $habit->getDescription());
+			$stmt->execute();
+
+			if ($stmt) {
+				return $habit;
+			}
+			
+			return null;
+		}
+		catch (\Exception $e) {
+			return null;
+		}
+	}
 }
 
 ?>
