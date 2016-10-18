@@ -44,4 +44,8 @@ class CaloriesController
 
         $this->view->show(array('calorie' => $calories));
     }
+
+    public function handleInsertCalories($calories) {
+
+    }
 }

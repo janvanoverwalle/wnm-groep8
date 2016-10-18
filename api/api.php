@@ -170,6 +170,15 @@ $router->map('GET', '/weights/[i:id]/?', function ($id) use (&$weightController)
     $weightController->handleFindWeightById($id);
 });
 
+/**
+ * @GET
+ * @route = weight
+ * @return all weight
+ */
+$router->map('GET', '/weights/?', function () use (&$weightController) {
+    $weightController->handleFindAllWeights();
+});
+
 
 /**
  * @POST
@@ -190,13 +199,23 @@ $router->map('POST', '/users/?', function () use (&$userController) {
 });
 
 /**
- * @GET
- * @route = weight
- * @return all weight
+ * @POST
+ * @route = calories
+ * @return calories
+ * @description Nieuwe calories zonder 'id' op te geven
  */
-$router->map('GET', '/weights/?', function () use (&$weightController) {
-    $weightController->handleFindAllWeights();
+$router->map('POST', '/calories/?', function () use (&$caloriesController) {
+    // Get json objects
+    // [{"calories" : {"calories" : "...", "date" : "...", "user_id" : "..."}"}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $calories = $data[0]->calories;
+
+    $caloriesController->handleInsertCalories($calories);
 });
+
 
 $match = $router->match();
 
