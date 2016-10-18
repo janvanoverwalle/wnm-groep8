@@ -219,6 +219,24 @@ $router->map('POST', '/habits/?', function () use (&$habitController) {
     $habitController->handleInsertHabit($habit->description);
 });
 
+/**
+ * @POST
+ * @route = users/id/habits
+ * @return habit
+ * @description New user habit relation
+ */
+$router->map('POST', '/users/[i:id]/habits/?', function ($id) use (&$habitController) {
+    // Get json objects
+	// [{"habit" : {"id" : "habit_id"}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+	$habit = $date[0]->habit;
+
+    $habitController->handleInsertUserHabit($id, $habit->id);
+});
+
 /********* DELETE *********/
 
 /**
@@ -239,6 +257,16 @@ $router->map('DELETE', '/users/[i:id]/?', function ($id) use (&$userController) 
  */
 $router->map('DELETE', '/habits/[i:id]/?', function ($id) use (&$habitController) {
     $habitController->handleDeleteHabitById($id);
+});
+
+/**
+ * @DELETE
+ * @route = users/id/habits/id
+ * @return habit
+ * @description Verwijder user habit met 'user_id' en 'habit_id'
+ */
+$router->map('DELETE', '/users/[i:uid]/habits/[i:hid]/?', function ($id) use (&$habitController) {
+    $habitController->handleDeleteHabitByIdAndUserId($hid, $uid);
 });
 
 /********* PUT *********/
@@ -265,7 +293,7 @@ $router->map('PUT', '/users/?', function () use (&$userController) {
  * @PUT
  * @route = habits
  * @return habit
- * @description Update habit zonder 'id' op te geven
+ * @description Update habit
  */
 $router->map('PUT', '/habits/?', function () use (&$habitController) {
     // Get json objects
@@ -277,6 +305,24 @@ $router->map('PUT', '/habits/?', function () use (&$habitController) {
     $habit = $data[0]->habit;
 
     $habitController->handleUpdateHabitById($habit);
+});
+
+/**
+ * @PUT
+ * @route = users/id/habits
+ * @return habit
+ * @description Update user habit
+ */
+$router->map('PUT', '/users/[i:id]/habits/?', function ($id) use (&$habitController) {
+    // Get json objects
+	// [{"habit" : {"oldId" : "habit_id", "newId" : "habit_id"}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $habit = $data[0]->habit;
+
+    $habitController->handleUpdateHabitByIdAndUserId($id, $habit->oldId, $habit->newId);
 });
 
 $match = $router->match();

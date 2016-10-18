@@ -25,7 +25,8 @@ class HabitJsonView implements View
 			}
 			$json = substr($json, 0, -1) . "]";
 			echo $json;
-        } else {
+        }
+		else {
             echo '{}';
         }
 		

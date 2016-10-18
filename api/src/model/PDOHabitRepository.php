@@ -140,6 +140,32 @@ class PDOHabitRepository implements HabitRepository {
 		}
 	}
 	
+	public function insertUserHabit($uid, $hid) {		
+		$userHabit = $this->findHabitByIdAndUserId($hid, $uid);
+		if ($userHabit != null) {
+			return null;
+		}
+		
+		try {
+			//INSERT new user habit
+			$stmt = $this->connection->prepare("INSERT INTO user_habits(user_id, habit_id) VALUES (:uid, :hid)");
+			$stmt->bindParam(':uid', $uid);
+			$stmt->bindParam(':hid', $hid);
+			$stmt->execute();
+
+			if ($stmt) {
+				$userHabit = $this->findHabitByIdAndUserId($hid, $uid);
+
+				return $userHabit;
+			}
+			
+			return null;
+		}
+		catch (\Exception $e) {
+			return null;
+		}
+	}
+	
 	public function deleteHabitById($id) {
 		$habit = $this->findHabitById($id);
 		if ($habit == null) {
@@ -152,7 +178,35 @@ class PDOHabitRepository implements HabitRepository {
 			$stmt->bindParam(':id', $id, \PDO::PARAM_INT);
 			$stmt->execute();
 			
-			return $habit;
+			if ($stmt) {
+				return $habit;
+			}
+			
+			return null;
+		}
+		catch (\Exception $e) {
+			return null;
+		}
+    }
+	
+	public function deleteHabitByIdAndUserId($hid, $uid) {
+		$userHabit = $this->findHabitByIdAndUserId($hid, $uid);
+		if ($userHabit == null) {
+			return null;
+		}
+		
+		try {
+			// DELETE habit
+			$stmt = $this->connection->prepare("DELETE FROM user_habits WHERE habit_id = :hid AND user_id = :uid");
+			$stmt->bindParam(':hid', $hid, \PDO::PARAM_INT);
+			$stmt->bindParam(':uid', $uid, \PDO::PARAM_INT);
+			$stmt->execute();
+			
+			if ($stmt) {
+				return $userHabit;
+			}
+			
+			return null;
 		}
 		catch (\Exception $e) {
 			return null;
@@ -171,6 +225,27 @@ class PDOHabitRepository implements HabitRepository {
 
 			if ($stmt) {
 				return $habit;
+			}
+			
+			return null;
+		}
+		catch (\Exception $e) {
+			return null;
+		}
+	}
+	
+	public function updateHabitByIdAndUserId($uid, $oldHId, $newHId) {		
+		try {
+			//UPDATE user habit
+			$stmt = $this->connection->prepare("UPDATE user_habits SET user_id=:uid, habit_id=:newHId WHERE user_id=:uid AND habit_id=:oldHId");
+			$stmt->bindParam(':uid', $uid);
+			$stmt->bindParam(':oldHId', $oldHId);
+			$stmt->bindParam(':newHId', $newHId);
+			$stmt->execute();
+
+			if ($stmt) {
+				$userHabit = $this->findHabitByIdAndUserId($newHId, $uid);
+				return $userHabit;
 			}
 			
 			return null;

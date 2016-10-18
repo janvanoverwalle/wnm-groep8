@@ -94,7 +94,11 @@ class PDOUserRepository implements UserRepository
 			$stmt->bindParam(':id', $id, \PDO::PARAM_INT);
 			$stmt->execute();
 			
-			return $user;
+			if ($stmt) {
+				return $user;
+			}
+			
+			return null;
 		}
 		catch (\Exception $e) {
 			return null;
