@@ -53,6 +53,8 @@ $weightPDORepository = new PDOWeightRepository($pdo);
 $weightJsonView = new WeightJsonView();
 $weightController = new WeightController($weightPDORepository, $weightJsonView);
 
+/********* GET *********/
+
 /**
  * @GET
  * @route = users/id
@@ -179,6 +181,8 @@ $router->map('GET', '/weights/?', function () use (&$weightController) {
     $weightController->handleFindAllWeights();
 });
 
+/********* POST *********/
+
 /**
  * @POST
  * @route = users
@@ -215,6 +219,18 @@ $router->map('POST', '/habits/?', function () use (&$habitController) {
     $habitController->handleInsertHabit($habit->description);
 });
 
+/********* DELETE *********/
+
+/**
+ * @DELETE
+ * @route = users/id
+ * @return user
+ * @description Verwijder gebruiker met 'id'
+ */
+$router->map('DELETE', '/users/[i:id]/?', function ($id) use (&$userController) {
+    $userController->handleDeleteUserById($id);
+});
+
 /**
  * @DELETE
  * @route = habits/id
@@ -223,6 +239,26 @@ $router->map('POST', '/habits/?', function () use (&$habitController) {
  */
 $router->map('DELETE', '/habits/[i:id]/?', function ($id) use (&$habitController) {
     $habitController->handleDeleteHabitById($id);
+});
+
+/********* PUT *********/
+
+/**
+ * @PUT
+ * @route = users
+ * @return user
+ * @description Update gebruiker zonder 'id' op te geven
+ */
+$router->map('PUT', '/users/?', function () use (&$userController) {
+    // Get json objects
+	// [{"user" : {"id" : "user_id", "name" : "user_name"}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $user = $data[0]->user;
+
+    $userController->handleUpdateUserById($user);
 });
 
 /**
