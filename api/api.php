@@ -232,7 +232,7 @@ $router->map('POST', '/users/[i:id]/habits/?', function ($id) use (&$habitContro
     $data = (array)json_decode($requestBody);
 
     // variable declaration
-	$habit = $date[0]->habit;
+	$habit = $data[0]->habit;
 
     $habitController->handleInsertUserHabit($id, $habit->id);
 });
