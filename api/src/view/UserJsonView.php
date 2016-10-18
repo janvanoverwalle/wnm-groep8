@@ -9,7 +9,14 @@ class UserJsonView implements View
 
         if (isset($data['user'])) {
             $user = $data['user'];
-            echo json_encode(['id' => $user->getId(), 'name' => $user->getName()]);
+            if ($user != null) {
+				header($_SERVER["SERVER_PROTOCOL"]." 200 OK");
+				echo json_encode(['id' => $user->getId(), 'name' => $user->getName()]);
+			}
+			else {
+				header($_SERVER["SERVER_PROTOCOL"]." 500 Internal Server Error");
+				echo "{}";
+			}
         }
 		else if (isset($data['users'])) {
 			//$users = [];

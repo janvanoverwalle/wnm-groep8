@@ -46,6 +46,66 @@ class HabitController {
 	public function handleFindHabitsReachedByUserId($uid) {
 		
 	}
+	
+	public function handleInsertHabit($habit = null) {
+		if ($habit == null) {
+			return;
+		}
+		
+		$habit = $this->habitRepository->insertHabit($habit);
+		
+		$this->view->show(array('habit' => $habit));
+	}
+	
+	public function handleInsertUserHabit($uid = null, $hid = null) {
+		if ($uid == null or $hid == null) {
+			return;
+		}
+		
+		$habit = $this->habitRepository->insertUserHabit($uid, $hid);
+		
+		$this->view->show(array('habit' => $habit));
+	}
+	
+	public function handleDeleteHabitById($id = null) {
+		if ($id == null) {
+			return;
+		}
+		
+		$habit = $this->habitRepository->deleteHabitById($id);
+		
+		$this->view->show(array('habit' => $habit));
+	}
+	
+	public function handleDeleteHabitByIdAndUserId($hid = null, $uid = null) {
+		if ($uid == null or $hid == null) {
+			return;
+		}
+		
+		$habit = $this->habitRepository->deleteHabitByIdAndUserId($hid, $uid);
+		
+		$this->view->show(array('habit' => $habit));
+	}
+	
+	public function handleUpdateHabitById($habit = null) {
+		if ($habit == null) {
+			return;
+		}
+		
+		$habit = $this->habitRepository->updateHabitById($habit);
+		
+		$this->view->show(array('habit' => $habit));
+	}
+	
+	public function handleUpdateHabitByIdAndUserId($uid = null, $oldHId = null, $newHId = null) {
+		if ($id == null or $oldHId == null or $newHId == null) {
+			return;
+		}
+		
+		$habit = $this->habitRepository->updateHabitByIdAndUserId($uid, $oldHId, $newHId);
+		
+		$this->view->show(array('habit' => $habit));
+	}
 }
 
 ?>

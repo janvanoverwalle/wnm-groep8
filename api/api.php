@@ -53,6 +53,8 @@ $weightPDORepository = new PDOWeightRepository($pdo);
 $weightJsonView = new WeightJsonView();
 $weightController = new WeightController($weightPDORepository, $weightJsonView);
 
+/********* GET *********/
+
 /**
  * @GET
  * @route = users/id
@@ -170,6 +172,16 @@ $router->map('GET', '/weights/[i:id]/?', function ($id) use (&$weightController)
     $weightController->handleFindWeightById($id);
 });
 
+/**
+ * @GET
+ * @route = weight
+ * @return all weight
+ */
+$router->map('GET', '/weights/?', function () use (&$weightController) {
+    $weightController->handleFindAllWeights();
+});
+
+/********* POST *********/
 
 /**
  * @POST
@@ -190,12 +202,174 @@ $router->map('POST', '/users/?', function () use (&$userController) {
 });
 
 /**
- * @GET
- * @route = weight
- * @return all weight
+ * @POST
+ * @route = habits
+ * @return habit
+ * @description Nieuwe habit zonder 'id' op te geven
  */
-$router->map('GET', '/weights/?', function () use (&$weightController) {
-    $weightController->handleFindAllWeights();
+$router->map('POST', '/habits/?', function () use (&$habitController) {
+    // Get json objects
+	// [{"habit" : {"description" : "habit_description"}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $habit = $data[0]->habit;
+
+    $habitController->handleInsertHabit($habit->description);
+});
+
+/**
+ * @POST
+ * @route = users/id/habits
+ * @return habit
+ * @description New user habit relation
+ */
+$router->map('POST', '/users/[i:id]/habits/?', function ($id) use (&$habitController) {
+    // Get json objects
+	// [{"habit" : {"id" : "habit_id"}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+	$habit = $data[0]->habit;
+
+    $habitController->handleInsertUserHabit($id, $habit->id);
+});
+
+/**
+ * @POST
+ * @route = calories
+ * @return calories
+ * @description Nieuwe calories zonder 'id' op te geven
+ */
+$router->map('POST', '/calories/?', function () use (&$caloriesController) {
+    // Get json objects
+    // [{"calories":{"calories":"...", "date":"2016-10-16", "user_id":"..."}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $calories = $data[0]->calories;
+
+    $caloriesController->handleInsertCalories($calories);
+});
+
+/********* DELETE *********/
+
+/**
+ * @DELETE
+ * @route = users/id
+ * @return user
+ * @description Verwijder gebruiker met 'id'
+ */
+$router->map('DELETE', '/users/[i:id]/?', function ($id) use (&$userController) {
+    $userController->handleDeleteUserById($id);
+});
+
+/**
+ * @DELETE
+ * @route = habits/id
+ * @return habit
+ * @description Verwijder habit met 'id'
+ */
+$router->map('DELETE', '/habits/[i:id]/?', function ($id) use (&$habitController) {
+    $habitController->handleDeleteHabitById($id);
+});
+
+/**
+ * @DELETE
+ * @route = users/id/habits/id
+ * @return habit
+ * @description Verwijder user habit met 'user_id' en 'habit_id'
+ */
+$router->map('DELETE', '/users/[i:uid]/habits/[i:hid]/?', function ($id) use (&$habitController) {
+    $habitController->handleDeleteHabitByIdAndUserId($hid, $uid);
+});
+
+/**
+ * @DELETE
+ * @route = calories/id
+ * @return calories
+ * @description Verwijder calories met 'id'
+ */
+$router->map('DELETE', '/calories/[i:id]/?', function ($id) use (&$caloriesController) {
+    $caloriesController->handleDeleteCaloriesById($id);
+});
+
+/********* PUT *********/
+
+/**
+ * @PUT
+ * @route = users
+ * @return user
+ * @description Update gebruiker zonder 'id' op te geven
+ */
+$router->map('PUT', '/users/?', function () use (&$userController) {
+    // Get json objects
+	// [{"user" : {"id" : "user_id", "name" : "user_name"}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    print_r($data);
+    // variable declaration
+    $user = $data[0]->user;
+
+    $userController->handleUpdateUserById($user);
+});
+
+/**
+ * @PUT
+ * @route = habits
+ * @return habit
+ * @description Update habit
+ */
+$router->map('PUT', '/habits/?', function () use (&$habitController) {
+    // Get json objects
+	// [{"habit" : {"id" : "habit_id", "description" : "habit_description"}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $habit = $data[0]->habit;
+
+    $habitController->handleUpdateHabitById($habit);
+});
+
+/**
+ * @PUT
+ * @route = users/id/habits
+ * @return habit
+ * @description Update user habit
+ */
+$router->map('PUT', '/users/[i:id]/habits/?', function ($id) use (&$habitController) {
+    // Get json objects
+	// [{"habit" : {"oldId" : "habit_id", "newId" : "habit_id"}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $habit = $data[0]->habit;
+
+    $habitController->handleUpdateHabitByIdAndUserId($id, $habit->oldId, $habit->newId);
+});
+
+/**
+ * @PUT
+ * @route = calories
+ * @return calories
+ * @description UPDATE calories zonder 'id' op te geven
+ */
+$router->map('PUT', '/calories/?', function () use (&$caloriesController) {
+    // Get json objects
+    // [{"calories":{"calories":"...", "date":"2016-10-16", "user_id":"..."}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $calorie = $data[0]->calories;
+
+    $caloriesController->handleUpdateCaloriesById($calorie);
 });
 
 $match = $router->match();
@@ -204,6 +378,7 @@ if ($match && is_callable($match['target'])) {
     call_user_func_array($match['target'], $match['params']);
 } else {
     // no route was matched
-    header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
-    echo "404 - Not Found";
+	header('Content-Type: application/json');
+    //header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+    echo "{}";
 }

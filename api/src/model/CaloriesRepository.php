@@ -15,4 +15,7 @@ interface CaloriesRepository
     public function findAllCalories();
     public function findCaloriesByUserId($uid);
     public function findCaloriesByIdAndUserId($cid, $uid);
+    public function insertCalories($calories);
+    public function deleteCaloriesById($id);
+    public function updateCalorieById($calories);
 }

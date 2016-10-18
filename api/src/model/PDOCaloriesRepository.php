@@ -107,4 +107,77 @@ class PDOCaloriesRepository implements CaloriesRepository
         }
     }
 
+    public function insertCalories($calories)
+    {
+        if ($calories) {
+            $calorie = new Calories(NULL, $calories->calories, $calories->date);
+        }
+
+        try {
+            //INSERT new user
+            $stmt = $this->connection->prepare("INSERT INTO calories(user_id_id, calories, date) VALUES (:uid, :calories, :date)");
+            $stmt->bindParam(':uid', $calories->user_id);
+            $stmt->bindParam(':calories', $calorie->getCalories());
+            $stmt->bindParam(':date', $calorie->getDate());
+            $stmt->execute();
+
+            if ($stmt) {
+                $stmt = $this->connection->query("SELECT LAST_INSERT_ID()");
+                $lastId = $stmt->fetch(\PDO::FETCH_NUM);
+                $calorie->setId($lastId[0]);
+
+                return $calorie;
+            }
+
+            return null;
+        }
+        catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    public function deleteCaloriesById($id)
+    {
+        $calories = $this->findCaloriesById($id);
+        if ($calories == null) {
+            return null;
+        }
+
+        try {
+            // DELETE user
+            $stmt = $this->connection->prepare("DELETE FROM calories WHERE id = :id");
+            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $calories;
+        }
+        catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    public function updateCalorieById($calories)
+    {
+        $calorie = new Calories($calories->id, $calories->calories, $calories->date);
+
+        try {
+            //UPDATE user
+            $stmt = $this->connection->prepare("UPDATE calories SET calories=:calories, date=:date WHERE id=:id");
+            $stmt->bindParam(':id', $calorie->getId());
+            $stmt->bindParam(':calories', $calorie->getCalories());
+            $stmt->bindParam(':date', $calorie->getDate());
+            $stmt->execute();
+
+            if ($stmt) {
+                return $calorie;
+            }
+
+            return null;
+        }
+        catch (\Exception $e) {
+            return null;
+        }
+    }
+
+
 }

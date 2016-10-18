@@ -44,4 +44,30 @@ class CaloriesController
 
         $this->view->show(array('calorie' => $calories));
     }
+
+    public function handleInsertCalories($calories) {
+        $calorie = $this->caloriesRepository->insertCalories($calories);
+
+        $this->view->show(array('calorie' => $calorie));
+    }
+
+    public function handleDeleteCaloriesById($id = null) {
+        if ($id == null) {
+            return;
+        }
+
+        $calories = $this->caloriesRepository->deleteCaloriesById($id);
+
+        $this->view->show(array('calorie' => $calories));
+    }
+
+    public function handleUpdateCaloriesById($calories = null) {
+        if ($calories == null) {
+            return;
+        }
+
+        $calorie = $this->caloriesRepository->updateCalorieById($calories);
+
+        $this->view->show(array('calorie' => $calorie));
+    }
 }

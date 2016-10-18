@@ -81,6 +81,50 @@ class PDOUserRepository implements UserRepository
 			return null;
 		}
 	}
+	
+	public function deleteUserById($id) {
+		$user = $this->findUserById($id);
+		if ($user == null) {
+			return null;
+		}
+		
+		try {
+			// DELETE user
+			$stmt = $this->connection->prepare("DELETE FROM user WHERE id = :id");
+			$stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+			$stmt->execute();
+			
+			if ($stmt) {
+				return $user;
+			}
+			
+			return null;
+		}
+		catch (\Exception $e) {
+			return null;
+		}
+    }
+
+	public function updateUserById($user) {
+		$user = new User($user->id, $user->name);
+		
+		try {
+			//UPDATE user
+			$stmt = $this->connection->prepare("UPDATE user SET name=:name WHERE id=:id");
+			$stmt->bindParam(':id', $user->getId());
+			$stmt->bindParam(':name', $user->getName());
+			$stmt->execute();
+
+			if ($stmt) {
+				return $user;
+			}
+			
+			return null;
+		}
+		catch (\Exception $e) {
+			return null;
+		}
+	}
 }
 
 ?>
