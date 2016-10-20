@@ -9,6 +9,8 @@
 namespace model;
 
 
+use controller\WeightController;
+
 class PDOWeightRepository implements WeightRepository
 {
     private $connection = null;
@@ -106,5 +108,78 @@ class PDOWeightRepository implements WeightRepository
             return null;
         }
     }
+
+    public function insertWeight($weight)
+    {
+        if ($weight) {
+            $weightModel = new Weight(NULL, $weight->weight, $weight->date);
+        }
+
+        try {
+            //INSERT new weight
+            $stmt = $this->connection->prepare("INSERT INTO weights(user_id_id, weight, date) VALUES (:uid, :weight, :date)");
+            $stmt->bindParam(':uid', $weight->user_id);
+            $stmt->bindParam(':weight', $weightModel->getWeight());
+            $stmt->bindParam(':date', $weightModel->getDate());
+            $stmt->execute();
+
+            if ($stmt) {
+                $stmt = $this->connection->query("SELECT LAST_INSERT_ID()");
+                $lastId = $stmt->fetch(\PDO::FETCH_NUM);
+                $weightModel->setId($lastId[0]);
+
+                return $weightModel;
+            }
+
+            return null;
+        }
+        catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    public function deleteWeightById($id)
+    {
+        $weightModel = $this->findWeightById($id);
+        if ($weightModel == null) {
+            return null;
+        }
+
+        try {
+            // DELETE weight
+            $stmt = $this->connection->prepare("DELETE FROM weights WHERE id = :id");
+            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $weightModel;
+        }
+        catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    public function updateWeightById($weight)
+    {
+        $weightModel = new Weight($weight->id, $weight->weight, $weight->date);
+
+        try {
+            //UPDATE calories
+            $stmt = $this->connection->prepare("UPDATE weights SET weight=:weight, date=:date WHERE id=:id");
+            $stmt->bindParam(':id', $weightModel->getId());
+            $stmt->bindParam(':weight', $weightModel->getWeight());
+            $stmt->bindParam(':date', $weightModel->getDate());
+            $stmt->execute();
+
+            if ($stmt) {
+                return $weightModel;
+            }
+
+            return null;
+        }
+        catch (\Exception $e) {
+            return null;
+        }
+    }
+
 
 }

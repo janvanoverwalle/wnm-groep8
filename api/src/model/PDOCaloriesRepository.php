@@ -114,7 +114,7 @@ class PDOCaloriesRepository implements CaloriesRepository
         }
 
         try {
-            //INSERT new user
+            //INSERT new calories
             $stmt = $this->connection->prepare("INSERT INTO calories(user_id_id, calories, date) VALUES (:uid, :calories, :date)");
             $stmt->bindParam(':uid', $calories->user_id);
             $stmt->bindParam(':calories', $calorie->getCalories());
@@ -144,7 +144,7 @@ class PDOCaloriesRepository implements CaloriesRepository
         }
 
         try {
-            // DELETE user
+            // DELETE calories
             $stmt = $this->connection->prepare("DELETE FROM calories WHERE id = :id");
             $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
             $stmt->execute();
@@ -161,7 +161,7 @@ class PDOCaloriesRepository implements CaloriesRepository
         $calorie = new Calories($calories->id, $calories->calories, $calories->date);
 
         try {
-            //UPDATE user
+            //UPDATE calories
             $stmt = $this->connection->prepare("UPDATE calories SET calories=:calories, date=:date WHERE id=:id");
             $stmt->bindParam(':id', $calorie->getId());
             $stmt->bindParam(':calories', $calorie->getCalories());
