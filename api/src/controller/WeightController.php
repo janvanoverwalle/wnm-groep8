@@ -44,4 +44,30 @@ class WeightController
 
         $this->view->show(array('weight' => $weights));
     }
+
+    public function handleInsertWeight($weight) {
+        $weights = $this->weightRepository->insertWeight($weight);
+
+        $this->view->show(array('weight' => $weights));
+    }
+
+    public function handleDeleteWeightById($id = null) {
+        if ($id == null) {
+            return;
+        }
+
+        $weight = $this->weightRepository->deleteWeightById($id);
+
+        $this->view->show(array('weight' => $weight));
+    }
+
+    public function handleUpdateWeightById($weight = null) {
+        if ($weight == null) {
+            return;
+        }
+
+        $weight = $this->weightRepository->updateWeightById($weight);
+
+        $this->view->show(array('weight' => $weight));
+    }
 }

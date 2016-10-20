@@ -255,6 +255,24 @@ $router->map('POST', '/calories/?', function () use (&$caloriesController) {
     $caloriesController->handleInsertCalories($calories);
 });
 
+/**
+ * @POST
+ * @route = weights
+ * @return weight
+ * @description Nieuwe weight zonder 'id' op te geven
+ */
+$router->map('POST', '/weights/?', function () use (&$weightController) {
+    // Get json objects
+    // [{"weight":{"weight":"...", "date":"2016-10-16", "user_id":"..."}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $weight = $data[0]->weight;
+
+    $weightController->handleInsertWeight($weight);
+});
+
 /********* DELETE *********/
 
 /**
@@ -295,6 +313,16 @@ $router->map('DELETE', '/users/[i:uid]/habits/[i:hid]/?', function ($id) use (&$
  */
 $router->map('DELETE', '/calories/[i:id]/?', function ($id) use (&$caloriesController) {
     $caloriesController->handleDeleteCaloriesById($id);
+});
+
+/**
+ * @DELETE
+ * @route = weights/id
+ * @return weight
+ * @description Verwijder weights met 'id'
+ */
+$router->map('DELETE', '/weights/[i:id]/?', function ($id) use (&$weightController) {
+    $weightController->handleDeleteWeightById($id);
 });
 
 /********* PUT *********/
@@ -358,7 +386,7 @@ $router->map('PUT', '/users/[i:id]/habits/?', function ($id) use (&$habitControl
  * @PUT
  * @route = calories
  * @return calories
- * @description UPDATE calories zonder 'id' op te geven
+ * @description UPDATE calories
  */
 $router->map('PUT', '/calories/?', function () use (&$caloriesController) {
     // Get json objects
@@ -370,6 +398,24 @@ $router->map('PUT', '/calories/?', function () use (&$caloriesController) {
     $calorie = $data[0]->calories;
 
     $caloriesController->handleUpdateCaloriesById($calorie);
+});
+
+/**
+ * @PUT
+ * @route = weights
+ * @return weight
+ * @description UPDATE weights
+ */
+$router->map('PUT', '/weights/?', function () use (&$weightController) {
+    // Get json objects
+    // [{"weight":{"id":"", "weight":"...", "date":"2016-10-16"}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $weight = $data[0]->weight;
+
+    $weightController->handleUpdateWeightById($weight);
 });
 
 $match = $router->match();
