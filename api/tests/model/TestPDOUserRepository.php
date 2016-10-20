@@ -43,14 +43,37 @@ class TestPDOUserRepository extends PHPUnit_Framework_TestCase
         $this->user = null;
     }
 
+    public function testFindUserByUserIdUserFound()
+    {
+        $this->mockPDOStatement->expects($this->once())
+            ->method('bindParam')
+            ->with($this->equalTo(':id'), $this->equalTo($this->user->getId()), $this->equalTo(PDO::PARAM_INT));
 
+        $this->mockPDOStatement->expects($this->once())
+            ->method('execute');
 
-    public function testFindUserByIdNotFound()
+        $this->mockPDOStatement->expects($this->once())
+            ->method('fetchAll')
+            ->with($this->equalTo(PDO::FETCH_ASSOC))
+            ->will($this->returnValue([['id' => $this->user->getId(), 'name' => $this->user->getName()]]));
+
+        $this->mockPDO->expects($this->once())
+            ->method('prepare')
+            ->with($this->equalTo('SELECT * FROM user WHERE id = :id'))
+            ->will($this->returnValue($this->mockPDOStatement));
+
+        $pdoRepo = new PDOuserRepository($this->mockPDO);
+        $u = $pdoRepo->findUserById($this->user->getId());
+
+        $this->assertEquals($u, $this->user);
+    }
+
+    public function testFindUserByIdUserNotFound()
     {
         $wrongId = 222;
         $this->mockPDOStatement->expects($this->once())
             ->method('bindParam')
-            ->with($this->equalTo(1), $this->equalTo($wrongId), $this->equalTo(PDO::PARAM_INT));
+            ->with($this->equalTo(':id'), $this->equalTo($wrongId), $this->equalTo(PDO::PARAM_INT));
 
         $this->mockPDOStatement->expects($this->once())
             ->method('execute');
@@ -62,12 +85,69 @@ class TestPDOUserRepository extends PHPUnit_Framework_TestCase
 
         $this->mockPDO->expects($this->once())
             ->method('prepare')
-            ->with($this->equalTo('SELECT * FROM user WHERE id=?'))
+            ->with($this->equalTo('SELECT * FROM user WHERE id = :id'))
             ->will($this->returnValue($this->mockPDOStatement));
 
         $pdoRepo = new PDOUserRepository($this->mockPDO);
         $u = $pdoRepo->findUserById($wrongId);
 
         $this->assertEquals($u, null);
+    }
+
+    public function testFindAllUsersFound()
+    {
+        $this->mockPDOStatement->expects($this->once())
+            ->method('execute');
+
+        $this->mockPDOStatement->expects($this->once())
+            ->method('fetchAll')
+            ->with($this->equalTo(PDO::FETCH_ASSOC))
+            ->will($this->returnValue([]));
+
+        $this->mockPDO->expects($this->once())
+            ->method('prepare')
+            ->with($this->equalTo('SELECT * FROM user'))
+            ->will($this->returnValue($this->mockPDOStatement));
+
+        $pdoRepo = new PDOUserRepository($this->mockPDO);
+        $u = $pdoRepo->findAllUsers();
+
+        $this->assertNull($u);
+    }
+
+    public function testInsertUserCompleted()
+    {
+        $this->mockPDOStatement->expects($this->once())
+            ->method('bindParam')
+            ->with($this->equalTo(':name'), $this->equalTo($this->user->getName()));
+
+        $this->mockPDOStatement->expects($this->once())
+            ->method('execute');
+
+        $this->mockPDOStatement->expects($this->once())
+            ->method('fetchAll')
+            ->with($this->equalTo(PDO::FETCH_ASSOC))
+            ->will($this->returnValue([['id' => $this->user->getId(), 'name' => $this->user->getName()]]));
+
+        $this->mockPDO->expects($this->once())
+            ->method('prepare')
+            ->with($this->equalTo('INSERT INTO user(name) VALUES (:name)'))
+            ->will($this->returnValue($this->mockPDOStatement));
+
+        $pdoRepo = new PDOuserRepository($this->mockPDO);
+        $u = $pdoRepo->insertUser("test2");
+
+        $this->assertEquals($u->getName(), "test2");
+
+    }
+
+    public function testDeleteUserByIdCompleted()
+    {
+
+    }
+
+    public function testUpdateUserByIdCompleted()
+    {
+
     }
 }
