@@ -102,9 +102,7 @@ class PDOUserRepository implements UserRepository
 		}
     }
 
-	public function updateUserById($user) {
-		$user = new User($user->id, $user->name);
-		
+	public function updateUserById(User $user) {
 		try {
 			//UPDATE user
 			$stmt = $this->connection->prepare("UPDATE user SET name=:name WHERE id=:id");

@@ -51,14 +51,10 @@ class UserController {
 	}
 	
 	public function handleUpdateUserById($user = null) {
-		if ($user == null) {
-			return;
-		}
-		
-		$user = $this->userRepository->updateUserById($user);
+        $userModel = new User($user->id, $user->name);
+
+        $user = $this->userRepository->updateUserById($userModel);
 		
 		$this->view->show(array('user' => $user));
 	}
 }
-
-?>

@@ -166,6 +166,24 @@ class TestPDOUserRepository extends PHPUnit_Framework_TestCase
 
     public function testUpdateUserByIdCompleted()
     {
+        $this->mockPDO->expects($this->once())
+            ->method('prepare')
+            ->with($this->equalTo('UPDATE user SET name=:name WHERE id=:id'))
+            ->will($this->returnValue($this->mockPDOStatement));
 
+        $this->mockPDOStatement->expects($this->once())
+            ->method('bindParam')
+            ->with($this->equalTo(':id'), $this->equalTo(231), $this->equalTo(PDO::PARAM_INT))
+            ->with($this->equalTo(':name'), $this->equalTo("Test2"), $this->equalTo(PDO::PARAM_STR))
+            ->will($this->returnValue($this->mockPDOStatement));
+
+        $this->mockPDOStatement->expects($this->once())
+            ->method('execute');
+
+        $pdoRepo = new PDOuserRepository($this->mockPDO);
+        $updateUser = new User(231, "Test2");
+        $u = $pdoRepo->updateUserById($updateUser);
+
+        $this->assertEquals($u->getName(), "Test2");
     }
 }

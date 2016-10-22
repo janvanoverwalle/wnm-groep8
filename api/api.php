@@ -339,7 +339,6 @@ $router->map('PUT', '/users/?', function () use (&$userController) {
     $requestBody = file_get_contents('php://input');
     $data = (array)json_decode($requestBody);
 
-    print_r($data);
     // variable declaration
     $user = $data[0]->user;
 
