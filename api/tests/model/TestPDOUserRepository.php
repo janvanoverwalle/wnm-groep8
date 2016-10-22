@@ -117,27 +117,31 @@ class TestPDOUserRepository extends PHPUnit_Framework_TestCase
 
     public function testInsertUserCompleted()
     {
+        $newUser = new User(1, "Test");
+
         $this->mockPDOStatement->expects($this->once())
-            ->method('bindParam')
-            ->with($this->equalTo(':name'), $this->equalTo($this->user->getName()));
+            ->method('bindParam');
+          //  ->with($this->equalTo(':name'), $this->equalTo($newUser->getName()));
+        $this->mockPDOStatement->expects($this->once())
+            ->method('fetch')
+            ->will($this->returnValue([0=>1]));
 
         $this->mockPDOStatement->expects($this->once())
             ->method('execute');
 
-        $this->mockPDOStatement->expects($this->once())
-            ->method('fetchAll')
-            ->with($this->equalTo(PDO::FETCH_ASSOC))
-            ->will($this->returnValue([['id' => $this->user->getId(), 'name' => $this->user->getName()]]));
-
         $this->mockPDO->expects($this->once())
             ->method('prepare')
-            ->with($this->equalTo('INSERT INTO user(name) VALUES (:name)'))
+           // ->with($this->equalTo('INSERT INTO user(name) VALUES (:name)'))
+            ->will($this->returnValue($this->mockPDOStatement));
+
+        $this->mockPDO->expects($this->once())
+            ->method('query')
             ->will($this->returnValue($this->mockPDOStatement));
 
         $pdoRepo = new PDOuserRepository($this->mockPDO);
-        $u = $pdoRepo->insertUser("test2");
+        $u = $pdoRepo->insertUser($newUser);
 
-        $this->assertEquals($u->getName(), "test2");
+        $this->assertEquals($u->getName(), $newUser->getName());
 
     }
 

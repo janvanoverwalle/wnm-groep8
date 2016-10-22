@@ -191,7 +191,7 @@ $router->map('GET', '/weights/?', function () use (&$weightController) {
  */
 $router->map('POST', '/users/?', function () use (&$userController) {
     // Get json objects
-	// [{"user" : {"name" : "user_name"}"}]
+	// [{"user" : {"name" : "user_name"}}]
     $requestBody = file_get_contents('php://input');
     $data = (array)json_decode($requestBody);
 
