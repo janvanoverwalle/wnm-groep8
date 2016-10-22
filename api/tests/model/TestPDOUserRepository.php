@@ -19,8 +19,11 @@ use \controller\UserController;
 use \view\View;
 use \view\UserJsonView;
 
-class PDOMock extends PDO {
-    public function __construct() {}
+class PDOMock extends PDO
+{
+    public function __construct()
+    {
+    }
 }
 
 class TestPDOUserRepository extends PHPUnit_Framework_TestCase
@@ -121,17 +124,17 @@ class TestPDOUserRepository extends PHPUnit_Framework_TestCase
 
         $this->mockPDOStatement->expects($this->once())
             ->method('bindParam');
-          //  ->with($this->equalTo(':name'), $this->equalTo($newUser->getName()));
+        //  ->with($this->equalTo(':name'), $this->equalTo($newUser->getName()));
         $this->mockPDOStatement->expects($this->once())
             ->method('fetch')
-            ->will($this->returnValue([0=>1]));
+            ->will($this->returnValue([0 => 1]));
 
         $this->mockPDOStatement->expects($this->once())
             ->method('execute');
 
         $this->mockPDO->expects($this->once())
             ->method('prepare')
-           // ->with($this->equalTo('INSERT INTO user(name) VALUES (:name)'))
+            // ->with($this->equalTo('INSERT INTO user(name) VALUES (:name)'))
             ->will($this->returnValue($this->mockPDOStatement));
 
         $this->mockPDO->expects($this->once())
@@ -147,7 +150,18 @@ class TestPDOUserRepository extends PHPUnit_Framework_TestCase
 
     public function testDeleteUserByIdCompleted()
     {
+        $this->mockPDO->expects($this->once())
+            ->method('prepare')
+            ->will($this->returnValue($this->mockPDOStatement));
 
+        $this->mockPDOStatement->expects($this->once())
+            ->method('bindParam');
+
+        $this->mockPDOStatement->expects($this->once())
+            ->method('execute');
+
+        $pdoRepo = new PDOuserRepository($this->mockPDO);
+        $u = $pdoRepo->deleteUserById(1);
     }
 
     public function testUpdateUserByIdCompleted()
