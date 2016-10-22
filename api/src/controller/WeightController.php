@@ -10,6 +10,7 @@ namespace controller;
 
 use model\WeightRepository;
 use view\View;
+use model\Weight;
 
 class WeightController
 {
@@ -46,9 +47,12 @@ class WeightController
     }
 
     public function handleInsertWeight($weight) {
-        $weights = $this->weightRepository->insertWeight($weight);
+        $weightModel = new Weight(NULL, $weight->weight, $weight->date);
+        $uid = $weight->user_id;
 
-        $this->view->show(array('weight' => $weights));
+        $weightModel = $this->weightRepository->insertWeight($weightModel, $uid);
+
+        $this->view->show(array('weight' => $weightModel));
     }
 
     public function handleDeleteWeightById($id = null) {
@@ -62,12 +66,10 @@ class WeightController
     }
 
     public function handleUpdateWeightById($weight = null) {
-        if ($weight == null) {
-            return;
-        }
+        $weightModel = new Weight($weight->id, $weight->weight, $weight->date);
 
-        $weight = $this->weightRepository->updateWeightById($weight);
+        $weightModel = $this->weightRepository->updateWeightById($weightModel);
 
-        $this->view->show(array('weight' => $weight));
+        $this->view->show(array('weight' => $weightModel));
     }
 }

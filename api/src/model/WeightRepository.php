@@ -15,7 +15,7 @@ interface WeightRepository
     public function findAllWeights();
     public function findWeightsByUserId($uid);
     public function findWeightByIdAndUserId($wid, $uid);
-    public function insertWeight($weight);
+    public function insertWeight(Weight $weight, $uid);
     public function deleteWeightById($id);
-    public function updateWeightById($weight);
+    public function updateWeightById(Weight $weight);
 }

@@ -107,16 +107,12 @@ class PDOCaloriesRepository implements CaloriesRepository
         }
     }
 
-    public function insertCalories($calories)
+    public function insertCalories(Calories $calorie, $uid)
     {
-        if ($calories) {
-            $calorie = new Calories(NULL, $calories->calories, $calories->date);
-        }
-
         try {
             //INSERT new calories
             $stmt = $this->connection->prepare("INSERT INTO calories(user_id_id, calories, date) VALUES (:uid, :calories, :date)");
-            $stmt->bindParam(':uid', $calories->user_id);
+            $stmt->bindParam(':uid', $uid);
             $stmt->bindParam(':calories', $calorie->getCalories());
             $stmt->bindParam(':date', $calorie->getDate());
             $stmt->execute();
@@ -156,10 +152,8 @@ class PDOCaloriesRepository implements CaloriesRepository
         }
     }
 
-    public function updateCalorieById($calories)
+    public function updateCalorieById(Calories $calorie)
     {
-        $calorie = new Calories($calories->id, $calories->calories, $calories->date);
-
         try {
             //UPDATE calories
             $stmt = $this->connection->prepare("UPDATE calories SET calories=:calories, date=:date WHERE id=:id");

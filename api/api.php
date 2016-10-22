@@ -301,7 +301,7 @@ $router->map('DELETE', '/habits/[i:id]/?', function ($id) use (&$habitController
  * @return habit
  * @description Verwijder user habit met 'user_id' en 'habit_id'
  */
-$router->map('DELETE', '/users/[i:uid]/habits/[i:hid]/?', function ($id) use (&$habitController) {
+$router->map('DELETE', '/users/[i:uid]/habits/[i:hid]/?', function ($hid, $uid) use (&$habitController) {
     $habitController->handleDeleteHabitByIdAndUserId($hid, $uid);
 });
 
@@ -389,7 +389,7 @@ $router->map('PUT', '/users/[i:id]/habits/?', function ($id) use (&$habitControl
  */
 $router->map('PUT', '/calories/?', function () use (&$caloriesController) {
     // Get json objects
-    // [{"calories":{"calories":"...", "date":"2016-10-16", "user_id":"..."}}]
+    // [{"calories":{"calories":"...", "date":"2016-10-16"}}]
     $requestBody = file_get_contents('php://input');
     $data = (array)json_decode($requestBody);
 

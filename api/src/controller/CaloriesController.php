@@ -10,6 +10,7 @@ namespace controller;
 
 use model\CaloriesRepository;
 use view\View;
+use model\Calories;
 
 class CaloriesController
 {
@@ -46,7 +47,10 @@ class CaloriesController
     }
 
     public function handleInsertCalories($calories) {
-        $calorie = $this->caloriesRepository->insertCalories($calories);
+        $calorie = new Calories(NULL, $calories->calories, $calories->date);
+        $uid = $calories->user_id;
+
+        $calorie = $this->caloriesRepository->insertCalories($calorie, $uid);
 
         $this->view->show(array('calorie' => $calorie));
     }
@@ -62,11 +66,9 @@ class CaloriesController
     }
 
     public function handleUpdateCaloriesById($calories = null) {
-        if ($calories == null) {
-            return;
-        }
+        $calorie = new Calories($calories->id, $calories->calories, $calories->date);
 
-        $calorie = $this->caloriesRepository->updateCalorieById($calories);
+        $calorie = $this->caloriesRepository->updateCalorieById($calorie);
 
         $this->view->show(array('calorie' => $calorie));
     }
