@@ -4,6 +4,7 @@ namespace controller;
 
 use model\HabitRepository;
 use view\View;
+use model\Habit;
 
 class HabitController {
 	
@@ -48,13 +49,11 @@ class HabitController {
 	}
 	
 	public function handleInsertHabit($habit = null) {
-		if ($habit == null) {
-			return;
-		}
+        $habitModel = new Habit(-1, $habit);
 		
-		$habit = $this->habitRepository->insertHabit($habit);
+		$habitModel = $this->habitRepository->insertHabit($habitModel);
 		
-		$this->view->show(array('habit' => $habit));
+		$this->view->show(array('habit' => $habitModel));
 	}
 	
 	public function handleInsertUserHabit($uid = null, $hid = null) {
@@ -88,17 +87,15 @@ class HabitController {
 	}
 	
 	public function handleUpdateHabitById($habit = null) {
-		if ($habit == null) {
-			return;
-		}
+        $habitModel = new Habit($habit->id, $habit->description);
 		
-		$habit = $this->habitRepository->updateHabitById($habit);
+		$habitModel = $this->habitRepository->updateHabitById($habitModel);
 		
-		$this->view->show(array('habit' => $habit));
+		$this->view->show(array('habit' => $habitModel));
 	}
 	
 	public function handleUpdateHabitByIdAndUserId($uid = null, $oldHId = null, $newHId = null) {
-		if ($id == null or $oldHId == null or $newHId == null) {
+		if ($uid == null or $oldHId == null or $newHId == null) {
 			return;
 		}
 		

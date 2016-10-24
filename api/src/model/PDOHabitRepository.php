@@ -114,11 +114,7 @@ class PDOHabitRepository implements HabitRepository {
 		}
 	}
 	
-	public function insertHabit($habit) {
-		if (is_string($habit)) {
-			$habit = new Habit(-1, $habit);
-		}
-		
+	public function insertHabit(Habit $habit) {
 		try {
 			//INSERT new habit
 			$stmt = $this->connection->prepare("INSERT INTO habit(description) VALUES (:description)");
@@ -213,9 +209,7 @@ class PDOHabitRepository implements HabitRepository {
 		}
     }
 
-	public function updateHabitById($habit) {
-		$habit = new Habit($habit->id, $habit->description);
-		
+	public function updateHabitById(Habit $habit) {
 		try {
 			//UPDATE habit
 			$stmt = $this->connection->prepare("UPDATE habit SET description=:description WHERE id=:id");
@@ -255,5 +249,3 @@ class PDOHabitRepository implements HabitRepository {
 		}
 	}
 }
-
-?>

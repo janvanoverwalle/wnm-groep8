@@ -109,26 +109,22 @@ class PDOWeightRepository implements WeightRepository
         }
     }
 
-    public function insertWeight($weight)
+    public function insertWeight(Weight $weight, $uid)
     {
-        if ($weight) {
-            $weightModel = new Weight(NULL, $weight->weight, $weight->date);
-        }
-
         try {
             //INSERT new weight
             $stmt = $this->connection->prepare("INSERT INTO weights(user_id_id, weight, date) VALUES (:uid, :weight, :date)");
-            $stmt->bindParam(':uid', $weight->user_id);
-            $stmt->bindParam(':weight', $weightModel->getWeight());
-            $stmt->bindParam(':date', $weightModel->getDate());
+            $stmt->bindParam(':uid', $uid);
+            $stmt->bindParam(':weight', $weight->getWeight());
+            $stmt->bindParam(':date', $weight->getDate());
             $stmt->execute();
 
             if ($stmt) {
                 $stmt = $this->connection->query("SELECT LAST_INSERT_ID()");
                 $lastId = $stmt->fetch(\PDO::FETCH_NUM);
-                $weightModel->setId($lastId[0]);
+                $weight->setId($lastId[0]);
 
-                return $weightModel;
+                return $weight;
             }
 
             return null;
@@ -158,20 +154,18 @@ class PDOWeightRepository implements WeightRepository
         }
     }
 
-    public function updateWeightById($weight)
+    public function updateWeightById(Weight $weight)
     {
-        $weightModel = new Weight($weight->id, $weight->weight, $weight->date);
-
         try {
-            //UPDATE calories
+            //UPDATE weight
             $stmt = $this->connection->prepare("UPDATE weights SET weight=:weight, date=:date WHERE id=:id");
-            $stmt->bindParam(':id', $weightModel->getId());
-            $stmt->bindParam(':weight', $weightModel->getWeight());
-            $stmt->bindParam(':date', $weightModel->getDate());
+            $stmt->bindParam(':id', $weight->getId());
+            $stmt->bindParam(':weight', $weight->getWeight());
+            $stmt->bindParam(':date', $weight->getDate());
             $stmt->execute();
 
             if ($stmt) {
-                return $weightModel;
+                return $weight;
             }
 
             return null;

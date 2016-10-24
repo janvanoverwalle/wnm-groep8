@@ -19,8 +19,11 @@ use \controller\UserController;
 use \view\View;
 use \view\UserJsonView;
 
-class PDOMock extends PDO {
-    public function __construct() {}
+class PDOMock extends PDO
+{
+    public function __construct()
+    {
+    }
 }
 
 class TestPDOUserRepository extends PHPUnit_Framework_TestCase
@@ -117,37 +120,70 @@ class TestPDOUserRepository extends PHPUnit_Framework_TestCase
 
     public function testInsertUserCompleted()
     {
+        $newUser = new User(1, "Test");
+
         $this->mockPDOStatement->expects($this->once())
-            ->method('bindParam')
-            ->with($this->equalTo(':name'), $this->equalTo($this->user->getName()));
+            ->method('bindParam');
+        //  ->with($this->equalTo(':name'), $this->equalTo($newUser->getName()));
+        $this->mockPDOStatement->expects($this->once())
+            ->method('fetch')
+            ->will($this->returnValue([0 => 1]));
 
         $this->mockPDOStatement->expects($this->once())
             ->method('execute');
 
-        $this->mockPDOStatement->expects($this->once())
-            ->method('fetchAll')
-            ->with($this->equalTo(PDO::FETCH_ASSOC))
-            ->will($this->returnValue([['id' => $this->user->getId(), 'name' => $this->user->getName()]]));
-
         $this->mockPDO->expects($this->once())
             ->method('prepare')
-            ->with($this->equalTo('INSERT INTO user(name) VALUES (:name)'))
+            // ->with($this->equalTo('INSERT INTO user(name) VALUES (:name)'))
+            ->will($this->returnValue($this->mockPDOStatement));
+
+        $this->mockPDO->expects($this->once())
+            ->method('query')
             ->will($this->returnValue($this->mockPDOStatement));
 
         $pdoRepo = new PDOuserRepository($this->mockPDO);
-        $u = $pdoRepo->insertUser("test2");
+        $u = $pdoRepo->insertUser($newUser);
 
-        $this->assertEquals($u->getName(), "test2");
+        $this->assertEquals($u->getName(), $newUser->getName());
 
     }
 
     public function testDeleteUserByIdCompleted()
     {
+        $this->mockPDO->expects($this->once())
+            ->method('prepare')
+            ->will($this->returnValue($this->mockPDOStatement));
 
+        $this->mockPDOStatement->expects($this->once())
+            ->method('bindParam');
+
+        $this->mockPDOStatement->expects($this->once())
+            ->method('execute');
+
+        $pdoRepo = new PDOuserRepository($this->mockPDO);
+        $u = $pdoRepo->deleteUserById(1);
     }
 
     public function testUpdateUserByIdCompleted()
     {
+        $this->mockPDO->expects($this->once())
+            ->method('prepare')
+            ->with($this->equalTo('UPDATE user SET name=:name WHERE id=:id'))
+            ->will($this->returnValue($this->mockPDOStatement));
 
+        $this->mockPDOStatement->expects($this->once())
+            ->method('bindParam')
+            ->with($this->equalTo(':id'), $this->equalTo(231), $this->equalTo(PDO::PARAM_INT))
+            ->with($this->equalTo(':name'), $this->equalTo("Test2"), $this->equalTo(PDO::PARAM_STR))
+            ->will($this->returnValue($this->mockPDOStatement));
+
+        $this->mockPDOStatement->expects($this->once())
+            ->method('execute');
+
+        $pdoRepo = new PDOuserRepository($this->mockPDO);
+        $updateUser = new User(231, "Test2");
+        $u = $pdoRepo->updateUserById($updateUser);
+
+        $this->assertEquals($u->getName(), "Test2");
     }
 }

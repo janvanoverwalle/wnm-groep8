@@ -56,17 +56,14 @@ class PDOUserRepository implements UserRepository
 		}
 	}
 	
-	public function insertUser($user) {
-		if (is_string($user)) {
-			$user = new User(-1, $user);
-		}
-		
-		try {
+	public function insertUser(User $user) {
+        try {
 			//INSERT new user
 			$stmt = $this->connection->prepare("INSERT INTO user(name) VALUES (:name)");
-			$stmt->bindParam(':name', $user->getName());
-			$stmt->execute();
+            $name = $user->getName();
+            $stmt->bindParam(':name', $name);
 
+            $stmt->execute();
 			if ($stmt) {
 				$stmt = $this->connection->query("SELECT LAST_INSERT_ID()");
 				$lastId = $stmt->fetch(\PDO::FETCH_NUM);
@@ -105,9 +102,7 @@ class PDOUserRepository implements UserRepository
 		}
     }
 
-	public function updateUserById($user) {
-		$user = new User($user->id, $user->name);
-		
+	public function updateUserById(User $user) {
 		try {
 			//UPDATE user
 			$stmt = $this->connection->prepare("UPDATE user SET name=:name WHERE id=:id");
@@ -126,5 +121,3 @@ class PDOUserRepository implements UserRepository
 		}
 	}
 }
-
-?>

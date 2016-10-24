@@ -4,6 +4,7 @@ namespace controller;
 
 use model\UserRepository;
 use view\View;
+use model\User;
 
 class UserController {
 	
@@ -32,11 +33,9 @@ class UserController {
 	}
 	
 	public function handleInsertUser($user = null) {
-		if ($user == null) {
-			return;
-		}
-		
-		$user = $this->userRepository->insertUser($user);
+		$userModel = new User(NULL, $user);
+
+		$user = $this->userRepository->insertUser($userModel);
 		
 		$this->view->show(array('user' => $user));
 	}
@@ -52,14 +51,10 @@ class UserController {
 	}
 	
 	public function handleUpdateUserById($user = null) {
-		if ($user == null) {
-			return;
-		}
-		
-		$user = $this->userRepository->updateUserById($user);
+        $userModel = new User($user->id, $user->name);
+
+        $user = $this->userRepository->updateUserById($userModel);
 		
 		$this->view->show(array('user' => $user));
 	}
 }
-
-?>

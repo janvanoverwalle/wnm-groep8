@@ -7,22 +7,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 
-use AppBundle\Entity\User;
-use AppBundle\Entity\Habit;
-use AppBundle\Entity\Weight;
-use AppBundle\Entity\Calorie;
-
-use AppBundle\Repository\UserRepository;
+use AppBundle\Utils\User;
+use AppBundle\Utils\RestClient;
 
 class UserController extends Controller
 {
     /**
-     * @Route("/habits/{user_id}", requirements={"user_id": "\d+"}, defaults={"user_id"=0}))
+     * @Route("/users/{user_id}", requirements={"user_id": "\d+"}, defaults={"user_id"=0}))
 	 * @Method("GET")
      */
-    public function getHabitsAction($user_id)
+    public function getUserById($user_id)
     {
-		$twig = 'AppBundle:UserController:show_habits.html.twig';
+		$twig = 'AppBundle:UserController:show_users.html.twig';
 		
 		if ($user_id == 0) {
 			return $this->render($twig, array(
@@ -30,8 +26,7 @@ class UserController extends Controller
 			));
 		}
 		
-		$em = $this->getDoctrine()->getManager();
-		$user = $em->getRepository('AppBundle:User')->find($user_id);
+		
 		
 		if ($user == null) {
 			return $this->render($twig, array(
