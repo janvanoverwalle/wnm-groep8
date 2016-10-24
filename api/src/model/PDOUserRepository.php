@@ -62,8 +62,8 @@ class PDOUserRepository implements UserRepository
 			$stmt = $this->connection->prepare("INSERT INTO user(name) VALUES (:name)");
             $name = $user->getName();
             $stmt->bindParam(':name', $name);
-
             $stmt->execute();
+
 			if ($stmt) {
 				$stmt = $this->connection->query("SELECT LAST_INSERT_ID()");
 				$lastId = $stmt->fetch(\PDO::FETCH_NUM);

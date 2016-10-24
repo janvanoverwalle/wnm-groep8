@@ -116,4 +116,62 @@ class TestPDOCaloriesRepository extends PHPUnit_Framework_TestCase
         $this->assertNull($c);
     }
 
+    public function testFindAllCaloriesByUserIdFound()
+    {
+
+    }
+
+    public function testFindCaloriesByIdAndUserIdFound()
+    {
+
+    }
+
+    public function testInsertCaloriesCompleted()
+    {
+        $newCalories = new Calories(1, "1000", "2016-10-10");
+
+        $this->mockPDOStatement->expects($this->once())
+            ->method('bindParam');
+
+        $this->mockPDOStatement->expects($this->once())
+            ->method('fetch')
+            ->will($this->returnValue([0 => 1]));
+
+        $this->mockPDOStatement->expects($this->once())
+            ->method('execute');
+
+        $this->mockPDO->expects($this->once())
+            ->method('prepare')
+            ->will($this->returnValue($this->mockPDOStatement));
+
+        $this->mockPDO->expects($this->once())
+            ->method('query')
+            ->will($this->returnValue($this->mockPDOStatement));
+
+        $pdoRepo = new PDOCaloriesRepository($this->mockPDO);
+        $c = $pdoRepo->insertCalories($newCalories, 1);
+
+        $this->assertEquals($c->getCalories(), $newCalories->getCalories());
+    }
+
+    public function testDeleteCaloriesByIdCompleted()
+    {
+        $this->mockPDO->expects($this->once())
+            ->method('prepare')
+            ->will($this->returnValue($this->mockPDOStatement));
+
+        $this->mockPDOStatement->expects($this->once())
+            ->method('bindParam');
+
+        $this->mockPDOStatement->expects($this->once())
+            ->method('execute');
+
+        $pdoRepo = new PDOCaloriesRepository($this->mockPDO);
+        $c = $pdoRepo->deleteUserById(1);
+    }
+
+    public function testUpdateCalorieByIdCompleted()
+    {
+
+    }
 }
