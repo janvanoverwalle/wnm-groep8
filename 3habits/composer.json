@@ -33,7 +33,9 @@
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
-        "symfony/routing": "^3.1"
+        "symfony/routing": "^3.1",
+		"guzzlehttp/guzzle": "~6.0",
+        "monolog/monolog": "^1.21"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

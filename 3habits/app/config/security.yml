@@ -4,8 +4,8 @@ security:
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory: ~
+        webservice:
+            id: app.webservice_user_provider
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -22,3 +22,15 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+            form_login:
+                login_path: login
+                check_path: login
+    
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # require ROLE_ADMIN for /*
+        - { path: ^/, roles: ROLE_ADMIN }
+    
+    encoders:
+        AppBundle\Security\User\WebserviceUser: plaintext
+        

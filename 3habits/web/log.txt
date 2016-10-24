@@ -1,0 +1,7 @@
+[GET] http://localhost/api/users/admin
+200
+Date: Thu, 20 Oct 2016 10:29:09 GMT
+Server: Apache/2.4.23 (Win32) OpenSSL/1.0.2h PHP/5.6.24
+X-Powered-By: PHP/5.6.24
+Content-Length: 46
+Content-Type: application/json
