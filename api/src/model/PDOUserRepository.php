@@ -30,6 +30,25 @@ class PDOUserRepository implements UserRepository
 		}
     }
 	
+	public function findUserByName($name) {
+		try {
+			// SELECT user
+			$stmt = $this->connection->prepare("SELECT * FROM user WHERE name = :name");
+			$stmt->bindParam(':name', $name, \PDO::PARAM_STR);
+			$stmt->execute();
+			$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+			
+			if (count($results) <= 0) {
+				return null;
+			}
+			
+			return new User($results[0]['id'], $results[0]['name']);
+		}
+		catch (\Exception $e) {
+			return null;
+		}
+    }
+	
 	public function findAllUsers() {
 		try {
 			// SELECT all users

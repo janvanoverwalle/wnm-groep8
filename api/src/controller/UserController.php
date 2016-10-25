@@ -26,6 +26,16 @@ class UserController {
 		$this->view->show(array('user' => $user));
     }
 	
+	public function handleFindUserByName($name = null) {
+		if ($name == null) {
+			return;
+		}
+		
+		$user = $this->userRepository->findUserByName($name);
+		
+		$this->view->show(array('user' => $user));
+    }
+	
 	public function handleFindAllUsers() {
 		$users = $this->userRepository->findAllUsers();
 		
