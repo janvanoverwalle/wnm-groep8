@@ -13,16 +13,18 @@ class User
 {
     private $id;
     private $name;
+	private $roles;
 
     /**
      * User constructor.
      * @param $id
      * @param $name
      */
-    public function __construct($id = NULL, $name = NULL)
+    public function __construct($id = NULL, $name = NULL, $roles = NULL)
     {
         $this->id = $id;
         $this->name = $name;
+		$this->roles = $roles;
     }
 
     /**
@@ -63,5 +65,21 @@ class User
     public function setName($name)
     {
         $this->name = $name;
+    }
+	
+	/**
+     * @return mixed
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
     }
 }

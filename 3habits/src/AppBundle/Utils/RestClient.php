@@ -26,13 +26,18 @@ class RestClient {
 		// if ($response->hasHeader('Content-Type'))
 			// fwrite($f, $response->getHeader('Content-Type')."\r\n");
 		
+		fwrite($f, "Headers:\r\n");
 		foreach ($response->getHeaders() as $name => $values) {
 			fwrite($f, $name . ': ' . implode(', ', $values) . "\r\n");
 		}
+		fwrite($f, $response->getBody()."\r\n");
 		
 		if ($response->getStatusCode() == 200) {
-			if ($response->getHeader('content-type') == 'application/json') {
-				return $response->json();
+			//fwrite($f, ($response->hasHeader('Content-Type') ? "true" : "false")."\r\n");
+			//fwrite($f, implode(",", $response->getHeader("Content-Type")));
+			if (in_array('application/json', $response->getHeader('Content-Type'))) {
+				fwrite($f, "JSON\r\n");
+				return json_decode($response->getBody(), true);
 			}
 			else {
 				return $response->getBody();
