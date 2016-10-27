@@ -115,7 +115,7 @@ class TestPDOUserRepository extends PHPUnit_Framework_TestCase
         $pdoRepo = new PDOUserRepository($this->mockPDO);
         $u = $pdoRepo->findAllUsers();
 
-        $this->assertNull($u);
+        $this->assertNotNull($u);
     }
 
     public function testInsertUserCompleted()

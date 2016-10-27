@@ -86,32 +86,17 @@ class TestHabitController extends PHPUnit_Framework_TestCase
 
     }
 
-    public function testHandleFindAllHabitsNotFound()
-    {
-
-    }
-
     public function testHandleFindHabitsByUserIdFound()
     {
 
     }
 
-    public function testHandleFindHabitsByUserIdNotFound()
-    {
-
-    }
-
-    public function testHandleFindHabitByIdAndUserId()
+    public function testHandleFindHabitByIdAndUserIdFound()
     {
 
     }
 
     public function testHandleFindHabitsReachedByUserIdFound()
-    {
-
-    }
-
-    public function testHandleFindHabitsReachedByUserIdNotFound()
     {
 
     }
