@@ -7,32 +7,39 @@
  */
 
 namespace AppBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @ORM\Column(name="name", type="string", length=100, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Please enter your name.")
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
-    private $name;
+    protected $name;
 	
-	/**
-     * @ORM\Column(name="roles", type="string", length=256, nullable=false)
-     */
-    private $roles;
-
     /**
      * Get id
      *
@@ -65,29 +72,5 @@ class User
     public function getName()
     {
         return $this->name;
-    }
-	
-	/**
-     * Set roles
-     *
-     * @param string $roles
-     *
-     * @return User
-     */
-    public function setRoles($roles)
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * Get roles
-     *
-     * @return string
-     */
-    public function getRoles()
-    {
-        return $this->roles;
     }
 }
