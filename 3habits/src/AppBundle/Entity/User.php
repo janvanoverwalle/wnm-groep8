@@ -27,6 +27,11 @@ class User
      * @ORM\Column(name="name", type="string", length=100, nullable=false)
      */
     private $name;
+	
+	/**
+     * @ORM\Column(name="roles", type="string", length=256, nullable=false)
+     */
+    private $roles;
 
     /**
      * Get id
@@ -60,5 +65,29 @@ class User
     public function getName()
     {
         return $this->name;
+    }
+	
+	/**
+     * Set roles
+     *
+     * @param string $roles
+     *
+     * @return User
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Get roles
+     *
+     * @return string
+     */
+    public function getRoles()
+    {
+        return $this->roles;
     }
 }

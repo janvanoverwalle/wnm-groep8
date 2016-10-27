@@ -23,7 +23,26 @@ class PDOUserRepository implements UserRepository
 				return null;
 			}
 			
-			return new User($results[0]['id'], $results[0]['name']);
+			return new User($results[0]['id'], $results[0]['name'], $results[0]['roles']);
+		}
+		catch (\Exception $e) {
+			return null;
+		}
+    }
+	
+	public function findUserByName($name) {
+		try {
+			// SELECT user
+			$stmt = $this->connection->prepare("SELECT * FROM user WHERE name = :name");
+			$stmt->bindParam(':name', $name, \PDO::PARAM_STR);
+			$stmt->execute();
+			$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+			
+			if (count($results) <= 0) {
+				return null;
+			}
+			
+			return new User($results[0]['id'], $results[0]['name'], $results[0]['roles']);
 		}
 		catch (\Exception $e) {
 			return null;
@@ -44,7 +63,7 @@ class PDOUserRepository implements UserRepository
 			$users = [];
 			
 			foreach ($results as $user) {
-				$users[] = new User($user['id'], $user['name']);
+				$users[] = new User($user['id'], $user['name'], $user['roles']);
 				// $habits = HabitController::findHabitsByUserId($u->getId());
 				// $u->setHabits($habits);
 			}
@@ -59,9 +78,10 @@ class PDOUserRepository implements UserRepository
 	public function insertUser(User $user) {
         try {
 			//INSERT new user
-			$stmt = $this->connection->prepare("INSERT INTO user(name) VALUES (:name)");
+			$stmt = $this->connection->prepare("INSERT INTO user(name, roles) VALUES (:name, :roles)");
             $name = $user->getName();
-            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':name', $name, \PDO::PARAM_STR);
+			$stmt->bindParam(':roles', "", \PDO::PARAM_STR);
             $stmt->execute();
 
 			if ($stmt) {

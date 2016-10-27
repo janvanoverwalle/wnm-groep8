@@ -1,0 +1,2 @@
+client created
+9,admin,ROLE_ADMIN

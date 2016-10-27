@@ -4,8 +4,21 @@ security:
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        webservice:
-            id: app.webservice_user_provider
+        in_memory:
+            memory:
+                users:
+                    user:
+                        password: b995c284ca3184dfb47aa58067e9cc47
+                        roles: 'ROLE_USER'
+                    coach:
+                        password: 7fabf5f3602258e1fed24efa91fe7135
+                        roles: 'ROLE_COACH'
+                    admin:
+                        password: 039eab010cf40e99812be50ab0895086
+                        roles: 'ROLE_ADMIN'
+
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -27,10 +40,8 @@ security:
                 check_path: login
     
     access_control:
+        - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # require ROLE_ADMIN for /*
         - { path: ^/, roles: ROLE_ADMIN }
-    
-    encoders:
-        AppBundle\Security\User\WebserviceUser: plaintext
-        
+        - { path: ^/, roles: ROLE_COACH }
