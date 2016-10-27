@@ -168,6 +168,8 @@ class TestPDOCaloriesRepository extends PHPUnit_Framework_TestCase
 
         $pdoRepo = new PDOCaloriesRepository($this->mockPDO);
         $c = $pdoRepo->deleteUserById(1);
+
+        $this->assertNull($c);
     }
 
     public function testUpdateCalorieByIdCompleted()

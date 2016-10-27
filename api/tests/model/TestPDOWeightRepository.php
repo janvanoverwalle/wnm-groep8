@@ -119,12 +119,16 @@ class TestPDOWeightRepository extends PHPUnit_Framework_TestCase
         $this->assertNull($w);
     }
 
+    public function testInsertWeightCompleted()
+    {
+
+    }
+
     public function testFindAllWeightsByUserIdFound()
     {
 
     }
     public function testFindWeightByIdAndUserIdFound()
-
     {
 
     }
@@ -142,7 +146,9 @@ class TestPDOWeightRepository extends PHPUnit_Framework_TestCase
             ->method('execute');
 
         $pdoRepo = new PDOuserRepository($this->mockPDO);
-        $u = $pdoRepo->deleteWeightById(1);
+        $w = $pdoRepo->deleteWeightById(1);
+
+        $this->assertNull($w);
     }
 
     public function testUpdateWeightByIdCompleted()

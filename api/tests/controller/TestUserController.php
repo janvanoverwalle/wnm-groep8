@@ -82,11 +82,23 @@ class TestUserController extends PHPUnit_Framework_TestCase
         $this->expectOutputString('');
     }
 
-    public function testHandleFindAllUsersFound() {
+    public function testHandleFindAllUsersFound()
+    {
 
     }
 
-    public function testFindUserById() {
+    public function testHandleInsertUserCompleted()
+    {
+
+    }
+
+    public function testHandleDeleteUserByIdCompleted()
+    {
+
+    }
+
+    public function testHandleUpdateUserByIdCompleted()
+    {
 
     }
 }
