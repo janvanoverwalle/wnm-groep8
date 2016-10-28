@@ -11,9 +11,13 @@ export default class UserHabitsComponent extends React.Component {
             Store.dispatch({type: 'load_userHabits', data: jsondata});
         });
 
-        Store.subscribe(() => {
+        this.unsubscribe = Store.subscribe(() => {
             this.setState({userHabits: Store.getState().userHabits});
         });
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
     }
 
     render() {
