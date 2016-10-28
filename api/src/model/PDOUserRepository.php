@@ -118,7 +118,7 @@ class PDOUserRepository implements UserRepository
 			$stmt->bindParam(':password', $user->getPassword(), \PDO::PARAM_STR);
 			$stmt->bindParam(':locked', $user->isLocked() ? 1 : 0, \PDO::PARAM_INT);
 			$stmt->bindParam(':expired', $user->isExpired() ? 1 : 0, \PDO::PARAM_INT);
-			$stmt->bindParam(':roles', $user->getRoles(), \PDO::PARAM_STR);
+			$stmt->bindParam(':roles', $user->getRolesString(), \PDO::PARAM_STR);
 			$stmt->bindParam(':credentials_expired', $user->isCredentialsExpired() ? 1 : 0, \PDO::PARAM_INT);
             $stmt->execute();
 
@@ -200,7 +200,7 @@ class PDOUserRepository implements UserRepository
 			$stmt->bindParam(':expires_at', $user->getExpireDate(), \PDO::PARAM_STR);
 			$stmt->bindParam(':confirmation_token', $user->getConfirmationToken(), \PDO::PARAM_STR);
 			$stmt->bindParam(':password_requested_at', $user->getPasswordRequestDate(), \PDO::PARAM_STR);
-			$stmt->bindParam(':roles', $user->getRoles(), \PDO::PARAM_STR);
+			$stmt->bindParam(':roles', $user->getRolesString(), \PDO::PARAM_STR);
 			$stmt->bindParam(':credentials_expired', $user->isCredentialsExpired() ? 1 : 0, \PDO::PARAM_INT);
 			$stmt->bindParam(':credentials_expire_at', $user->getCredentialsExpireDate(), \PDO::PARAM_STR);
 			$stmt->execute();

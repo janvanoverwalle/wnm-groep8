@@ -296,22 +296,43 @@ class User
     }
 
     /**
+     * @return mixed
+     */
+    public function getRolesString()
+    {
+        $roles = array();
+
+        foreach ($this->roles as $role) {
+            if ($role != "ROLE_USER") {
+                $roles[] = $role;
+            }
+        }
+
+        $str = "a:".count($roles).":{";
+
+        for ($i = 0; $i < count($roles); ++$i) {
+            $str = $str . "i:".$i.";s:".strlen($roles[$i]).":\"".$roles[$i]."\";";
+        }
+
+        $str = $str . "}";
+        return $str;
+    }
+
+    /**
      * @param mixed $roles
      */
     public function setRoles($roles)
     {
         if (is_string($roles)) {
-            print_r($roles."\r\n");
+            //print_r($roles."\r\n");
             $newRoles = array();
             $newRoles[] = "ROLE_USER";
 
-            $matches = array();
-            preg_match('/i:[0-9]+;s:[0-9]+:"[A-Z_]+"/', $roles, $matches);
-
-            var_dump($matches);
-
-            foreach ($matches as $match) {
-                print_r("\t".$match."\r\n");
+            //$matches;
+            preg_match_all('/i:[0-9]+;s:[0-9]+:"[A-Z_]+"/', $roles, $matches, PREG_PATTERN_ORDER);
+            
+            foreach ($matches[0] as $match) {
+                //print_r("\t".$match."\r\n");
                 $role = array();
                 preg_match('/"[A-Z_]+"/', $match, $role);
                 $role = substr($role[0], 1, strlen($role[0]) - 2);

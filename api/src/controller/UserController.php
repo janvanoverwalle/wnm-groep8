@@ -27,7 +27,7 @@ class UserController {
     }
 	
 	public function handleFindUserByUsername($username = null) {
-		if ($name == null) {
+		if ($username == null) {
 			return;
 		}
 		
