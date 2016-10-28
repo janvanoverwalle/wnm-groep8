@@ -13,6 +13,7 @@ class CaloriesJsonView implements View
 {
     public function show(array $calories) {
         header('Content-Type: application/json');
+        header('access-control-allow-origin: *');
 
         if (isset($calories['calorie'])) {
             $calories = $calories['calorie'];

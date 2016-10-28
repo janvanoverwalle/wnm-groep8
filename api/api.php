@@ -6,6 +6,8 @@
  * Time: 16:05
  */
 
+header('access-control-allow-origin: *');
+
 require 'autoload.php';
 require 'vendor/autoload.php';
 require __DIR__ . '/vendor/altorouter/altorouter/AltoRouter.php';
