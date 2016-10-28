@@ -27,7 +27,7 @@ class TestUserController extends PHPUnit_Framework_TestCase
     {
         $this->mockUserRepository = $this->getMockBuilder('\model\UserRepository')->getMock();
         $this->mockView = $this->getMockBuilder('\view\View')->getMock();
-        $this->user = new User(231, 'testusername');
+        $this->user = new User(231, 'testusername', 'admin');
     }
 
     public function tearDown()
@@ -37,9 +37,6 @@ class TestUserController extends PHPUnit_Framework_TestCase
         $this->user = null;
     }
 
-    /**
-     *
-     */
     public function testHandleFindUserByIdFound()
     {
         $this->mockUserRepository->expects($this->once())
@@ -84,21 +81,78 @@ class TestUserController extends PHPUnit_Framework_TestCase
 
     public function testHandleFindAllUsersFound()
     {
+        $this->mockUserRepository->expects($this->once())
+            ->method('findAllUsers')
+            ->will($this->returnValue($this->user));
 
+        $this->mockView->expects($this->once())
+            ->method('show')
+            ->with($this->equalTo(['users' => $this->user]))
+            ->will($this->returnCallback(function ($object) {
+                $u = $object['users'];
+                echo $u->getId().' '.$u->getName();
+            }));
+
+        $userController = new UserController($this->mockUserRepository, $this->mockView);
+        $userController->handleFindAllUsers();
     }
 
     public function testHandleInsertUserCompleted()
     {
+        /*
+        $newInsertUser = new User(1, 'TestName');
+        $this->mockUserRepository->expects($this->once())
+            ->method('insertUser')
+            ->with($this->equalTo($newInsertUser->getName()))
+            ->will($this->returnValue($newInsertUser));
 
+        $this->mockView->expects($this->once())
+            ->method('show')
+            ->with($this->equalTo(['user' => $newInsertUser]))
+            ->will($this->returnCallback(function ($object) {
+                $u = $object['user'];
+                echo $u->getId().' '.$u->getName().' '.$u->getRoles();
+            }));
+
+        $userController = new UserController($this->mockUserRepository, $this->mockView);
+        $userController->handleInsertUser($newInsertUser->getName());
+        */
     }
 
     public function testHandleDeleteUserByIdCompleted()
     {
+        $this->mockUserRepository->expects($this->once())
+            ->method('deleteUserById')
+            ->with($this->equalTo($this->user->getId()))
+            ->will($this->returnValue(null));
 
+        $this->mockView->expects($this->once())
+            ->method('show')
+            ->with($this->equalTo(['user' => null]))
+            ->will($this->returnCallback(function ($object) {
+                echo '';
+            }));
+
+        $userController = new UserController($this->mockUserRepository, $this->mockView);
+        $userController->handleDeleteUserById($this->user->getId());
     }
 
     public function testHandleUpdateUserByIdCompleted()
     {
+        $this->mockUserRepository->expects($this->once())
+            ->method('updateUserById')
+            ->with($this->equalTo($this->user->getId()))
+            ->will($this->returnValue($this->user));
 
+        $this->mockView->expects($this->once())
+            ->method('show')
+            ->with($this->equalTo(['user' => $this->user]))
+            ->will($this->returnCallback(function ($object) {
+                $u = $object['user'];
+                echo $u->getId().' '.$u->getName();
+            }));
+
+        $userController = new UserController($this->mockUserRepository, $this->mockView);
+        $userController->handleUpdateUserById($this->user->getId());
     }
 }
