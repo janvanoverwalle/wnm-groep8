@@ -33,12 +33,26 @@ class User extends BaseUser
      * @Assert\Length(
      *     min=3,
      *     max=255,
-     *     minMessage="The name is too short.",
-     *     maxMessage="The name is too long.",
+     *     minMessage="This name is too short.",
+     *     maxMessage="This name is too long.",
      *     groups={"Registration", "Profile"}
      * )
      */
     protected $name;
+
+    /**
+     * @ORM\Column(name="surname", type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Please enter your last name.")
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="This name is too short.",
+     *     maxMessage="This name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $surname;
 	
     /**
      * Get id
