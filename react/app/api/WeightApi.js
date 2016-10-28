@@ -8,3 +8,7 @@ export const InsertWeightEntry = (weightEntry) => {
     };
     return fetch(`${ApiUrl}/weight`, options).then(result => result.json());
 };
+
+export const GetUserWeights = (userId) => {
+    return fetch(`${ApiUrl}/users/${userId}/weights`).then(result => result.json());
+};

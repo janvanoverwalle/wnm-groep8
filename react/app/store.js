@@ -10,6 +10,8 @@ const reducer = (state, action) => {
             return Object.assign({}, state, { userHabits: action.data});
         case 'appbar_title':
             return Object.assign({}, state, { appBarTitle: action.data});
+        case 'load_userWeights':
+            return Object.assign({}, state, {userWeights: action.data});
         default:
             return state;
     }
