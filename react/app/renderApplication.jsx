@@ -1,24 +1,38 @@
-import UserComponent from './components/usercomponent';
 import React from 'react';
 import { render } from 'react-dom';
-import InsertWeightComponent from './components/insertWeightComponent';
+import { Router, Route, useRouterHistory, IndexRedirect } from 'react-router';
+import createHashHistory from 'history/lib/createHashHistory';
+import DashboardComponent from './components/dashboardComponent';
+import WeightOverviewComponent from './components/weightOverviewComponent';
 import AppNavComponent from './components/appNavComponent';
-
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+export const history = useRouterHistory(createHashHistory)({queryKey:false});
 
 class App extends React.Component {
     render() {
         return (
-            <div>
-                <UserComponent />
-            </div>
+            <MuiThemeProvider>
+                <div>
+                    <AppNavComponent />
+                    <div>
+                        {this.props.children}
+                    </div>
+                </div>
+            </MuiThemeProvider>
         );
     }
 }
 
 const renderApplication = () => {
-    render(<MuiThemeProvider><App /></MuiThemeProvider>, document.getElementById('applicatie'));
-}
+    render((
+    <Router history={history}>
+        <Route path="/" component={App}>
+            <IndexRedirect to='dashboard'/>
+            <Route path="dashboard" component={DashboardComponent}/>
+            <Route path="weight" component={WeightOverviewComponent}/>
+        </Route>
+    </Router>
+    ),document.getElementById('applicatie'));
+};
 
 export default renderApplication;

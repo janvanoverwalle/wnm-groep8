@@ -13,6 +13,7 @@ class WeightJsonView implements View
 {
     public function show(array $weights) {
         header('Content-Type: application/json');
+        header('access-control-allow-origin: *');
 
         if (isset($weights['weight'])) {
             $weights = $weights['weight'];

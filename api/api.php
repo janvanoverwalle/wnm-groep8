@@ -6,6 +6,8 @@
  * Time: 16:05
  */
 
+header('access-control-allow-origin: *');
+
 require 'autoload.php';
 require 'vendor/autoload.php';
 require __DIR__ . '/vendor/altorouter/altorouter/AltoRouter.php';
@@ -76,9 +78,9 @@ $router->map('GET', '/users/[i:id]/?', function ($id) use (&$userController, &$l
  * @route = users/name
  * @return user
  */
-$router->map('GET', '/users/[a:name]/?', function ($name) use (&$userController, &$log) {
-	$log->info('GET user by name : '.$name);
-    $userController->handleFindUserByName($name);
+$router->map('GET', '/users/[a:username]/?', function ($username) use (&$userController, &$log) {
+	$log->info('GET user by username : '.$username);
+    $userController->handleFindUserByUsername($username);
 });
 
 /**
@@ -226,9 +228,10 @@ $router->map('POST', '/users/?', function () use (&$userController) {
     $data = (array)json_decode($requestBody);
 
     // variable declaration
-    $user = $data[0]->user;
+    $user = new User();
+    $user->unserializeJson($data[0]->user);
 
-    $userController->handleInsertUser($user->name);
+    $userController->handleInsertUser($user);
 });
 
 /**
@@ -370,7 +373,8 @@ $router->map('PUT', '/users/?', function () use (&$userController) {
     $data = (array)json_decode($requestBody);
 
     // variable declaration
-    $user = $data[0]->user;
+    $user = new User();
+    $user->unserializeJson($data[0]->user);
 
     $userController->handleUpdateUserById($user);
 });

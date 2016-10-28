@@ -1,12 +1,14 @@
 import ApiUrl from './ApiUrl';
 
-const InsertWeightEntry = (userId, weightEntry) => {
+export const InsertWeightEntry = (weightEntry) => {
     const options = {
         method: 'POST',
-        headers: new Headers({ 'x-user-id': userId, 'content-type': 'application/json' }),
+        headers: new Headers({ 'content-type': 'application/json' }),
         body: JSON.stringify(weightEntry)
-    }
+    };
     return fetch(`${ApiUrl}/weight`, options).then(result => result.json());
-}
+};
 
-export default InsertWeightEntry;
+export const GetUserWeights = (userId) => {
+    return fetch(`${ApiUrl}/users/${userId}/weights`).then(result => result.json());
+};

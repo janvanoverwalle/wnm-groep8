@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}3Habits - Welcome{% endblock %}
+
+{% block body %}
+	<h2>Welkom!</h2>
+	
+	{% if app.user %}
+		<ul>
+		{% for role in app.user.roles %}
+			<li>{{ role }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+
+{% endblock %}

@@ -6,6 +6,7 @@ class HabitJsonView implements View
 {
 	public function show(array $data) {
 		header('Content-Type: application/json');
+        header('access-control-allow-origin: *');
 
         if (isset($data['habit'])) {
 			$habit = $data['habit'];

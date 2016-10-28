@@ -26,12 +26,12 @@ class UserController {
 		$this->view->show(array('user' => $user));
     }
 	
-	public function handleFindUserByName($name = null) {
-		if ($name == null) {
+	public function handleFindUserByUsername($username = null) {
+		if ($username == null) {
 			return;
 		}
 		
-		$user = $this->userRepository->findUserByName($name);
+		$user = $this->userRepository->findUserByUsername($username);
 		
 		$this->view->show(array('user' => $user));
     }
@@ -43,9 +43,11 @@ class UserController {
 	}
 	
 	public function handleInsertUser($user = null) {
-		$userModel = new User(NULL, $user);
+		if ($user == null) {
+			return;
+		}
 
-		$user = $this->userRepository->insertUser($userModel);
+		$user = $this->userRepository->insertUser($user);
 		
 		$this->view->show(array('user' => $user));
 	}
@@ -61,9 +63,11 @@ class UserController {
 	}
 	
 	public function handleUpdateUserById($user = null) {
-        $userModel = new User($user->id, $user->name);
+		if ($user == null) {
+			return;
+		}
 
-        $user = $this->userRepository->updateUserById($userModel);
+        $user = $this->userRepository->updateUserById($user);
 		
 		$this->view->show(array('user' => $user));
 	}

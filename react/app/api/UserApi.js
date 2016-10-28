@@ -1,7 +1,10 @@
 import ApiUrl from './ApiUrl';
 
-const GetUser = (userId) => {
+export const GetUser = (userId) => {
     return fetch(`${ApiUrl}/users/${userId}`).then(result => result.json());
 };
 
-export default GetUser;
+export const GetUserHabits = (userId) => {
+    return fetch(`${ApiUrl}/users/${userId}/habits`).then(result => result.json());
+};
+
