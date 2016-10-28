@@ -7,7 +7,7 @@ import {List, ListItem} from 'material-ui/List';
 export default class UserHabitsComponent extends React.Component {
     componentWillMount() {
         this.state = {userHabits: null};
-        GetUserHabits(2).then(jsondata => {
+        GetUserHabits(1).then(jsondata => {
             Store.dispatch({type: 'load_userHabits', data: jsondata});
         });
 

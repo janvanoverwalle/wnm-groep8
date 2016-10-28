@@ -7,13 +7,17 @@ import Avatar from 'material-ui/Avatar';
 export default class UserInfoComponent extends React.Component {
     componentWillMount() {
         this.state = {userInfo: 'loading'};
-        GetUser(2).then(jsondata => {
+        GetUser(1).then(jsondata => {
             Store.dispatch({type: 'load_userInfo', data: jsondata.name});
         });
 
-        Store.subscribe(() => {
+        this.unsubscribe = Store.subscribe(() => {
             this.setState({userInfo: Store.getState().userInfo});
         });
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
     }
 
     render() {

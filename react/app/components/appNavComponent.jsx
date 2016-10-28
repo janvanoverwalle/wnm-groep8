@@ -3,6 +3,7 @@ import Store from '../store';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import { Link } from 'react-router'
 import DashboardIcon from 'material-ui/svg-icons/action/dashboard';
 import HabitIcon from 'material-ui/svg-icons/action/explore';
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
@@ -35,8 +36,8 @@ export default class appNavComponent extends React.Component  {
                 <Drawer
                     docked={false}
                     open={this.state.open}>
-                    <MenuItem onTouchTap={this.handleClose.bind(this)} leftIcon={<DashboardIcon/>}>Dashboard</MenuItem>
-                    <MenuItem onTouchTap={this.handleClose.bind(this)} leftIcon={<WeightIcon/>}>Weight</MenuItem>
+                    <MenuItem onTouchTap={this.handleClose.bind(this)} leftIcon={<DashboardIcon/>} containerElement={<Link to={'/userinfo'}></Link>} primaryText={"Dashboard"}></MenuItem>
+                    <MenuItem onTouchTap={this.handleClose.bind(this)} leftIcon={<WeightIcon/>} containerElement={<Link to={`/habit`}></Link>} primaryText={'Habit'}></MenuItem>
                     <MenuItem onTouchTap={this.handleClose.bind(this)} leftIcon={<CaloriesIcon/>}>Calories</MenuItem>
                     <MenuItem onTouchTap={this.handleClose.bind(this)} leftIcon={<HabitIcon/>}>Habits</MenuItem>
                     <MenuItem onTouchTap={this.handleClose.bind(this)} leftIcon={<SettingsIcon/>}>Settings</MenuItem>
