@@ -2,14 +2,14 @@
  * Created by timothy on 29/10/16.
  */
 import React from 'react';
-import {InsertWeight} from '../api/WeightApi';
+import {InsertWeight, GetUserWeights} from '../api/WeightApi';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import Store from '../store';
 import ApiUser from '../api/ApiUser';
-import {browserHistory} from 'react-router';
+import {hashHistory} from 'react-router';
 
 export default class AddWeightOverviewComponent extends React.Component {
     componentWillMount() {
@@ -36,7 +36,7 @@ export default class AddWeightOverviewComponent extends React.Component {
                     "date": this.state.date,
                     "user_id": ApiUser
                 }
-            }]).then(browserHistory.goBack());
+            }]).then(hashHistory.goBack());
         }
     }
 

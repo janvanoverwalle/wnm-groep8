@@ -2,11 +2,15 @@
  * Created by timothy on 28/10/16.
  */
 import React from 'react';
-import {GetUserWeights} from '../api/WeightApi';
+import {GetUserWeights, RemoveWeight} from '../api/WeightApi';
 import Store from '../store';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import FloatingButtonComponent from './floatingButtonComponent';
 import ApiUser from '../api/ApiUser';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 export default class WeightOverviewComponent extends React.Component {
     componentWillMount() {
@@ -31,9 +35,16 @@ export default class WeightOverviewComponent extends React.Component {
         this.unsubscribe();
     }
 
+    handleRemoveWeight(id) {
+        RemoveWeight(id);
+        GetUserWeights(ApiUser).then(jsondata => {
+            Store.dispatch({type: 'load_userWeights', data: jsondata});
+        });
+    }
+
     render() {
         var weightList = [];
-        if (this.state.userWeights != null) {
+        if (typeof this.state.userWeights !== 'undefined' && this.state.userWeights.length > 0) {
             for (let weight of this.state.userWeights) {
                 weightList.push({ id: weight.id, weight: weight.weight, date: weight.date});
             }
@@ -47,6 +58,7 @@ export default class WeightOverviewComponent extends React.Component {
                     <TableRow>
                         <TableHeaderColumn>Date</TableHeaderColumn>
                         <TableHeaderColumn>Weight</TableHeaderColumn>
+                        <TableHeaderColumn>Actions</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
                 <TableBody displayRowCheckbox={false}>
@@ -54,6 +66,14 @@ export default class WeightOverviewComponent extends React.Component {
                         <TableRow key={index}>
                             <TableRowColumn>{row.date}</TableRowColumn>
                             <TableRowColumn>{row.weight}</TableRowColumn>
+                            <TableRowColumn>
+                                <IconMenu
+                                iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+                                anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+                                targetOrigin={{horizontal: 'left', vertical: 'top'}} >
+                                    <MenuItem primaryText="Remove" onTouchTap={this.handleRemoveWeight.bind(this, row.id)} />
+                                </IconMenu>
+                            </TableRowColumn>
                         </TableRow>
                     ))}
                 </TableBody>

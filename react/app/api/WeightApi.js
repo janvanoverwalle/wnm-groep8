@@ -12,3 +12,11 @@ export const InsertWeight = (weightEntry) => {
 export const GetUserWeights = (userId) => {
     return fetch(`${ApiUrl}/users/${userId}/weights`).then(result => result.json());
 };
+
+export const RemoveWeight = (weightId) => {
+    const options = {
+        method: 'DELETE',
+        headers: new Headers({ 'content-type': 'application/json' })
+    };
+    return fetch(`${ApiUrl}/weights/${weightId}`, options);
+};
