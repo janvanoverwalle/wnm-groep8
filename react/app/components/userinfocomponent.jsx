@@ -3,11 +3,12 @@ import {GetUser} from '../api/UserApi';
 import Store from '../store';
 import {Card, CardHeader} from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
+import ApiUser from '../api/ApiUser';
 
 export default class UserInfoComponent extends React.Component {
     componentWillMount() {
         this.state = {userInfo: 'loading'};
-        GetUser(1).then(jsondata => {
+        GetUser(ApiUser).then(jsondata => {
             Store.dispatch({type: 'load_userInfo', data: jsondata.name});
         });
 

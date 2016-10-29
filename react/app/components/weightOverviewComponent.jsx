@@ -5,17 +5,26 @@ import React from 'react';
 import {GetUserWeights} from '../api/WeightApi';
 import Store from '../store';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import FloatingButtonComponent from './floatingButtonComponent';
+import ApiUser from '../api/ApiUser';
 
 export default class WeightOverviewComponent extends React.Component {
     componentWillMount() {
         this.state = {userWeights: null};
-        GetUserWeights(1).then(jsondata => {
+        GetUserWeights(ApiUser).then(jsondata => {
             Store.dispatch({type: 'load_userWeights', data: jsondata});
         });
 
         this.unsubscribe = Store.subscribe(() => {
             this.setState({userWeights: Store.getState().userWeights});
         });
+
+        //Set title
+        this.state = {appBarTitle: "Weight Overview"};
+        Store.dispatch({type: 'appbar_title', data: this.state.appBarTitle});
+
+        //Set button link
+        Store.dispatch({type: 'button_link', data: "addweight"});
     }
 
     componentWillUnmount() {
@@ -31,14 +40,16 @@ export default class WeightOverviewComponent extends React.Component {
         }
 
         return (
+            <div>
             <Table>
-                <TableHeader>
+                <TableHeader displaySelectAll={false}
+                             adjustForCheckbox={false}>
                     <TableRow>
                         <TableHeaderColumn>Date</TableHeaderColumn>
                         <TableHeaderColumn>Weight</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody displayRowCheckbox={false}>
                     {weightList.map( (row, index) => (
                         <TableRow key={index}>
                             <TableRowColumn>{row.date}</TableRowColumn>
@@ -47,6 +58,8 @@ export default class WeightOverviewComponent extends React.Component {
                     ))}
                 </TableBody>
             </Table>
+                <FloatingButtonComponent/>
+            </div>
         )
     }
 }

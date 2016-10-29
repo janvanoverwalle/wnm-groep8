@@ -1,5 +1,6 @@
 import React from 'react';
 import {GetUserHabits} from '../api/UserApi';
+import ApiUser from '../api/ApiUser';
 import Store from '../store';
 import {Card, CardHeader} from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
@@ -7,7 +8,7 @@ import {List, ListItem} from 'material-ui/List';
 export default class UserHabitsComponent extends React.Component {
     componentWillMount() {
         this.state = {userHabits: null};
-        GetUserHabits(1).then(jsondata => {
+        GetUserHabits(ApiUser).then(jsondata => {
             Store.dispatch({type: 'load_userHabits', data: jsondata});
         });
 
