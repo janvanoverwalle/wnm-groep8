@@ -1,8 +1,8 @@
 /**
- * Created by timothy on 29/10/16.
+ * Created by timothy on 31/10/16.
  */
 import React from 'react';
-import {InsertWeight} from '../api/WeightApi';
+import {InsertCalories} from '../api/CaloriesApi';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
@@ -11,10 +11,10 @@ import Store from '../store';
 import ApiUser from '../api/ApiUser';
 import {hashHistory} from 'react-router';
 
-export default class AddWeightComponent extends React.Component {
+export default class AddCaloriesComponent extends React.Component {
     componentWillMount() {
         //Set title
-        this.state = {appBarTitle: "Add Weight", date: new Date().toJSON(), weight: null};
+        this.state = {appBarTitle: "Add Calories", date: new Date().toJSON(), calories: null};
         Store.dispatch({type: 'appbar_title', data: this.state.appBarTitle});
     }
 
@@ -28,11 +28,11 @@ export default class AddWeightComponent extends React.Component {
         });
     }
 
-    handleAddWeight() {
-        if (this.state.weight) {
-            InsertWeight([{
-                "weight": {
-                    "weight": this.state.weight,
+    handleAddCalories() {
+        if (this.state.calories) {
+            InsertCalories([{
+                "calories": {
+                    "calories": this.state.calories,
                     "date": this.state.date,
                     "user_id": ApiUser
                 }
@@ -44,7 +44,7 @@ export default class AddWeightComponent extends React.Component {
         return (
             <Card style={{margin: 8}}>
                 <CardHeader
-                    title="Update Weight"
+                    title="Update Calories"
                     titleStyle={{
                         fontSize: 20,
                     }}
@@ -54,14 +54,14 @@ export default class AddWeightComponent extends React.Component {
                     <br />
                     <br />
                     <TextField
-                        name='weightField'
+                        name='caloriesField'
                         type='number'
                         errorText="This field is required!"
-                        onChange={e => this.setState({ weight: e.target.value })}
+                        onChange={e => this.setState({ calories: e.target.value })}
                     />
                 </CardText>
                 <CardActions>
-                    <RaisedButton onTouchTap={this.handleAddWeight.bind(this)}  label="Add weight" primary={true} />
+                    <RaisedButton onTouchTap={this.handleAddCalories.bind(this)}  label="Add calories" primary={true} />
                 </CardActions>
             </Card>
         )
