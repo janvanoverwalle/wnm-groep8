@@ -2,7 +2,7 @@
  * Created by timothy on 31/10/16.
  */
 import React from 'react';
-import {InsertCalories} from '../api/CaloriesApi';
+import {InsertCalories, GetUserCalories} from '../api/CaloriesApi';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
@@ -36,7 +36,9 @@ export default class AddCaloriesComponent extends React.Component {
                     "date": this.state.date,
                     "user_id": ApiUser
                 }
-            }]).then(hashHistory.goBack());
+            }]).then(() => GetUserCalories(ApiUser).then(jsondata => {
+                Store.dispatch({type: 'load_userCalories', data: jsondata});
+            })).then(hashHistory.goBack());
         }
     }
 

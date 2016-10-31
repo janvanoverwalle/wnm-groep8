@@ -33,14 +33,10 @@ export default class CaloriesOverviewComponent extends React.Component {
         this.unsubscribe();
     }
 
-    componentWillUpdate() {
-        GetUserCalories(ApiUser).then(jsondata => {
-            Store.dispatch({type: 'load_userCalories', data: jsondata});
-        });
-    }
-
     handleRemoveCalories(id) {
-        RemoveCalories(id).then(this.componentWillUpdate());
+        RemoveCalories(id).then(() => GetUserCalories(ApiUser).then(jsondata => {
+            Store.dispatch({type: 'load_userCalories', data: jsondata});
+        }));
     }
 
     render() {

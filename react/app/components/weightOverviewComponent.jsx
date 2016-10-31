@@ -33,14 +33,10 @@ export default class WeightOverviewComponent extends React.Component {
         this.unsubscribe();
     }
 
-    componentWillUpdate() {
-        GetUserWeights(ApiUser).then(jsondata => {
-            Store.dispatch({type: 'load_userWeights', data: jsondata});
-        });
-    }
-
     handleRemoveWeight(id) {
-        RemoveWeight(id).then(this.componentWillUpdate());
+        RemoveWeight(id).then(() => GetUserWeights(ApiUser).then(jsondata => {
+            Store.dispatch({type: 'load_userWeights', data: jsondata});
+        }));
     }
 
     render() {

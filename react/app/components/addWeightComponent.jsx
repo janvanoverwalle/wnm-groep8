@@ -2,7 +2,7 @@
  * Created by timothy on 29/10/16.
  */
 import React from 'react';
-import {InsertWeight} from '../api/WeightApi';
+import {InsertWeight, GetUserWeights} from '../api/WeightApi';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
@@ -36,7 +36,9 @@ export default class AddWeightComponent extends React.Component {
                     "date": this.state.date,
                     "user_id": ApiUser
                 }
-            }]).then(hashHistory.goBack());
+            }]).then(() => GetUserWeights(ApiUser).then(jsondata => {
+                Store.dispatch({type: 'load_userWeights', data: jsondata});
+            }).then(hashHistory.goBack()));
         }
     }
 
