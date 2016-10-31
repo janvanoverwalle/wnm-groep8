@@ -2,7 +2,7 @@
  * Created by timothy on 29/10/16.
  */
 import React from 'react';
-import {InsertWeight, GetUserWeights} from '../api/WeightApi';
+import {InsertWeight} from '../api/WeightApi';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';

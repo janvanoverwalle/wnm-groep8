@@ -24,9 +24,7 @@ export default class WeightOverviewComponent extends React.Component {
         });
 
         //Set title
-        this.state = {appBarTitle: "Weight Overview"};
-        Store.dispatch({type: 'appbar_title', data: this.state.appBarTitle});
-
+        Store.dispatch({type: 'appbar_title', data: "Weight Overview"});
         //Set button link
         Store.dispatch({type: 'button_link', data: "addweight"});
     }
@@ -35,11 +33,14 @@ export default class WeightOverviewComponent extends React.Component {
         this.unsubscribe();
     }
 
-    handleRemoveWeight(id) {
-        RemoveWeight(id);
+    componentWillUpdate() {
         GetUserWeights(ApiUser).then(jsondata => {
             Store.dispatch({type: 'load_userWeights', data: jsondata});
         });
+    }
+
+    handleRemoveWeight(id) {
+        RemoveWeight(id).then(this.componentWillUpdate());
     }
 
     render() {
