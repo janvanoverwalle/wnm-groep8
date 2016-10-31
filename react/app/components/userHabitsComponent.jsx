@@ -1,5 +1,5 @@
 import React from 'react';
-import {GetUserHabits} from '../api/UserApi';
+import {GetUserHabits} from '../api/HabitApi';
 import ApiUser from '../api/ApiUser';
 import Store from '../store';
 import {Card, CardHeader} from 'material-ui/Card';
