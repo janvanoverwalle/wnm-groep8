@@ -45,7 +45,9 @@ class HabitController {
 	}
 	
 	public function handleFindHabitsReachedByUserId($uid) {
-		
+		$habits = $this->habitRepository->findHabitsReachedByUserId($uid);
+
+        $this->view->show(array('habits_status' => $habits));
 	}
 	
 	public function handleInsertHabit($habit = null) {

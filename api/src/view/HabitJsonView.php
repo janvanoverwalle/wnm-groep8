@@ -27,6 +27,16 @@ class HabitJsonView implements View
 			$json = substr($json, 0, -1) . "]";
 			echo $json;
         }
+        else if (isset($data['habits_status'])) {
+            $json = "[";
+            foreach ($data['habits_status'] as $habit) {
+                $json = $json . json_encode(['id' => $habit->getId(), 'habit_id' => $habit->getHabitId(),
+                        'description' => $habit->getDescription(), 'date' => $habit->getDate(),
+                        'isReached' => $habit->getIsReached()]) . ",";
+            }
+            $json = substr($json, 0, -1) . "]";
+            echo $json;
+        }
 		else {
             echo '{}';
         }

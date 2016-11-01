@@ -145,6 +145,16 @@ $router->map('GET', '/users/[i:uid]/weights/[i:wid]/?', function ($uid, $wid) us
 
 /**
  * @GET
+ * @route = habit_reached
+ * @return habit_reached from users
+ */
+$router->map('GET', '/users/[i:uid]/habits/status/?', function ($uid) use (&$habitController, &$log) {
+    $log->info('GET user daily habit status by user_id : '.$uid);
+    $habitController->handleFindHabitsReachedByUserId($uid);
+});
+
+/**
+ * @GET
  * @route = users
  * @return all users
  */

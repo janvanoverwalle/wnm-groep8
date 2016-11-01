@@ -106,8 +106,13 @@ class PDOHabitRepository implements HabitRepository {
 			if (count($results) <= 0) {
 				return null;
 			}
+
+            $habits = [];
+            foreach ($results as $habit) {
+                $habits[] = new HabitReached($habit['id'], $habit['habit_id_id'], $habit['description'], $habit['date'], $habit['is_reached']);
+            }
 			
-			return $results;
+			return $habits;
 		}
 		catch (\Exception $e) {
 			return null;
