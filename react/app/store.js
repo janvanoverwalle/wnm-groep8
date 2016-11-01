@@ -7,15 +7,17 @@ const reducer = (state, action) => {
         case 'weight_inserted':
             return Object.assign({}, state, { weight: action.data });
         case 'load_userHabits':
-            return Object.assign({}, state, { userHabits: action.data});
+            return Object.assign({}, state, { userHabits: action.data });
         case 'appbar_title':
-            return Object.assign({}, state, { appBarTitle: action.data});
+            return Object.assign({}, state, { appBarTitle: action.data });
         case 'load_userWeights':
-            return Object.assign({}, state, {userWeights: action.data});
+            return Object.assign({}, state, { userWeights: action.data });
         case 'button_link':
-            return Object.assign({}, state, {buttonLink: action.data});
+            return Object.assign({}, state, { buttonLink: action.data });
         case 'load_userCalories':
-            return Object.assign({}, state, {userCalories: action.data});
+            return Object.assign({}, state, { userCalories: action.data });
+        case 'load_habits':
+            return Object.assign({}, state, { habits: action.data });
         default:
             return state;
     }

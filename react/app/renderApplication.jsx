@@ -8,6 +8,7 @@ import AddWeightComponent from './components/addWeightComponent';
 import AppNavComponent from './components/appNavComponent';
 import CaloriesOverviewComponent from './components/caloriesOverviewComponent';
 import AddCaloriesComponent from './components/addCaloriesComponent';
+import UserHabitsOverviewComponent from './components/userHabitOverviewComponent';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 export const history = useRouterHistory(createHashHistory)({queryKey:false});
 
@@ -36,6 +37,7 @@ const renderApplication = () => {
             <Route path="addweight" component={AddWeightComponent}/>
             <Route path="calories" component={CaloriesOverviewComponent}/>
             <Route path="addcalories" component={AddCaloriesComponent}/>
+            <Route path="habits" component={UserHabitsOverviewComponent}/>
         </Route>
     </Router>
     ),document.getElementById('applicatie'));

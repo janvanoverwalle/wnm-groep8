@@ -39,7 +39,7 @@ export default class appNavComponent extends React.Component  {
                     <MenuItem onTouchTap={this.handleClose.bind(this)} leftIcon={<DashboardIcon/>} containerElement={<Link to={'/dashboard'}></Link>} primaryText={"Dashboard"}></MenuItem>
                     <MenuItem onTouchTap={this.handleClose.bind(this)} leftIcon={<WeightIcon/>} containerElement={<Link to={`/weight`}></Link>} primaryText={'Weight'}></MenuItem>
                     <MenuItem onTouchTap={this.handleClose.bind(this)} leftIcon={<CaloriesIcon/>} containerElement={<Link to={`/calories`}></Link>} primaryText={'Calories'}></MenuItem>
-                    <MenuItem onTouchTap={this.handleClose.bind(this)} leftIcon={<HabitIcon/>}>Habits</MenuItem>
+                    <MenuItem onTouchTap={this.handleClose.bind(this)} leftIcon={<HabitIcon/>} containerElement={<Link to={`/habits`}></Link>} primaryText={'Habits'}></MenuItem>
                     <MenuItem onTouchTap={this.handleClose.bind(this)} leftIcon={<SettingsIcon/>}>Settings</MenuItem>
                 </Drawer>
 
