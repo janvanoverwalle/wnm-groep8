@@ -316,6 +316,23 @@ $router->map('POST', '/weights/?', function () use (&$weightController) {
     $weightController->handleInsertWeight($weight);
 });
 
+/**
+ * @POST
+ * @route = habit_reached
+ * @return habit_reached
+ * @description Nieuwe habit_reached zonder 'id' op te geven
+ */
+$router->map('POST', '/habits/status/?', function () use (&$habitController) {
+    // Get json objects
+    // [{"habit_reached":{"habit_id":"...", "user_id":"...", "date":"2016-10-16", "is_reached":"0|1"}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $habit = $data[0]->habit_reached;
+    $habitController->handleInsertHabitsReached($habit);
+});
+
 /********* DELETE *********/
 
 /**

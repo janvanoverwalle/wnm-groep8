@@ -37,6 +37,18 @@ class HabitJsonView implements View
             $json = substr($json, 0, -1) . "]";
             echo $json;
         }
+        else if (isset($data['habit_status'])) {
+            $habit = $data['habit_status'];
+            if ($habit != null) {
+                header($_SERVER["SERVER_PROTOCOL"] . " 200 OK");
+                echo json_encode(['id' => $habit->getId(), 'habit_id' => $habit->getHabitId(),
+                    'description' => $habit->getDescription(), 'date' => $habit->getDate(),
+                    'isReached' => $habit->getIsReached()]);
+            } else {
+                header($_SERVER["SERVER_PROTOCOL"] . " 500 Internal Server Error");
+                echo "{}";
+            }
+        }
 		else {
             echo '{}';
         }
