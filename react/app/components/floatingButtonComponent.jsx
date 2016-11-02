@@ -30,7 +30,7 @@ export default class floatingButtonComponent extends React.Component {
 
     render() {
         return (
-            <FloatingActionButton style={style} containerElement={<Link to={this.state.buttonLink}></Link>}>
+            <FloatingActionButton style={style} disabled={this.props.disabled} containerElement={<Link to={this.state.buttonLink}></Link>}>
                 <ContentAdd />
             </FloatingActionButton>
         )

@@ -80,7 +80,7 @@ export default class UserHabitsOverviewComponent extends React.Component {
                     </Card>
                     );
                 }, this)}
-                <FloatingButtonComponent/>
+                <FloatingButtonComponent disabled={disabledButton}/>
             </div>
         )
     }
