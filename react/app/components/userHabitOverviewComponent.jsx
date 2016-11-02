@@ -5,12 +5,13 @@ import React from 'react';
 import {GetUserHabitsStatus} from '../api/HabitApi';
 import ApiUser from '../api/ApiUser';
 import Store from '../store';
-import {Card, CardHeader, CardActions} from 'material-ui/Card';
+import {Card, CardHeader, CardActions, CardText} from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
 import ReachedIcon from 'material-ui/svg-icons/action/check-circle';
 import NotReachedIcon from 'material-ui/svg-icons/content/remove-circle';
 import RaisedButton from 'material-ui/RaisedButton';
-import {teal500, red700} from 'material-ui/styles/colors'
+import {teal500, red700} from 'material-ui/styles/colors';
+import FloatingButtonComponent from './floatingButtonComponent';
 
 export default class UserHabitsOverviewComponent extends React.Component {
     componentWillMount() {
@@ -25,6 +26,8 @@ export default class UserHabitsOverviewComponent extends React.Component {
 
         //Set title
         Store.dispatch({type: 'appbar_title', data: "Habits Overview"});
+        //Set button link
+        Store.dispatch({type: 'button_link', data: "add-daily-habit"});
     }
 
     componentWillUnmount() {
@@ -41,12 +44,21 @@ export default class UserHabitsOverviewComponent extends React.Component {
             }, []);
         }
 
+        //Set Daily button
+        var disabledButton = false;
+        Object.keys(habitList).map(function (key) {
+            if (new Date(key).toDateString() == new Date().toDateString()) {
+                //Set button link
+                disabledButton = true;
+            }
+        });
+
         return (
             <div>
                 {Object.keys(habitList).map(function (key) {
                     var habits = [];
                     for (let habit of habitList[key]) {
-                        var icon = (habit['isReached'] == 0 ? <ReachedIcon color={teal500}/> : <NotReachedIcon color={red700}/>);
+                        var icon = (habit['isReached'] == 1 ? <ReachedIcon color={teal500}/> : <NotReachedIcon color={red700}/>);
                         habits.push(<ListItem key={habit.id} primaryText={habit.description} leftIcon={icon}/>);
                     }
                     return (
@@ -57,15 +69,18 @@ export default class UserHabitsOverviewComponent extends React.Component {
                                 fontSize: 20,
                             }}
                         />
-                        <List>
-                            {habits}
-                        </List>
+                        <CardText>
+                            <List>
+                                {habits}
+                            </List>
+                        </CardText>
                         <CardActions>
                             <RaisedButton label="Update" primary={true}/>
                         </CardActions>
                     </Card>
                     );
                 }, this)}
+                <FloatingButtonComponent/>
             </div>
         )
     }

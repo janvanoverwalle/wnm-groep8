@@ -10,3 +10,12 @@ export const GetUserHabits = (userId) => {
 export const GetUserHabitsStatus = (userId) => {
     return fetch(`${ApiUrl}/users/${userId}/habits/status`).then(result => result.json());
 };
+
+export const InsertHabitReached = (habitEntry) => {
+    const options = {
+        method: 'POST',
+        headers: new Headers({ 'content-type': 'application/json' }),
+        body: JSON.stringify(habitEntry)
+    };
+    return fetch(`${ApiUrl}/habits/status`, options).then(result => result.json());
+};
