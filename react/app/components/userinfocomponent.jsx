@@ -30,7 +30,7 @@ export default class UserInfoComponent extends React.Component {
                     fontSize: 20,
                 }}
                 subtitle={this.state.userInfo}
-                avatar={<Avatar>{this.state.userInfo.charAt(0)}</Avatar>} />
+                avatar={<Avatar>{this.state.userInfo.charAt(0).toUpperCase()}</Avatar>} />
         </Card>
     )
     }

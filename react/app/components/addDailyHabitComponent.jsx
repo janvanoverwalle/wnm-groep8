@@ -56,7 +56,8 @@ export default class AddDailyHabitComponent extends React.Component {
         if (this.state.userHabits != null) {
             for (let habit of this.state.userHabits) {
                 this.state.isReached[habit.id] = 0;
-                habitList.push(<ListItem key={habit.id} primaryText={habit.description} leftCheckbox={<Checkbox onTouchTap={this.handleCheckBoxToggle.bind(this, habit.id)}/>}/>);
+                habitList.push(<ListItem key={habit.id} primaryText={habit.description}
+                                         leftCheckbox={<Checkbox onCheck={this.handleCheckBoxToggle.bind(this, habit.id)}/>}/>);
                 //Added key: Each child in an array or iterator should have a unique "key" prop
                 //https://facebook.github.io/react/docs/lists-and-keys.html
             }

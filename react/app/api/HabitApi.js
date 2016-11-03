@@ -19,3 +19,12 @@ export const InsertHabitReached = (habitEntry) => {
     };
     return fetch(`${ApiUrl}/habits/status`, options).then(result => result.json());
 };
+
+export const UpdateHabitReached = (habitEntry) => {
+    const options = {
+        method: 'PUT',
+        headers: new Headers({ 'content-type': 'application/json' }),
+        body: JSON.stringify(habitEntry)
+    };
+    return fetch(`${ApiUrl}/habits/status`, options).then(result => result.json());
+};
