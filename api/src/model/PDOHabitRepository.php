@@ -172,7 +172,7 @@ class PDOHabitRepository implements HabitRepository
     public function insertHabitReached(HabitReached $habit, $userId)
     {
         try {
-            //INSERT new habit
+            //INSERT new habit_reached
             $stmt = $this->connection->prepare("INSERT INTO habit_reached(user_id_id, habit_id_id, date, is_reached) VALUES (:user_id, :habit_id, :date, :is_reached)");
             $stmt->bindParam(':user_id', $userId);
             $stmt->bindParam(':habit_id', $habit->getHabitId());
@@ -276,6 +276,22 @@ class PDOHabitRepository implements HabitRepository
             }
 
             return null;
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    public function updateHabitReached(HabitReached $habit)
+    {
+        try {
+            //UPDATE habit_reached
+            $stmt = $this->connection->prepare("UPDATE habit_reached SET is_reached=:is_reached WHERE id=:id");
+            $stmt->bindParam(':is_reached', $habit->getIsReached());
+            $stmt->bindParam(':id', $habit->getId());
+            $stmt->execute();
+
+            return $habit;
+
         } catch (\Exception $e) {
             return null;
         }

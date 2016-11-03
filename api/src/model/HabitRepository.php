@@ -16,4 +16,5 @@ interface HabitRepository
     public function deleteHabitByIdAndUserId($hid, $uid);
     public function updateHabitById(Habit $habit);
     public function updateHabitByIdAndUserId($uid, $oldHId, $newHId);
+    public function updateHabitReached(HabitReached $habit);
 }

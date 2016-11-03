@@ -128,6 +128,13 @@ class HabitController
 
         $this->view->show(array('habit' => $habit));
     }
-}
 
-?>
+    public function handleUpdateHabitsReached($habit)
+    {
+        $habitModel = new HabitReached($habit->id, NULL, NULL, NULL, $habit->is_reached);
+
+        $habitModel = $this->habitRepository->updateHabitReached($habitModel);
+
+        $this->view->show(array('habit_status' => $habitModel));
+    }
+}

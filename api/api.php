@@ -478,6 +478,23 @@ $router->map('PUT', '/weights/?', function () use (&$weightController) {
     $weightController->handleUpdateWeightById($weight);
 });
 
+/**
+ * @PUT
+ * @route = habit_reached
+ * @return habit_reached
+ * @description UPDATE habit_reached
+ */
+$router->map('PUT', '/habits/status/?', function () use (&$habitController) {
+    // Get json objects
+    // [{"habit_reached":{"id":"..", "is_reached":"0|1"}}]
+    $requestBody = file_get_contents('php://input');
+    $data = (array)json_decode($requestBody);
+
+    // variable declaration
+    $habit = $data[0]->habit_reached;
+    $habitController->handleUpdateHabitsReached($habit);
+});
+
 $match = $router->match();
 
 if ($match && is_callable($match['target'])) {
