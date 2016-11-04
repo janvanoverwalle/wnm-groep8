@@ -5,11 +5,11 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class UserType extends AbstractType
+class ChangePasswordType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -17,29 +17,18 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array(
-                'label' => 'Naam'
+            ->add('plainPassword', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'first_options' => array('label' => 'Nieuw paswoord'),
+                'second_options' => array('label' => 'Herhaal paswoord'),
+                'invalid_message' => 'Paswoorden zijn niet hetzelfde.',
             ))
-            ->add('surname', TextType::class, array(
-                'label' => 'Achternaam'
-            ))
-            ->add('username', TextType::class, array(
-                'label' => 'Gebruikersnaam',
-                'disabled' => true
-            ))
-            ->add('email', TextType::class, array(
-                'label' => 'E-mail'
-            ))
-            ->add('enabled', CheckboxType::class, array(
-                'label' => 'Actief'
-            ))
-            ->add('roles')
             ->add('save', SubmitType::class, array(
                 'label'  => 'Opslaan',
             ))
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -57,6 +46,4 @@ class UserType extends AbstractType
     {
         return 'appbundle_user';
     }
-
-
 }

@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Gebruikers overzicht | Administrator{% endblock %}
+
+{% block body %}
+{% if users %}
+    <ul>
+        {% for u in users %}
+            <li><a href="/admin/users/{{u.id}}">{{u.name|e}}</a> (<a href="/admin/users/{{u.id}}/pw">wijzig paswoord</a>)</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <pre>Geen gebruikers gevonden.</pre>
+{% endif %}
+{% endblock %}

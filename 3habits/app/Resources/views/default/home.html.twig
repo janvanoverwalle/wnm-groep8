@@ -3,7 +3,7 @@
 {% block title %}3Habits - Welcome{% endblock %}
 
 {% block body %}
-	<h2>Welkom!</h2>
+	<h2>Welkom {{ app.user.name }}!</h2>
 	
 	{% if app.user %}
 		<ul>

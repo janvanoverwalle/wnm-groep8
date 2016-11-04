@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Coaches overzicht | Administrator{% endblock %}
+
+{% block body %}
+{% if coaches %}
+    <ul>
+        {% for c in coaches %}
+            <li><a href="/admin/coaches/{{c.id}}">{{c.name|e}}</a></li>				
+        {% endfor %}
+    </ul>
+{% else %}
+    <pre>Geen coaches gevonden.</pre>
+{% endif %}
+{% endblock %}

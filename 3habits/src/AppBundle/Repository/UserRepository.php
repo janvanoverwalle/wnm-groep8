@@ -11,12 +11,24 @@ class UserRepository extends EntityRepository
 			return null;
 		}
 		
-		return $this->getEntityManager()
-			->createQuery(
-				'SELECT u FROM AppBundle:User u WHERE u.id = :id'
-			)
-			->setParameter('id', $id)
-			->getResult();
+		return $this->find($id);
+	}
+
+	public function findByRole($role) {
+		if ($role == null || empty($role)) {
+			return null;
+		}
+
+		$all_users = $this->findAll();
+
+		$users = array();
+		foreach ($all_users as $user) {
+            if ($user->hasRole($role)) {
+                $users[] = $user;
+            }
+        }
+
+		return $users;
 	}
 	
 	public function findAllHabitsById($id) {

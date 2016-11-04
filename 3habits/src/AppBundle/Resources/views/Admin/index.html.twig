@@ -1,0 +1,9 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Administrator pagina{% endblock %}
+
+{% block body %}
+<h3>Welkom {{ app.user.username }}</h3>
+<p>Een overzicht van alle <a href="/admin/users">gebruikers</a>.</p>
+<p>Een overzicht van alle <a href="/admin/coaches">coaches</a>.</p>
+{% endblock %}
