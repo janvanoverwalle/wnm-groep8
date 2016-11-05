@@ -134,8 +134,8 @@ class TestUserController extends PHPUnit_Framework_TestCase
                 echo $w->getId().' '.$w->getWeight().' '.$w->getDate();
             }));
 
-        $habitController = new WeightController($this->mockWeightRepository, $this->mockView);
-        $habitController->handleFindWeightByIdAndUserId($this->weight->getId(),$uid);
+        $weightController = new WeightController($this->mockWeightRepository, $this->mockView);
+        $weightController->handleFindWeightByIdAndUserId($this->weight->getId(),$uid);
 
         $this->expectOutputString($this->weight->getId().' '.$this->weight->getWeight().' '.$this->weight->getDate());
     }
