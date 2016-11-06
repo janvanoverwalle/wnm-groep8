@@ -1,8 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Index{% endblock %}
+
 {% block body %}
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-		<p>Welkom {{ app.user.username }}</p>
+		Welkom {{ app.user.username }} | 
+		<a href="{{ path('fos_user_security_logout') }}">
+			{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+		</a>
+		{% if is_granted('ROLE_ADMIN') %}
+			
+		{% elseif is_granted('ROLE_COACH') %}
+
+		{% endif %}
 	{% else %}
 		<h3>Welkom bij 3habits</h3>
 		<p>U dient zich <a href="/login">in te loggen</a> vooraleer u verder kan gaan.</p>

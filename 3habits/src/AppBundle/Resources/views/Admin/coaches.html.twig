@@ -3,10 +3,21 @@
 {% block title %}Coaches overzicht | Administrator{% endblock %}
 
 {% block body %}
+<a href="{{ path('admin') }}">
+    Index
+</a>
+
 {% if coaches %}
     <ul>
         {% for c in coaches %}
-            <li><a href="/admin/coaches/{{c.id}}">{{c.name|e}}</a></li>				
+            <li>
+                <a href="/admin/users/{{c.id}}">{{c.name|e}}</a> 
+                (
+                    <a href="/admin/users/{{c.id}}/edit">bewerken</a> | 
+                    <a href="/admin/users/{{c.id}}/change-password">wijzig paswoord</a> | 
+                    <a href="/admin/users/{{c.id}}/delete">verwijder</a>
+                )
+            </li>
         {% endfor %}
     </ul>
 {% else %}

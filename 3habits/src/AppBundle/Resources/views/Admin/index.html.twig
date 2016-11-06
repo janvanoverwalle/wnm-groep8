@@ -1,9 +1,32 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Administrator pagina{% endblock %}
+{% block title %}Index | Administrator{% endblock %}
 
 {% block body %}
-<h3>Welkom {{ app.user.username }}</h3>
+<h2>Welkom {{ app.user.username }}</h2>
+
+<div>
+    <a href="{{ path('fos_user_security_logout') }}">
+        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+    </a>
+
+    <a href="{{ path('fos_user_profile_show') }}">
+        Profiel
+    </a>
+</div>
+
+{% if notices %}
+    <div>
+        {% for n in notices %}
+            <pre>n</pre>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<a href="/admin/users/new">
+    Nieuwe gebruiker
+</a>
+
 <p>Een overzicht van alle <a href="/admin/users">gebruikers</a>.</p>
 <p>Een overzicht van alle <a href="/admin/coaches">coaches</a>.</p>
 {% endblock %}

@@ -3,10 +3,38 @@
 {% block title %}Gebruikers overzicht | Administrator{% endblock %}
 
 {% block body %}
+<a href="{{ path('admin') }}">
+    Index
+</a>
+
 {% if users %}
+    <h3>Coaches</h3>
     <ul>
         {% for u in users %}
-            <li><a href="/admin/users/{{u.id}}">{{u.name|e}}</a> (<a href="/admin/users/{{u.id}}/pw">wijzig paswoord</a>)</li>
+            {% if u.hasRole('ROLE_COACH') %}
+                <li>
+                    <a href="/admin/users/{{u.id}}">{{u.name|e}}</a> 
+                    (
+                        <a href="/admin/users/{{u.id}}/edit">bewerken</a> | 
+                        <a href="/admin/users/{{u.id}}/change-password">wijzig paswoord</a> | 
+                        <a href="/admin/users/{{u.id}}/delete">verwijder</a>
+                    )
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <h3>Alle Gebruikers</h3>
+    <ul>
+        {% for u in users %}
+            <li>
+                <a href="/admin/users/{{u.id}}">{{u.name|e}}</a> 
+                (
+                    <a href="/admin/users/{{u.id}}/edit">bewerken</a> | 
+                    <a href="/admin/users/{{u.id}}/change-password">wijzig paswoord</a> | 
+                    <a href="/admin/users/{{u.id}}/delete">verwijder</a>
+                )
+            </li>
         {% endfor %}
     </ul>
 {% else %}

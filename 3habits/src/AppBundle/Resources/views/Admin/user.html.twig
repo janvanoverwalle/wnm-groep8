@@ -3,15 +3,19 @@
 {% block title %}Gebruiker {% if user %} {{user.name}} {% else %} niet gekend {% endif %} | Administrator{% endblock %}
 
 {% block body %}
-{% if msg %}
-    <p>{{ msg }}</p>
-{% endif %}
+<a href="{{ path('admin') }}">
+    Index
+</a>
 
 {% if form %}
     {{ form_start(form) }}
         {{ form_errors(form) }}
 
     {{ form_end(form) }}
+{% elseif user %}
+    <div>
+        {{ user.username }}
+    </div>
 {% else %}
     <pre>Deze gebruiker bestaat niet.</pre>
 {% endif %}
