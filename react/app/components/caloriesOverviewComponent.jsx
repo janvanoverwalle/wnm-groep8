@@ -25,8 +25,6 @@ export default class CaloriesOverviewComponent extends React.Component {
 
         //Set title
         Store.dispatch({type: 'appbar_title', data: "Calories Overview"});
-        //Set button link
-        Store.dispatch({type: 'button_link', data: "addcalories"});
     }
 
     componentWillUnmount() {
@@ -75,7 +73,7 @@ export default class CaloriesOverviewComponent extends React.Component {
                         ))}
                     </TableBody>
                 </Table>
-                <FloatingButtonComponent/>
+                <FloatingButtonComponent buttonLink={"addcalories"}/>
             </div>
         )
     }

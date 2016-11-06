@@ -29,8 +29,6 @@ export default class UserHabitsOverviewComponent extends React.Component {
 
         //Set title
         Store.dispatch({type: 'appbar_title', data: "Habits Overview"});
-        //Set button link
-        Store.dispatch({type: 'button_link', data: "add-daily-habit"});
     }
 
     componentWillUnmount() {
@@ -148,7 +146,7 @@ export default class UserHabitsOverviewComponent extends React.Component {
                         {this.state.list}
                     </Dialog>
                 </div>
-                <FloatingButtonComponent disabled={disabledButton}/>
+                <FloatingButtonComponent disabled={disabledButton} buttonLink={"add-daily-habit"}/>
             </div>
         )
     }

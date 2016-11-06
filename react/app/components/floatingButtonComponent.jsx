@@ -17,20 +17,9 @@ const style = {
 };
 
 export default class floatingButtonComponent extends React.Component {
-    componentWillMount() {
-        this.state = {buttonLink: null};
-        this.unsubscribe = Store.subscribe(() => {
-            this.setState({buttonLink: Store.getState().buttonLink});
-        });
-    }
-
-    componentWillUnmount() {
-        this.unsubscribe();
-    }
-
     render() {
         return (
-            <FloatingActionButton style={style} disabled={this.props.disabled} containerElement={<Link to={this.state.buttonLink}></Link>}>
+            <FloatingActionButton style={style} disabled={this.props.disabled} containerElement={<Link to={this.props.buttonLink}></Link>}>
                 <ContentAdd />
             </FloatingActionButton>
         )

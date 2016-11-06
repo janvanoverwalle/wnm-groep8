@@ -25,8 +25,6 @@ export default class WeightOverviewComponent extends React.Component {
 
         //Set title
         Store.dispatch({type: 'appbar_title', data: "Weight Overview"});
-        //Set button link
-        Store.dispatch({type: 'button_link', data: "addweight"});
     }
 
     componentWillUnmount() {
@@ -75,7 +73,7 @@ export default class WeightOverviewComponent extends React.Component {
                     ))}
                 </TableBody>
             </Table>
-                <FloatingButtonComponent/>
+                <FloatingButtonComponent buttonLink={"addweight"}/>
             </div>
         )
     }
