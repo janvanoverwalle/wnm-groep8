@@ -1,6 +1,8 @@
 <?php
 
 namespace model;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class PDOUserRepository implements UserRepository
 {
@@ -9,6 +11,8 @@ class PDOUserRepository implements UserRepository
     public function __construct(\PDO $connection)
     {
         $this->connection = $connection;
+		$log = new Logger('PDOUserRepository');
+		$log->pushHandler(new StreamHandler(__DIR__ . '/api_db.log', Logger::WARNING));
     }
 
 	private function createNewUserFromResults($results) {
@@ -52,6 +56,7 @@ class PDOUserRepository implements UserRepository
 			return $this->createNewUserFromResults($results[0]);
 		}
 		catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
 			return null;
 		}
     }
@@ -71,6 +76,7 @@ class PDOUserRepository implements UserRepository
 			return $this->createNewUserFromResults($results[0]);
 		}
 		catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
 			return null;
 		}
     }
@@ -97,6 +103,7 @@ class PDOUserRepository implements UserRepository
 			return $users;
 		}
 		catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
 			return null;
 		}
 	}
@@ -133,6 +140,7 @@ class PDOUserRepository implements UserRepository
 			return null;
 		}
 		catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
 			return null;
 		}
 	}
@@ -156,6 +164,7 @@ class PDOUserRepository implements UserRepository
 			return null;
 		}
 		catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
 			return null;
 		}
     }
@@ -212,6 +221,7 @@ class PDOUserRepository implements UserRepository
 			return null;
 		}
 		catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
 			return null;
 		}
 	}

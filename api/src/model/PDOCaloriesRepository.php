@@ -7,7 +7,8 @@
  */
 
 namespace model;
-
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class PDOCaloriesRepository implements CaloriesRepository
 {
@@ -15,6 +16,8 @@ class PDOCaloriesRepository implements CaloriesRepository
 
     public function __construct(\PDO $connection) {
         $this->connection = $connection;
+		$log = new Logger('PDOUserRepository');
+		$log->pushHandler(new StreamHandler(__DIR__ . '/api_db.log', Logger::WARNING));
     }
 
     public function findCaloriesById($id)
@@ -33,6 +36,7 @@ class PDOCaloriesRepository implements CaloriesRepository
             return new Calories($results[0]['id'], $results[0]['calories'], $results[0]['date']);
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -57,6 +61,7 @@ class PDOCaloriesRepository implements CaloriesRepository
             return $calories;
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -82,6 +87,7 @@ class PDOCaloriesRepository implements CaloriesRepository
             return $calories;
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -103,6 +109,7 @@ class PDOCaloriesRepository implements CaloriesRepository
             return new Calories($results[0]['id'], $results[0]['calories'], $results[0]['date']);
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -128,6 +135,7 @@ class PDOCaloriesRepository implements CaloriesRepository
             return null;
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -148,6 +156,7 @@ class PDOCaloriesRepository implements CaloriesRepository
             return $calories;
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -169,6 +178,7 @@ class PDOCaloriesRepository implements CaloriesRepository
             return null;
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }

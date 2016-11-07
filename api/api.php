@@ -69,7 +69,7 @@ $log->pushHandler(new StreamHandler(__DIR__ . '/log.txt', Logger::INFO));
  * @return user
  */
 $router->map('GET', '/users/[i:id]/?', function ($id) use (&$userController, &$log) {
-	$log->info('GET user by id : '.$id);
+	//$log->info('GET user by id : '.$id);
     $userController->handleFindUserById($id);
 });
 
@@ -79,7 +79,7 @@ $router->map('GET', '/users/[i:id]/?', function ($id) use (&$userController, &$l
  * @return user
  */
 $router->map('GET', '/users/[a:username]/?', function ($username) use (&$userController, &$log) {
-	$log->info('GET user by username : '.$username);
+	//$log->info('GET user by username : '.$username);
     $userController->handleFindUserByUsername($username);
 });
 
@@ -89,7 +89,7 @@ $router->map('GET', '/users/[a:username]/?', function ($username) use (&$userCon
  * @return user + his habits
  */
 $router->map('GET', '/users/[i:id]/habits/?', function ($id) use (&$habitController, &$log) {
-	$log->info('GET user habits by user_id : '.$id);
+	//$log->info('GET user habits by user_id : '.$id);
     $habitController->handleFindHabitsByUserId($id);
 });
 
@@ -99,7 +99,7 @@ $router->map('GET', '/users/[i:id]/habits/?', function ($id) use (&$habitControl
  * @return user + habit
  */
 $router->map('GET', '/users/[i:uid]/habits/[i:hid]/?', function ($uid, $hid) use (&$habitController, &$log) {
-    $log->info('GET user habit by user_id : '.$uid.' and habit_id : '.$hid);
+    //$log->info('GET user habit by user_id : '.$uid.' and habit_id : '.$hid);
 	$habitController->handleFindHabitByIdAndUserId($hid, $uid);
 });
 
@@ -109,7 +109,7 @@ $router->map('GET', '/users/[i:uid]/habits/[i:hid]/?', function ($uid, $hid) use
  * @return users + his calories
  */
 $router->map('GET', '/users/[i:id]/calories/?', function ($id) use (&$caloriesController, &$log) {
-	$log->info('GET user calories by user_id : '.$id);
+	//$log->info('GET user calories by user_id : '.$id);
     $caloriesController->handleFindCaloriesByUserId($id);
 });
 
@@ -119,7 +119,7 @@ $router->map('GET', '/users/[i:id]/calories/?', function ($id) use (&$caloriesCo
  * @return user + calorie
  */
 $router->map('GET', '/users/[i:uid]/calories/[i:cid]/?', function ($uid, $cid) use (&$caloriesController, &$log) {
-    $log->info('GET user calorie by user_id : '.$uid.' and calorie_id : '.$cid);
+    //$log->info('GET user calorie by user_id : '.$uid.' and calorie_id : '.$cid);
 	$caloriesController->handleFindCaloriesByIdAndUserId($cid, $uid);
 });
 
@@ -129,7 +129,7 @@ $router->map('GET', '/users/[i:uid]/calories/[i:cid]/?', function ($uid, $cid) u
  * @return users + his calories
  */
 $router->map('GET', '/users/[i:id]/weights/?', function ($id) use (&$weightController, &$log) {
-	$log->info('GET user weights by user_id : '.$id);
+	//$log->info('GET user weights by user_id : '.$id);
     $weightController->handleFindWeightsByUserId($id);
 });
 
@@ -139,7 +139,7 @@ $router->map('GET', '/users/[i:id]/weights/?', function ($id) use (&$weightContr
  * @return user + weight
  */
 $router->map('GET', '/users/[i:uid]/weights/[i:wid]/?', function ($uid, $wid) use (&$weightController, &$log) {
-	$log->info('GET user weight by user_id : '.$uid.' and weight_id'.$wid);
+	//$log->info('GET user weight by user_id : '.$uid.' and weight_id'.$wid);
     $weightController->handleFindWeightByIdAndUserId($wid, $uid);
 });
 
@@ -149,7 +149,7 @@ $router->map('GET', '/users/[i:uid]/weights/[i:wid]/?', function ($uid, $wid) us
  * @return habit_reached from users
  */
 $router->map('GET', '/users/[i:uid]/habits/status/?', function ($uid) use (&$habitController, &$log) {
-    $log->info('GET user daily habit status by user_id : '.$uid);
+    //$log->info('GET user daily habit status by user_id : '.$uid);
     $habitController->handleFindHabitsReachedByUserId($uid);
 });
 
@@ -159,7 +159,7 @@ $router->map('GET', '/users/[i:uid]/habits/status/?', function ($uid) use (&$hab
  * @return all users
  */
 $router->map('GET', '/users/?', function () use (&$userController, &$log) {
-	$log->info('GET all users');
+	//$log->info('GET all users');
     $userController->handleFindAllUsers();
 });
 
@@ -169,7 +169,7 @@ $router->map('GET', '/users/?', function () use (&$userController, &$log) {
  * @return habits
  */
 $router->map('GET', '/habits/[i:id]/?', function ($id) use (&$habitController, &$log) {
-	$log->info('GET habits by id : '.$id);
+	//$log->info('GET habits by id : '.$id);
     $habitController->handleFindHabitById($id);
 });
 
@@ -179,7 +179,7 @@ $router->map('GET', '/habits/[i:id]/?', function ($id) use (&$habitController, &
  * @return all habits
  */
 $router->map('GET', '/habits/?', function () use (&$habitController, &$log) {
-	$log->info('GET all habits');
+	//$log->info('GET all habits');
     $habitController->handleFindAllHabits();
 });
 
@@ -189,7 +189,7 @@ $router->map('GET', '/habits/?', function () use (&$habitController, &$log) {
  * @return calories
  */
 $router->map('GET', '/calories/[i:id]/?', function ($id) use (&$caloriesController, &$log) {
-	$log->info('GET calories by id : '.$id);
+	//$log->info('GET calories by id : '.$id);
     $caloriesController->handleFindCaloriesById($id);
 });
 
@@ -199,7 +199,7 @@ $router->map('GET', '/calories/[i:id]/?', function ($id) use (&$caloriesControll
  * @return all calories
  */
 $router->map('GET', '/calories/?', function () use (&$caloriesController, &$log) {
-	$log->info('GET all calories');
+	//$log->info('GET all calories');
     $caloriesController->handleFindAllCalories();
 });
 
@@ -209,7 +209,7 @@ $router->map('GET', '/calories/?', function () use (&$caloriesController, &$log)
  * @return weight
  */
 $router->map('GET', '/weights/[i:id]/?', function ($id) use (&$weightController, &$log) {
-	$log->info('GET weights by id : '.$id);
+	//$log->info('GET weights by id : '.$id);
     $weightController->handleFindWeightById($id);
 });
 
@@ -219,7 +219,7 @@ $router->map('GET', '/weights/[i:id]/?', function ($id) use (&$weightController,
  * @return all weight
  */
 $router->map('GET', '/weights/?', function () use (&$weightController, &$log) {
-	$log->info('GET all weights');
+	//$log->info('GET all weights');
     $weightController->handleFindAllWeights();
 });
 

@@ -60,7 +60,7 @@ class AdminControllerTest extends WebTestCase
 
         $link = $crawler
             ->filter('a:contains("gebruikers")') // find all links with the text "gebruikers"
-            ->eq(0) // select the second link in the list
+            ->eq(0) // select the first link in the list
             ->link()
         ;
 

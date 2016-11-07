@@ -7,7 +7,8 @@
  */
 
 namespace model;
-
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 use controller\WeightController;
 
@@ -17,6 +18,8 @@ class PDOWeightRepository implements WeightRepository
 
     public function __construct(\PDO $connection) {
         $this->connection = $connection;
+		$log = new Logger('PDOUserRepository');
+		$log->pushHandler(new StreamHandler(__DIR__ . '/api_db.log', Logger::WARNING));
     }
 
     public function findWeightById($id)
@@ -35,6 +38,7 @@ class PDOWeightRepository implements WeightRepository
             return new Weight($results[0]['id'], $results[0]['weight'], $results[0]['date']);
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -59,6 +63,7 @@ class PDOWeightRepository implements WeightRepository
             return $weights;
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -84,6 +89,7 @@ class PDOWeightRepository implements WeightRepository
             return $weights;
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -105,6 +111,7 @@ class PDOWeightRepository implements WeightRepository
             return new Weight($results[0]['id'], $results[0]['weight'], $results[0]['date']);
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -130,6 +137,7 @@ class PDOWeightRepository implements WeightRepository
             return null;
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -150,6 +158,7 @@ class PDOWeightRepository implements WeightRepository
             return $weightModel;
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -171,6 +180,7 @@ class PDOWeightRepository implements WeightRepository
             return null;
         }
         catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }

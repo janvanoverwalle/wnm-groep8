@@ -1,6 +1,8 @@
 <?php
 
 namespace model;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class PDOHabitRepository implements HabitRepository
 {
@@ -9,6 +11,8 @@ class PDOHabitRepository implements HabitRepository
     public function __construct(\PDO $connection)
     {
         $this->connection = $connection;
+		$log = new Logger('PDOUserRepository');
+		$log->pushHandler(new StreamHandler(__DIR__ . '/api_db.log', Logger::WARNING));
     }
 
     public function findHabitById($id)
@@ -26,6 +30,7 @@ class PDOHabitRepository implements HabitRepository
 
             return new Habit($results[0]['id'], $results[0]['description']);
         } catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -49,6 +54,7 @@ class PDOHabitRepository implements HabitRepository
 
             return $habits;
         } catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -73,6 +79,7 @@ class PDOHabitRepository implements HabitRepository
 
             return $habits;
         } catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -93,6 +100,7 @@ class PDOHabitRepository implements HabitRepository
 
             return new Habit($results[0]['id'], $results[0]['description']);
         } catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -117,6 +125,7 @@ class PDOHabitRepository implements HabitRepository
 
             return $habits;
         } catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -139,6 +148,7 @@ class PDOHabitRepository implements HabitRepository
 
             return null;
         } catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -165,6 +175,7 @@ class PDOHabitRepository implements HabitRepository
 
             return null;
         } catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -190,6 +201,7 @@ class PDOHabitRepository implements HabitRepository
 
             return null;
         } catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -213,6 +225,7 @@ class PDOHabitRepository implements HabitRepository
 
             return null;
         } catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -237,6 +250,7 @@ class PDOHabitRepository implements HabitRepository
 
             return null;
         } catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -256,6 +270,7 @@ class PDOHabitRepository implements HabitRepository
 
             return null;
         } catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -277,6 +292,7 @@ class PDOHabitRepository implements HabitRepository
 
             return null;
         } catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
@@ -293,6 +309,7 @@ class PDOHabitRepository implements HabitRepository
             return $habit;
 
         } catch (\Exception $e) {
+			$log->error('Caught Exception: ' . $e->getMessage());
             return null;
         }
     }
