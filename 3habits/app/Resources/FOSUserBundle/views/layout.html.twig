@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    {% stylesheets filter='cssrewrite' 'bundles/app/css/*' %}
+    {% stylesheets 'bundles/app/css/*' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
 </head>
@@ -17,14 +17,40 @@
                         <h3 class="box-title">Profiel {{ app.user.username }}</h3>
                     </div>
                     <div class="box-body">
-                        <div class="form-group has-feedback">
-                            <label for="username">Username</label>
-                            <span>{{ app.user.username }}</span>
-                        </div>
-                        <div class="form-group has-feedback">
-                            <label for="username">Email</label>
-                            <span>{{ app.user.email }}</span>
-                        </div>
+                        <table class="form-group">
+                            <tr>
+                                <td>
+                                    <span><b>Voornaam:</b></span>
+                                </td>
+                                <td>
+                                    <span>{{ user.name }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><b>Achternaam:</b></span>
+                                </td>
+                                <td>
+                                    <span>{{ user.surname }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><b>Gebruikersnaam:</b></span>
+                                </td>
+                                <td>
+                                    <span>{{ user.username }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span><b>Email:</b></span>
+                                </td>
+                                <td>
+                                    <span>{{ user.email }}</span>
+                                </td>
+                            </tr>
+                        </table>
                         <div class="form-group has-feedback">
                             <a class="btn btn-primary"
                                href={{ app.user.hasRole('ROLE_ADMIN') ? path('admin') : path('coach') }}>Back</a>
