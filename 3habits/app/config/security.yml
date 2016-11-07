@@ -43,9 +43,8 @@ security:
         ROLE_ADMIN: ROLE_COACH
     
     access_control:
-        - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/profile, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/home, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/coach/, roles: [ ROLE_ADMIN, ROLE_COACH ] }
         - { path: ^/, roles: ROLE_ADMIN }
