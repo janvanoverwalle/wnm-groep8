@@ -35,7 +35,8 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "symfony/routing": "^3.1",
         "monolog/monolog": "^1.21",
-        "friendsofsymfony/user-bundle": "~2.0@dev"
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "symfony/assetic-bundle": "^2.8"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
