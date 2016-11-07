@@ -37,6 +37,10 @@ security:
                 csrf_token_generator: security.csrf.token_manager
             logout:       true
             anonymous:    true
+
+    role_hierarchy:
+        ROLE_COACH: ROLE_USER
+        ROLE_ADMIN: ROLE_COACH
     
     access_control:
         - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }

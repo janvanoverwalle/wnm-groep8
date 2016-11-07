@@ -56,6 +56,21 @@ class UserRepository extends EntityRepository
 		
 		return $habits;
 	}
+
+	public function findAllHabitsReachedById($id) {
+		if (!is_numeric($id)) {
+			return null;
+		}
+		
+		$userHabitsReached = $this->getEntityManager()
+			->createQuery(
+				'SELECT hr FROM AppBundle:HabitReached hr WHERE hr.user_id = :id'
+			)
+			->setParameter('id', $id)
+			->getResult();
+
+		return $userHabitsReached;
+	}
 }
 
 ?>

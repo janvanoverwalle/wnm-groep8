@@ -14,7 +14,7 @@
 </head>
 <body class="skin sidebar-mini">
 <header class="main-header">
-    <a class="logo" href="/admin">
+    <a class="logo" href={{ app.user.hasRole('ROLE_ADMIN') ? path('admin') : path('coach') }}>
         <span class="logo-lg"><b>Habits</b>Panel</span>
     </a>
     <!-- Header Navbar -->
@@ -45,9 +45,11 @@
     <!-- sidebar -->
     <section class="sidebar">
         <ul class="sidebar-menu">
-            <li><a href="/admin"><span>Home</span></a></li>
-            <li><a href="/admin/users"><span>Gebruikers</span></a></li>
-            <li><a href="/admin/coaches"><span>Coaches</span></a></li>
+            <li><a href={{ app.user.hasRole('ROLE_ADMIN') ? path('admin') : path('coach') }}><span>Home</span></a></li>
+            <li><a href={{ app.user.hasRole('ROLE_ADMIN') ? path('user-list') : path('coach-user-list') }}><span>Gebruikers</span></a></li>
+            {% if app.user.hasRole('ROLE_ADMIN') %}
+                <li><a href={{ path('coach-list') }}><span>Coaches</span></a></li>
+            {% endif %}
         </ul>
     </section>
     <!-- /.sidebar -->

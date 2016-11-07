@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UserType extends AbstractType
 {
@@ -30,10 +31,19 @@ class UserType extends AbstractType
             ->add('email', TextType::class, array(
                 'label' => 'E-mail'
             ))
+            //->add('roles')
+            ->add('role', ChoiceType::class, array(
+                'choices' => array(
+                    'Gebruiker' => 'ROLE_USER',
+                    'Coach' => 'ROLE_COACH',
+                    'Admin' => 'ROLE_ADMIN',
+                ),
+                'mapped' => false,
+                'data' => $builder->getData()->getHighestRole(),
+            ))
             ->add('enabled', CheckboxType::class, array(
                 'label' => 'Actief'
             ))
-            ->add('roles')
             ->add('save', SubmitType::class, array(
                 'label'  => 'Opslaan',
             ))

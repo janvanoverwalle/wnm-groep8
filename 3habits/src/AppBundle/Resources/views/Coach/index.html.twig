@@ -1,6 +1,6 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Index | Administrator{% endblock %}
+{% block title %}Index | Coach{% endblock %}
 
 {% block body %}
     <div class="wrapper">
@@ -25,12 +25,8 @@
                                         {% endfor %}
                                     </div>
                                 {% endif %}
-                                <p>
-                                    <a href={{ path('new-user') }}>Nieuwe gebruiker</a>
-                                </p>
-
-                                <p>Een overzicht van alle <a href={{ path('user-list') }}>gebruikers</a>.</p>
-                                <p>Een overzicht van alle <a href={{ path('coach-list') }}>coaches</a>.</p>
+                                
+                                <p>Een overzicht van alle <a href={{ path('coach-user-list') }}>gebruikers</a>.</p>
                             </div>
                         </div>
                     </div>

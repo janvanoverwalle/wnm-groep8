@@ -111,4 +111,32 @@ class User extends BaseUser
     {
         return $this->surname;
     }
+
+    /**
+     * Get highest role
+     *
+     * @return string
+     */
+    public function getHighestRole() {
+        if ($this->hasRole('ROLE_ADMIN')) {
+            return 'ROLE_ADMIN';
+        }
+
+        if ($this->hasRole('ROLE_COACH')) {
+            return 'ROLE_COACH';
+        }
+
+        return 'ROLE_USER';
+    }
+
+    /**
+     * Clear all roles
+     *
+     * @return string
+     */
+    public function clearRoles() {
+        $this->roles = array();
+
+        return $this;
+    }
 }

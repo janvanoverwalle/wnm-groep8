@@ -1,6 +1,7 @@
 {% extends "::base.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
 
-{% block title %}Gebruiker {% if user %} {{ user.name }} {% else %} niet gekend {% endif %} | Administrator{% endblock %}
+{% block title %}{% if user %}Gebruiker {{ user.name }}{% else %} Oh-oh! {% endif %} | Administrator{% endblock %}
 
 {% block body %}
     <div class="wrapper">
@@ -12,7 +13,7 @@
                     <div class="col-md-12">
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Gebruiker aanpassen</h3>
+                                <h3 class="box-title">Gebruiker {{ user.name }}</h3>
                             </div>
                             <div class="box-body">
                                 {% if form %}
@@ -22,10 +23,51 @@
                                     {{ form_end(form) }}
                                 {% elseif user %}
                                     <div>
-                                        {{ user.username }}
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <span><b>Voornaam:</b></span>
+                                                </td>
+                                                <td>
+                                                    <span>{{ user.name }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span><b>Achternaam:</b></span>
+                                                </td>
+                                                <td>
+                                                    <span>{{ user.surname }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span><b>Gebruikersnaam:</b></span>
+                                                </td>
+                                                <td>
+                                                    <span>{{ user.username }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span><b>Email:</b></span>
+                                                </td>
+                                                <td>
+                                                    <span>{{ user.email }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span><b>Geactiveerd:</b></span>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="reached" value="" {{ user.enabled == 1 ? 'checked' : '' }} disabled/>
+                                                </td>
+                                            </tr>
+                                        </table>                                        
                                     </div>
                                 {% else %}
-                                    <pre>Deze gebruiker bestaat niet.</pre>
+                                    <p>Er is helaas iets fout gelopen. Keer terug naar <a href={{ path('admin') }}>home</a>.</p>
                                 {% endif %}
                             </div>
                         </div>

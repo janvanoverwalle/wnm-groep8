@@ -1,0 +1,59 @@
+{% extends "::base.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}{% if app.user %}Gebruiker {{ app.user.name }}{% else %} Oh-oh! {% endif %} | Coach{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+        <div style="min-height: 946px;" class="content-wrapper">
+            <section class="content">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Gebruiker {{ app.user.name }}</h3>
+                            </div>
+                            <div class="box-body">
+                                {% if habits_reached %}
+                                    <div>
+                                        <table id="users" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Datum</th>
+                                                <th>Beschrijving</th>
+                                                <th>Habit Gehaald</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for hr in habits_reached %}
+                                                {% if  loop.index % 3 == 0 %}
+                                                    <tr></tr>
+                                                {% endif %}
+                                                <tr>
+                                                    <td>
+                                                        <span>{{ hr.getDate()|date("d/m/Y") }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{ hr.getHabitId().getDescription() }}</span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" name="reached" value="" {{ hr.getIsReached() == 1 ? 'checked' : '' }} disabled/>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                {% else %}
+                                    <p>Er is helaas iets fout gelopen. Keer terug naar <a href={{ path('admin') }}>home</a>.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
