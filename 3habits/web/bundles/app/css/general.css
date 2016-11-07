@@ -11,11 +11,11 @@ html,body {
     /* min-height:100% */
 }
 body {
-    font-family: var(--pxl-text);
+    font-family: Calibri,sans-serif;
     font-weight:400;
     overflow-x:hidden;
     overflow-y:auto;
-    color: var(--pxl-black);
+    color: #030203;
 }
 input[type="checkbox"], input[type="radio"] {
     width:14px;
@@ -37,7 +37,7 @@ textarea { resize:vertical; }
 .skin .sidebar-menu > li.active > a {
     color: #ffffff;
     background: #1e282c;
-    border-left-color: var(--pxl-green);
+    border-left-color: #58a648;
 }
 .skin .sidebar-menu > li > .treeview-menu {
     margin: 0 1px;
@@ -271,7 +271,7 @@ a:hover,a:active,a:focus {
     border-color:#d2d6de
 }
 .form-control:focus, .form-control:active {
-    border-color: var(--pxl-green);
+    border-color: #58a648;
     outline: 0;
     -webkit-box-shadow: 0px 0px 8px rgba(88, 166, 72, 0.75);
     -moz-box-shadow: 0px 0px 8px rgba(88, 166, 72, 0.75);
@@ -341,7 +341,7 @@ a:hover,a:active,a:focus {
     border-top-color:#00a65a
 }
 .box.box-default {
-    border-top-color:var(--pxl-green);
+    border-top-color:#58a648;
 }
 .box.collapsed-box .box-body,.box.collapsed-box .box-footer {
     display:none
@@ -445,7 +445,7 @@ a:hover,a:active,a:focus {
     border-color:#ddd
 }
 .btn-primary {
-    background-color: var(--pxl-green);
+    background-color: #58a648;
     border-color: #4F9541;
 }
 .btn-danger {
@@ -559,7 +559,7 @@ a:hover,a:active,a:focus {
     }
 }
 .skin .main-header .navbar {
-    background-color: var(--pxl-green);
+    background-color: #58a648;
 }
 .skin .main-header .navbar .nav>li>a {
     color:#fff
@@ -573,16 +573,16 @@ a:hover,a:active,a:focus {
         color:#fff
     }
     .skin .main-header .navbar .dropdown-menu li a:hover {
-        background: var(--pxl-green-hover)
+        background: #4F9541
     }
 }
 .skin .main-header .logo {
-    background-color: var(--pxl-green-hover);
+    background-color: #4F9541;
     color:#fff;
     border-bottom:0 solid transparent
 }
 .skin .main-header .logo:hover {
-    background-color: var(--pxl-green)
+    background-color: #58a648
 }
 .skin.layout-top-nav .main-header>.logo {
     background-color:inherit;

@@ -3,30 +3,39 @@
 {% block title %}Index | Administrator{% endblock %}
 
 {% block body %}
-<h2>Welkom {{ app.user.username }}</h2>
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+        <div style="min-height: 946px;" class="content-wrapper">
+            <section class="content-header">
+                <h2>Welkom {{ app.user.username }}</h2>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Acties</h3>
+                            </div>
+                            <div class="box-body">
+                                {% if notices %}
+                                    <div>
+                                        {% for n in notices %}
+                                            <pre>n</pre>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <a href="/admin/users/new">
+                                    Nieuwe gebruiker
+                                </a>
 
-<div>
-    <a href="{{ path('fos_user_security_logout') }}">
-        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-    </a>
-
-    <a href="{{ path('fos_user_profile_show') }}">
-        Profiel
-    </a>
-</div>
-
-{% if notices %}
-    <div>
-        {% for n in notices %}
-            <pre>n</pre>
-        {% endfor %}
+                                <p>Een overzicht van alle <a href="/admin/users">gebruikers</a>.</p>
+                                <p>Een overzicht van alle <a href="/admin/coaches">coaches</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
-{% endif %}
-
-<a href="/admin/users/new">
-    Nieuwe gebruiker
-</a>
-
-<p>Een overzicht van alle <a href="/admin/users">gebruikers</a>.</p>
-<p>Een overzicht van alle <a href="/admin/coaches">coaches</a>.</p>
 {% endblock %}

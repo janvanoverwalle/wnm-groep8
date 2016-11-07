@@ -1,13 +1,62 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    {% stylesheets filter='cssrewrite' 'bundles/app/css/*' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+    {% javascripts "bundles/app/js/jQuery-2.1.4.min.js" %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+</head>
+<body class="skin sidebar-mini">
+<header class="main-header">
+    <a class="logo" href="/admin">
+        <span class="logo-lg"><b>Habits</b>Panel</span>
+    </a>
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top">
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <!-- User Account -->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span>{{ app.user.username }}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('fos_user_security_logout') }}">
+                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        </li>
+                        <li><a href="{{ path('fos_user_profile_show') }}">
+                                Profiel
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<aside class="main-sidebar">
+    <!-- sidebar -->
+    <section class="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="/admin"><span>Home</span></a></li>
+            <li><a href="/admin/users"><span>Gebruikers</span></a></li>
+            <li><a href="/admin/coaches"><span>Coaches</span></a></li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+{% javascripts "bundles/app/js/bootstrap.min.js" %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+</body>
 </html>

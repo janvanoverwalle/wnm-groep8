@@ -3,41 +3,90 @@
 {% block title %}Gebruikers overzicht | Administrator{% endblock %}
 
 {% block body %}
-<a href="{{ path('admin') }}">
-    Index
-</a>
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+        <div style="min-height: 946px;" class="content-wrapper">
+            <section class="content-header">
+                <h2>Gebruikers</h2>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        {% if users %}
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Coaches</h3>
+                                </div>
+                                <div class="box-body">
+                                    <table id="coaches" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Naam</th>
+                                            <th>Acties</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for u in users %}
+                                            {% if u.hasRole('ROLE_COACH') %}
+                                                <tr>
+                                                    <td>
+                                                        <a href="/admin/users/{{ u.id }}">{{ u.name|e }}</a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-primary" href="/admin/users/{{ u.id }}/edit">bewerken</a>
+                                                        <a class="btn btn-primary"
+                                                           href="/admin/users/{{ u.id }}/change-password">wijzig
+                                                            paswoord</a>
+                                                        <a class="btn btn-danger delete"
+                                                           href="/admin/users/{{ u.id }}/delete">verwijder</a>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
-{% if users %}
-    <h3>Coaches</h3>
-    <ul>
-        {% for u in users %}
-            {% if u.hasRole('ROLE_COACH') %}
-                <li>
-                    <a href="/admin/users/{{u.id}}">{{u.name|e}}</a> 
-                    (
-                        <a href="/admin/users/{{u.id}}/edit">bewerken</a> | 
-                        <a href="/admin/users/{{u.id}}/change-password">wijzig paswoord</a> | 
-                        <a href="/admin/users/{{u.id}}/delete">verwijder</a>
-                    )
-                </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-
-    <h3>Alle Gebruikers</h3>
-    <ul>
-        {% for u in users %}
-            <li>
-                <a href="/admin/users/{{u.id}}">{{u.name|e}}</a> 
-                (
-                    <a href="/admin/users/{{u.id}}/edit">bewerken</a> | 
-                    <a href="/admin/users/{{u.id}}/change-password">wijzig paswoord</a> | 
-                    <a href="/admin/users/{{u.id}}/delete">verwijder</a>
-                )
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <pre>Geen gebruikers gevonden.</pre>
-{% endif %}
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Alle Gebruikers</h3>
+                                </div>
+                                <div class="box-body">
+                                    <table id="users" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Naam</th>
+                                            <th>Acties</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for u in users %}
+                                            <tr>
+                                                <td>
+                                                    <a href="/admin/users/{{ u.id }}">{{ u.name|e }}</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-primary" href="/admin/users/{{ u.id }}/edit">bewerken</a>
+                                                    <a class="btn btn-primary"
+                                                       href="/admin/users/{{ u.id }}/change-password">wijzig
+                                                        paswoord</a>
+                                                    <a class="btn btn-danger delete"
+                                                       href="/admin/users/{{ u.id }}/delete">verwijder</a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        {% else %}
+                            <pre>Geen gebruikers gevonden.</pre>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 {% endblock %}

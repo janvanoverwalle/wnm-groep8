@@ -3,24 +3,50 @@
 {% block title %}Coaches overzicht | Administrator{% endblock %}
 
 {% block body %}
-<a href="{{ path('admin') }}">
-    Index
-</a>
-
-{% if coaches %}
-    <ul>
-        {% for c in coaches %}
-            <li>
-                <a href="/admin/users/{{c.id}}">{{c.name|e}}</a> 
-                (
-                    <a href="/admin/users/{{c.id}}/edit">bewerken</a> | 
-                    <a href="/admin/users/{{c.id}}/change-password">wijzig paswoord</a> | 
-                    <a href="/admin/users/{{c.id}}/delete">verwijder</a>
-                )
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <pre>Geen coaches gevonden.</pre>
-{% endif %}
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+        <div style="min-height: 946px;" class="content-wrapper">
+            <section class="content">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        {% if coaches %}
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Coaches</h3>
+                                </div>
+                                <div class="box-body">
+                                    <table id="coaches" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Naam</th>
+                                            <th>Acties</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for c in coaches %}
+                                        <tr>
+                                            <td>
+                                                <a href="/admin/users/{{ c.id }}">{{ c.name|e }}</a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-primary"
+                                                   href="/admin/users/{{ c.id }}/edit">bewerken</a>
+                                                <a class="btn btn-primary"
+                                                   href="/admin/users/{{ c.id }}/change-password">wijzig paswoord</a>
+                                                <a class="btn btn-danger delete" href="/admin/users/{{ c.id }}/delete">verwijder</a>
+                                            </td>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        {% else %}
+                            <pre>Geen coaches gevonden.</pre>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 {% endblock %}
