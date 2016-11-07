@@ -21,23 +21,33 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, array(
-                'label' => 'Naam'
+                'label' => 'Naam ',
+                'attr'   =>  array(
+                    'class'   => 'form-group')
             ))
             ->add('surname', TextType::class, array(
-                'label' => 'Achternaam'
+                'label' => 'Achternaam ',
+                'attr'   =>  array(
+                    'class'   => 'form-group')
             ))
             ->add('username', TextType::class, array(
-                'label' => 'Gebruikersnaam',
+                'label' => 'Gebruikersnaam ',
+                'attr'   =>  array(
+                    'class'   => 'form-group')
             ))
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'options' => array('translation_domain' => 'FOSUserBundle'),
-                'first_options' => array('label' => 'Paswoord'),
-                'second_options' => array('label' => 'Herhaal paswoord'),
+                'first_options' => array('label' => 'Paswoord', 'attr'   =>  array(
+                    'class'   => 'form-group')),
+                'second_options' => array('label' => 'Herhaal paswoord', 'attr'   =>  array(
+                    'class'   => 'form-group')),
                 'invalid_message' => 'Paswoorden zijn niet hetzelfde',
             ))
             ->add('email', TextType::class, array(
-                'label' => 'E-mail'
+                'label' => 'E-mail ',
+                'attr'   =>  array(
+                    'class'   => 'form-group')
             ))
             ->add('role', ChoiceType::class, array(
                 'choices' => array(
@@ -46,12 +56,18 @@ class RegistrationType extends AbstractType
                     'Admin' => 'ROLE_ADMIN',
                 ),
                 'mapped' => false,
+                'attr'   =>  array(
+                    'class'   => 'form-group')
             ))
             ->add('enabled', CheckboxType::class, array(
-                'label' => 'Actief'
+                'label' => 'Actief ',
+                'attr'   =>  array(
+                    'class'   => 'form-group')
             ))
             ->add('save', SubmitType::class, array(
                 'label'  => 'Toevoegen',
+                'attr'   =>  array(
+                    'class'   => 'btn btn-primary')
             ))
         ;
     }

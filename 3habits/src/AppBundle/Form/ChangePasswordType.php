@@ -19,12 +19,16 @@ class ChangePasswordType extends AbstractType
         $builder
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options' => array('label' => 'Nieuw paswoord'),
-                'second_options' => array('label' => 'Herhaal paswoord'),
+                'first_options' => array('label' => 'Nieuw paswoord', 'attr'   =>  array(
+                    'class'   => 'form-group')),
+                'second_options' => array('label' => 'Herhaal paswoord', 'attr'   =>  array(
+                    'class'   => 'form-group')),
                 'invalid_message' => 'Paswoorden zijn niet hetzelfde',
             ))
             ->add('save', SubmitType::class, array(
                 'label'  => 'Opslaan',
+                'attr'   =>  array(
+                    'class'   => 'btn btn-primary')
             ))
         ;
     }

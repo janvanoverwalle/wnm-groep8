@@ -1,7 +1,10 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    <div class="alert alert-danger alert-dismissible">
+        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    </div>
 {% endif %}
 
 {% for flashMessage in app.session.flashbag.get('warning') %}
@@ -33,7 +36,8 @@
         </div>
 
         <div class="box-footer">
-            <input type="submit" id="_submit" name="_submit" class="btn btn-primary pull-right" value="{{ 'security.login.submit'|trans }}"/>
+            <input type="submit" id="_submit" name="_submit" class="btn btn-primary pull-right"
+                   value="{{ 'security.login.submit'|trans }}"/>
         </div>
     </form>
 {% endif %}

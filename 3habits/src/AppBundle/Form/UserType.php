@@ -19,17 +19,25 @@ class UserType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, array(
-                'label' => 'Naam'
+                'label' => 'Naam',
+                'attr'   =>  array(
+                    'class'   => 'form-group')
             ))
             ->add('surname', TextType::class, array(
-                'label' => 'Achternaam'
+                'label' => 'Achternaam',
+                'attr'   =>  array(
+                    'class'   => 'form-group')
             ))
             ->add('username', TextType::class, array(
                 'label' => 'Gebruikersnaam',
-                'disabled' => true
+                'disabled' => true,
+                'attr'   =>  array(
+                    'class'   => 'form-group')
             ))
             ->add('email', TextType::class, array(
-                'label' => 'E-mail'
+                'label' => 'E-mail',
+                'attr'   =>  array(
+                    'class'   => 'form-group')
             ))
             //->add('roles')
             ->add('role', ChoiceType::class, array(
@@ -40,12 +48,18 @@ class UserType extends AbstractType
                 ),
                 'mapped' => false,
                 'data' => $builder->getData()->getHighestRole(),
+                'attr'   =>  array(
+                    'class'   => 'form-group')
             ))
             ->add('enabled', CheckboxType::class, array(
-                'label' => 'Actief'
+                'label' => 'Actief',
+                'attr'   =>  array(
+                    'class'   => 'form-group')
             ))
             ->add('save', SubmitType::class, array(
                 'label'  => 'Opslaan',
+                'attr'   =>  array(
+                    'class'   => 'btn btn-primary')
             ))
         ;
     }
