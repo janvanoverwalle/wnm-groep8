@@ -14,6 +14,24 @@ class UserRepository extends EntityRepository
 		return $this->find($id);
 	}
 
+	public function findByUsername($username) {
+		if (!is_string($username)) {
+			return null;
+		}
+		
+		$result = $this->findBy(array('username' => $username));
+
+		if ($result == null) {
+			return null;
+		}
+
+		if (is_array($result)) {
+			return $result[0];
+		}
+
+		return null;
+	}
+
 	public function findByRole($role) {
 		if ($role == null || empty($role)) {
 			return null;
@@ -70,6 +88,36 @@ class UserRepository extends EntityRepository
 			->getResult();
 
 		return $userHabitsReached;
+	}
+
+	public function findAllWeightsById($id) {
+		if (!is_numeric($id)) {
+			return null;
+		}
+		
+		$weights = $this->getEntityManager()
+			->createQuery(
+				'SELECT w FROM AppBundle:Weight w WHERE w.user_id = :id'
+			)
+			->setParameter('id', $id)
+			->getResult();
+
+		return $weights;
+	}
+
+	public function findAllCaloriesById($id) {
+		if (!is_numeric($id)) {
+			return null;
+		}
+		
+		$calories = $this->getEntityManager()
+			->createQuery(
+				'SELECT c FROM AppBundle:Calorie c WHERE c.user_id = :id'
+			)
+			->setParameter('id', $id)
+			->getResult();
+
+		return $calories;
 	}
 }
 

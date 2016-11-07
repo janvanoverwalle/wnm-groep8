@@ -13,42 +13,97 @@
                     <div class="col-md-12">
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Gebruiker {{ app.user.name }}</h3>
+                                <h3 class="box-title">Gebruiker {{ user.name }}</h3>
                             </div>
                             <div class="box-body">
-                                {% if habits_reached %}
-                                    <div>
-                                        <table id="users" class="table table-bordered table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th>Datum</th>
-                                                <th>Beschrijving</th>
-                                                <th>Habit Gehaald</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {% for hr in habits_reached %}
-                                                {% if  loop.index % 3 == 0 %}
-                                                    <tr></tr>
-                                                {% endif %}
+                                <div>
+                                    {% if habits_reached %}
+                                        <div>
+                                            <table id="habits_reached" class="table table-bordered table-striped">
+                                                <thead>
                                                 <tr>
-                                                    <td>
-                                                        <span>{{ hr.getDate()|date("d/m/Y") }}</span>
-                                                    </td>
-                                                    <td>
-                                                        <span>{{ hr.getHabitId().getDescription() }}</span>
-                                                    </td>
-                                                    <td>
-                                                        <input type="checkbox" name="reached" value="" {{ hr.getIsReached() == 1 ? 'checked' : '' }} disabled/>
-                                                    </td>
+                                                    <th>Datum</th>
+                                                    <th>Beschrijving</th>
+                                                    <th>Habit Gehaald</th>
                                                 </tr>
-                                            {% endfor %}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                {% else %}
-                                    <p>Er is helaas iets fout gelopen. Keer terug naar <a href={{ path('admin') }}>home</a>.</p>
-                                {% endif %}
+                                                </thead>
+                                                <tbody>
+                                                {% for hr in habits_reached %}
+                                                    <tr{{ loop.index % 3 == 0 ? ' class="border_bottom"' : '' }}>
+                                                        <td>
+                                                            <span>{{ hr.getDate()|date("d/m/Y") }}</span>
+                                                        </td>
+                                                        <td>
+                                                            <span>{{ hr.getHabitId().getDescription() }}</span>
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" name="reached" value="" {{ hr.getIsReached() == 1 ? 'checked' : '' }} disabled/>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        <p>Er zijn geen habits gevonden.</p>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if weights %}
+                                        <div>
+                                            <table id="weights" class="table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>Datum</th>
+                                                    <th>Gewicht</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for w in weights %}
+                                                    <tr{{ loop.index % 3 == 0 ? ' class="border_bottom"' : '' }}>
+                                                        <td>
+                                                            <span>{{ w.getDate()|date("d/m/Y") }}</span>
+                                                        </td>
+                                                        <td>
+                                                            <span>{{ w.getWeight() }}</span>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        <p>Er zijn geen gewichten gevonden.</p>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if calories %}
+                                        <div>
+                                            <table id="calories" class="table table-bordered table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>Datum</th>
+                                                    <th>Caloriën</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for c in calories %}
+                                                    <tr{{ loop.index % 3 == 0 ? ' class="border_bottom"' : '' }}>
+                                                        <td>
+                                                            <span>{{ c.getDate()|date("d/m/Y") }}</span>
+                                                        </td>
+                                                        <td>
+                                                            <span>{{ c.getCalories() }}</span>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        <p>Er zijn geen caloriën gevonden.</p>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>

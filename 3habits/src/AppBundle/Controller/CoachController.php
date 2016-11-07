@@ -8,8 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Form\UserType;
 use AppBundle\Form\RegistrationType;
+use AppBundle\Form\ChooseHabitsType;
 use AppBundle\Form\ChangePasswordType;
+use AppBundle\Form\SearchUserType;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Habit;
 use AppBundle\Entity\UserHabits;
 
 /**
@@ -61,17 +64,54 @@ class CoachController extends Controller
     {
         $twig = 'AppBundle:Coach:user.html.twig';
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('AppBundle:User');
-        $userHabits = $repo->findAllHabitsById($uid);
+        $userRepo = $em->getRepository('AppBundle:User');
+        $user = $userRepo->findById($uid);
+        $userHabits = $userRepo->findAllHabitsById($uid);
+        $userWeights = $userRepo->findAllWeightsById($uid);
+        $userCalories = $userRepo->findAllCaloriesById($uid);
         
         if (count($userHabits) !== 3) {
             return $this->redirect($this->generateUrl('coach-new-user', array('uid' => $uid)));
         }
 
-        $habitsReached = $repo->findAllHabitsReachedById($uid);
+        $habitsReached = $userRepo->findAllHabitsReachedById($uid);
 
         return $this->render($twig, array(
             'habits_reached' => $habitsReached,
+            'weights' => $userWeights,
+            'calories' => $userCalories,
+            'user' => $user,
+        ));
+    }
+
+    /**
+     * @Route("/users/search", name="coach-user-search")
+     */
+    public function searchUserAction(Request $request)
+    {
+        $twig = 'AppBundle:Coach:search-user.html.twig';
+
+        $form = $this->createForm(SearchUserType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $username = trim($form->get('username')->getData());
+
+            $em = $this->getDoctrine()->getManager();
+            $userRepo = $em->getRepository('AppBundle:User');
+            $user = $userRepo->findByUsername($username);
+
+            if ($user !== null) {
+                return $this->redirect($this->generateUrl('coach-user', array('uid' => $user->getId())));
+            }
+            else {
+                $this->get('session')->getFlashBag()->add('error', "Geen gebruiker met de gebruikersnaam '".$username."' gevonden");
+            }
+        }
+
+        return $this->render($twig, array(
+            'form' => $form->createView(),
         ));
     }
 
@@ -81,29 +121,48 @@ class CoachController extends Controller
     public function newUserAction(Request $request, $uid)
     {
         $twig = 'AppBundle:Coach:new-user.html.twig';
-        $userManager = $this->get('fos_user.user_manager');
-        $user = $userManager->findUserBy(array('id' => $uid));
+        $em = $this->getDoctrine()->getManager();
+        $userRepo = $em->getRepository('AppBundle:User');
 
-        $form = $this->createForm(UserType::class, $user);
+        $user = $userRepo->findById($uid);
+        $userHabits = $userRepo->findAllHabitsById($uid);
+
+        if (count($userHabits) == 3) {
+            return $this->redirect($this->generateUrl('coach-user', array('uid' => $uid)));
+        }
+
+        $form = $this->createForm(ChooseHabitsType::class);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // $form->getData() holds the submitted values
             $user = $form->getData();
-            $role = $form->get('role')->getData();
-            $user->clearRoles();
-            $user->addRole($role);
+            $h1 = $form->get('habit1')->getData();
+            $h2 = $form->get('habit2')->getData();
+            $h3 = $form->get('habit3')->getData();
 
-            // Save user to the database
-            //$em = $this->getDoctrine()->getManager();
-            //$em->persist($user);
-            //$em->flush();
-            $userManager->updateUser($user);
+            $uh1 = new UserHabits();
+            $uh1->setUser($user);
+            $uh1->setHabit($h1);
 
-            $this->get('session')->getFlashBag()->add('notice', "Gebruiker is opgeslaan");
+            $uh2 = new UserHabits();
+            $uh2->setUser($user);
+            $uh2->setHabit($h2);
 
-            return $this->redirect($this->generateUrl('user', array('uid' => $uid)));
+            $uh3 = new UserHabits();
+            $uh3->setUser($user);
+            $uh3->setHabit($h3);
+
+            $em->persist($uh1);
+            $em->persist($uh2);
+            $em->persist($uh3);
+
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add('notice', "Habits toegekend");
+
+            return $this->redirect($this->generateUrl('coach-user', array('uid' => $uid)));
             //$this->redirectToRoute('user-list');
         }
 

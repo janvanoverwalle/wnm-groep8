@@ -1,6 +1,7 @@
 {% extends "::base.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
 
-{% block title %}{% if form %}Gebruiker habits toekennen{% else %}Oh-oh!{% endif %} | Coach{% endblock %}
+{% block title %}{% if app.user %}Gebruiker {{ app.user.name }}{% else %} Oh-oh! {% endif %} | Coach{% endblock %}
 
 {% block body %}
     <div class="wrapper">
@@ -12,9 +13,12 @@
                     <div class="col-md-12">
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Gebruiker habits toekennen</h3>
+                                <h3 class="box-title">Gebruiker zoeken</h3>
                             </div>
                             <div class="box-body">
+                                {% for msg in app.session.flashbag.get('error') %}
+                                    {{ msg }}
+                                {% endfor %}
                                 {% if form %}
                                     {{ form_start(form) }}
                                     {{ form_errors(form) }}

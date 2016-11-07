@@ -13,7 +13,7 @@ class HabitRepository extends EntityRepository
 		
 		return $this->getEntityManager()
 			->createQuery(
-				'SELECT u FROM AppBundle:User u WHERE u.id = :id'
+				'SELECT h FROM AppBundle:Habit h WHERE h.id = :id'
 			)
 			->setParameter('id', $id)
 			->getResult();
